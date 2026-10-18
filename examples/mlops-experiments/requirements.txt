@@ -1,0 +1,6 @@
+pandas
+scikit-learn
+mlflow>=3
+skops
+dvc
+pyyaml

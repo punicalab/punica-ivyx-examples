@@ -1,0 +1,22 @@
+schema: '2.0'
+stages:
+  train:
+    cmd: .venv/bin/python src/train.py
+    deps:
+    - path: data/train.csv
+      hash: md5
+      md5: 5c18417013db67e1e66276c3c301c72d
+      size: 7107
+    - path: src/train.py
+      hash: md5
+      md5: f0fd29dee0fd7f0b70016c8444c6266c
+      size: 778
+    outs:
+    - path: metrics.json
+      hash: md5
+      md5: d8556de1ab9a67ba29638420936ab7e1
+      size: 17
+    - path: model.pkl
+      hash: md5
+      md5: 80d8ed0cdd0b1d436633b92816910301
+      size: 833

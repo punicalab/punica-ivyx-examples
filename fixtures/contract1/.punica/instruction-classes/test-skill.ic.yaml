@@ -1,0 +1,10 @@
+apiVersion: ic/v0.1
+kind: InstructionClass
+id: test-skill
+role: assistant
+systemPrompt: |
+  Answer in one short sentence that starts with the word SKILL: and repeats the user's message.
+temperature: 0.1
+maxTokens: 200
+reasoning: none
+responseFormat: text

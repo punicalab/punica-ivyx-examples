@@ -1,0 +1,24 @@
+{
+  "name": "ai.agentTurnUsage",
+  "envelope": {
+    "id": "802774af-b3dd-4fb3-9a00-b195f3d048af",
+    "correlationId": "77a141e5-484b-416a-a2d8-96f01733e2c1",
+    "traceId": "77a141e5-484b-416a-a2d8-96f01733e2c1",
+    "parentSpanId": "1c33318b-27f1-4540-95ca-6d97e3b7a0ee",
+    "timestampMs": 1792268157567,
+    "source": "kernel:ai",
+    "kind": "audit"
+  },
+  "payload": {
+    "runId": "77a141e5-484b-416a-a2d8-96f01733e2c1",
+    "step": 0,
+    "estToolDefTokens": 5376,
+    "estHistoryTokens": 18,
+    "estSystemTokens": 12833,
+    "toolCount": 47,
+    "deferredToolCount": 457,
+    "compactionApplied": false,
+    "reportedInputTokens": 17943,
+    "reportedOutputTokens": 293
+  }
+}

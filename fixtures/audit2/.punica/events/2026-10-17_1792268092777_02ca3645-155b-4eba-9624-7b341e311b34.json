@@ -1,0 +1,49 @@
+{
+  "name": "capability.audited",
+  "envelope": {
+    "id": "02ca3645-155b-4eba-9624-7b341e311b34",
+    "correlationId": "07ff7e78-278b-4500-8ac0-a278972e13ca",
+    "traceId": "fixture-1792268092769",
+    "spanId": "07ff7e78-278b-4500-8ac0-a278972e13ca",
+    "timestampMs": 1792268092777,
+    "source": "runtime:capabilities:gateway",
+    "kind": "audit"
+  },
+  "payload": {
+    "invocationId": "07ff7e78-278b-4500-8ac0-a278972e13ca",
+    "runId": "fixture-1792268092769",
+    "spanId": "07ff7e78-278b-4500-8ac0-a278972e13ca",
+    "capability": "mlops.pipeline.run",
+    "actor": {
+      "type": "user",
+      "id": "fixture"
+    },
+    "origin": {
+      "type": "user",
+      "id": "fixture"
+    },
+    "capabilityOrigin": "extension",
+    "policyDecision": {
+      "allowed": false,
+      "requiresApproval": true,
+      "reason": "A person says yes before anything in this project writes to disk.",
+      "argsBinding": "44136fa355b3678a1146ad16f7e8649e",
+      "policyRule": {
+        "template": "house-rules",
+        "ruleIndex": 0,
+        "effect": "require",
+        "reason": "A person says yes before anything in this project writes to disk.",
+        "digest": "56165e353a4244c753accda670a6bd88",
+        "matchedBy": "action"
+      }
+    },
+    "input": {},
+    "duration": 7,
+    "error": {
+      "message": "A person says yes before anything in this project writes to disk.",
+      "name": "CapabilityError",
+      "code": "CAPABILITY_APPROVAL_REQUIRED"
+    },
+    "timestamp": 1792268092777
+  }
+}

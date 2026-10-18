@@ -1,0 +1,35 @@
+{
+  "name": "policy.evaluated",
+  "envelope": {
+    "id": "3482fe0b-c001-403c-a7df-fc27d6c0f686",
+    "correlationId": "d5f9e628-367e-434d-9c72-a1ce6101c303",
+    "traceId": "905aa4a0-d482-4f26-bb66-4915dc534003",
+    "parentSpanId": "d5f9e628-367e-434d-9c72-a1ce6101c303",
+    "timestampMs": 1792268068708,
+    "source": "kernel:policy",
+    "kind": "info"
+  },
+  "payload": {
+    "request": {
+      "kind": "capability",
+      "id": "shell.revealView",
+      "risk": "low",
+      "approval": "none",
+      "reason": "Open a named panel such as settings, source control, the file explorer or the terminal, and focus it.",
+      "argsBinding": "93ddac9de28e62c30e4df4d3afdda6c1",
+      "argsPreview": {
+        "viewId": "ai-assistant-sidebar",
+        "focus": false
+      },
+      "action": [
+        "ui.reveal"
+      ]
+    },
+    "decision": {
+      "allowed": true,
+      "mode": "execute",
+      "requiresApproval": false
+    },
+    "context": {}
+  }
+}

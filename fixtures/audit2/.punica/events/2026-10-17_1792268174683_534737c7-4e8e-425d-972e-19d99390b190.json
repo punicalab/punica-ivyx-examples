@@ -1,0 +1,24 @@
+{
+  "name": "ai.agentFinished",
+  "envelope": {
+    "id": "534737c7-4e8e-425d-972e-19d99390b190",
+    "correlationId": "77a141e5-484b-416a-a2d8-96f01733e2c1",
+    "traceId": "77a141e5-484b-416a-a2d8-96f01733e2c1",
+    "timestampMs": 1792268174683,
+    "source": "kernel:ai",
+    "kind": "audit"
+  },
+  "payload": {
+    "runId": "77a141e5-484b-416a-a2d8-96f01733e2c1",
+    "finishReason": "final",
+    "finalText": "The MLOps pipeline run **failed** with the following details:\n\n- **Run ID**: `a34a956d-3ce9-4215-8b3c-bb69eb6465c2`\n- **Trace ID**: `77a141e5-484b-416a-a2d8-96f01733e2c1`\n- **Stopped at stage**: `pandera`\n\n**Failure Reason**: The pandera contract gate failed with a constraint violation:\n- **Column**: `label`\n- **Check**: `isin([0, 1])` (label column should only contain values 0 or 1)\n- **Issue**: Value `2` was found in 10 rows, violating the expected range\n- **Affected data**: 400 rows with 3 columns\n\n**Consequence**: Due to this failure, the pipeline stopped and skipped remaining stages:\n- `pytest`: Skipped (stopped at \"pandera\")\n- `train`: Skipped (stopped at \"pandera\")\n\nIf you'd like to proceed, you'd need to either:\n1. Fix the data in `data/train.csv` to ensure `label` contains only 0 or 1\n2. Update the pandera contract constraint",
+    "usage": {
+      "inputTokens": 36263,
+      "outputTokens": 865,
+      "totalTokens": 37128,
+      "latencyMs": 66271,
+      "steps": 2,
+      "toolCalls": 1
+    }
+  }
+}

@@ -1,0 +1,14 @@
+schema: '2.0'
+stages:
+  train:
+    cmd: python src/train.py --data data/titanic/train.csv --target Survived 
+      --task classification --experiment titanic-survived
+    deps:
+    - path: data/titanic/train.csv
+      hash: md5
+      md5: 61fdd54abdbf6a85b778e937122e1194
+      size: 60302
+    - path: src/train.py
+      hash: md5
+      md5: 48e4ba28c468cf1d15f00cd7f2332bfb
+      size: 14960

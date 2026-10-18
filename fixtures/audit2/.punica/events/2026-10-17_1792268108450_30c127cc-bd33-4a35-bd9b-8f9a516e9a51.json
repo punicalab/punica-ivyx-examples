@@ -1,0 +1,2556 @@
+{
+  "name": "capability.audited",
+  "envelope": {
+    "id": "30c127cc-bd33-4a35-bd9b-8f9a516e9a51",
+    "correlationId": "48c9fe0b-381e-41f0-b7a2-6306c8a3dab1",
+    "traceId": "77a141e5-484b-416a-a2d8-96f01733e2c1",
+    "spanId": "48c9fe0b-381e-41f0-b7a2-6306c8a3dab1",
+    "timestampMs": 1792268108450,
+    "source": "runtime:capabilities:gateway",
+    "kind": "audit"
+  },
+  "payload": {
+    "invocationId": "48c9fe0b-381e-41f0-b7a2-6306c8a3dab1",
+    "runId": "77a141e5-484b-416a-a2d8-96f01733e2c1",
+    "spanId": "48c9fe0b-381e-41f0-b7a2-6306c8a3dab1",
+    "capability": "capability.recommend",
+    "actor": {
+      "type": "ai",
+      "id": "ai:agent"
+    },
+    "origin": {
+      "kind": "ai",
+      "id": "kernel.agentLoop"
+    },
+    "capabilityOrigin": "core",
+    "workspace": "<machine>/ws/mlops1",
+    "policyDecision": {
+      "allowed": true,
+      "requiresApproval": false,
+      "reason": "",
+      "argsBinding": "f5e31b1ddf68a706f760038660ff665d"
+    },
+    "input": {
+      "intent": "Run the MLOps pipeline with mlops.pipeline.run and tell me the result.",
+      "limit": 502
+    },
+    "output": {
+      "recommendations": [
+        {
+          "id": "mlops.pipeline.run",
+          "score": 0.6546536707079771,
+          "description": "Run the configured stages in order; a failing stage marked stop ends the run"
+        },
+        {
+          "id": "mlops.pipeline.bind",
+          "score": 0.6110100926607788,
+          "description": "Write which engine runs the DAG (pipeline.provider in .punica/mlops.yaml) as a document edit. An engine the catalog does not list as installed is refused with the installed ones named, and null removes the binding so only the checks run"
+        },
+        {
+          "id": "mlops.trigger.fire",
+          "score": 0.5452785412727976,
+          "description": "Run the configured pipeline from outside the editor — a drift report, a schedule, a commit hook or an MCP client — and record who asked and why"
+        },
+        {
+          "id": "mlops.pipeline.author",
+          "score": 0.534717814539874,
+          "description": "Train a model from one sentence: choose the data file and the target column, write src/train.py, make the workspace a DVC repository, add the train stage, create .punica/mlops.yaml and run the pipeline. The plan is checked against the real files and columns before anything is written, missing Python packages are reported with the call that installs them, and the answer carries the metrics the training printed"
+        },
+        {
+          "id": "generation.pipeline.run",
+          "score": 0.5016355948164901,
+          "description": "Headless entry to the artifact generation line for a programmatic caller, where ai.artifact.generate is the same run and is what every Generate command in the product uses. Returns the structured result directly (PLAN→RESOLVE→WIRE→VALIDATE→TEST→WRITE→MANIFEST→SUMMARY) instead of awaiting the terminal ai.artifactGenerated event."
+        },
+        {
+          "id": "source-control.ci.verify",
+          "score": 0.49705012174770846,
+          "description": "Run each generated CI step here, the way a runner would, and compare its verdict with the gate the pipeline runs. Reports per stage whether the two agree, differ, or could not be compared"
+        },
+        {
+          "id": "mlops.ci.plan",
+          "score": 0.495558504409436,
+          "description": "Ask every stage's provider what it runs outside the editor — the driver files, the pip requirements and the secrets a generated workflow would need. Reports what cannot run rather than pretending it can"
+        },
+        {
+          "id": "source-control.ci.generate",
+          "score": 0.49130368444051753,
+          "description": "Write a GitHub Actions workflow for the pipeline in .punica/mlops.yaml, together with the gate drivers it calls, so a runner executes the same checks the editor does. Writes nothing when a stage has no form that runs outside the editor"
+        },
+        {
+          "id": "mlops.open",
+          "score": 0.4879500364742666,
+          "description": "Reveal the MLOps pipeline sidebar"
+        },
+        {
+          "id": "mlops-pipeline-setup",
+          "score": 0.4879500364742666,
+          "description": "How to set up or change a project's MLOps pipeline in .punica/mlops.yaml with checks that guard training."
+        },
+        {
+          "id": "mlops.model.evaluate",
+          "score": 0.46262100205922496,
+          "description": "Judge a training run against the quality bar — metric thresholds, the current champion, and per-slice regression — and answer with a gate verdict. This is the check that stands between training and the registry; the bar itself lives in `.punica/mlops.yaml`, not in code."
+        },
+        {
+          "id": "sweeps.apply",
+          "score": 0.46195657812238883,
+          "description": "Bring a trial's parameters into the workspace and run the MLOps pipeline over them, both under one trace"
+        },
+        {
+          "id": "mlops.dvc.repro",
+          "score": 0.4597284998149173,
+          "description": "Run `dvc repro` over the workspace DAG and report which stages ran, which were cache hits, and where it stopped. This is the engine behind an MLOps pipeline stage; it writes the stage outputs declared in dvc.yaml"
+        },
+        {
+          "id": "mlops.gto.versionTrace",
+          "score": 0.45509797952703845,
+          "description": "Return the commit a model version was registered at and the trace of the run that produced it, so a promotion can be filed under the run that trained the version rather than under one of its own."
+        },
+        {
+          "id": "evidence.outputs",
+          "score": 0.45044261646145084,
+          "description": "The files a run wrote, the notebook cells it added and the capabilities it registered, folded from its audit records, with the package line beside them."
+        },
+        {
+          "id": "mlops.train.planner",
+          "score": 0.4496179869976355,
+          "description": "Plans the training step of an MLOps pipeline from the project's data and goal."
+        },
+        {
+          "id": "source-control.ci.status",
+          "score": 0.445435403187374,
+          "description": "Read what GitHub reported for the generated MLOps workflow, through the gh CLI. Says which commit each run belongs to, and names the gates that went red"
+        },
+        {
+          "id": "mlops.pipeline.describe",
+          "score": 0.445435403187374,
+          "description": "The configured stages from .punica/mlops.yaml plus which providers answer for them"
+        },
+        {
+          "id": "mlops.dvc.trialApply",
+          "score": 0.445435403187374,
+          "description": "Bring one trial's parameters into the workspace so the pipeline can be run over them"
+        },
+        {
+          "id": "mlops.model.scaffold",
+          "score": 0.42316363302800536,
+          "description": "Write the two training components a generated workflow calls. The model choice and features stay the user's work; the tracking wiring, the lineage record, the slice metric naming and the exit codes do not"
+        },
+        {
+          "id": "llmops.run",
+          "score": 0.420084025208403,
+          "description": "Run the process declared in .punica/llmops.yaml, stage by stage, stopping at the first gate that does not pass. Each stage runs the capability actions it declares and then its suite gates; the verdict is read back from the evals baseline, so this never decides for itself whether a gate passed."
+        },
+        {
+          "id": "ipynbViewer.toPipelineStage",
+          "score": 0.41737432371920086,
+          "description": "Extract a notebook's code cells into a Python script and add that script as a stage of the workspace's pipeline. The engine is whichever one .punica/mlops.yaml binds, so nothing here decides what a pipeline is."
+        },
+        {
+          "id": "mlops.stage.add",
+          "score": 0.4071929290505081,
+          "description": "Add one stage to .punica/mlops.yaml as a document edit, leaving every comment and untouched line as it was. A check lands before the first pipeline step because a contract that runs after training has guarded nothing, and its capability and settings are confirmed against the catalog before anything is written"
+        },
+        {
+          "id": "agents.list",
+          "score": 0.401147778542877,
+          "description": "Return every actor that drove a run through the gateway, with its door, its runs and verdicts, plus the capabilities served to agents outside this host"
+        },
+        {
+          "id": "database.export",
+          "score": 0.40089186286863665,
+          "description": "Run SQL and write the result into the workspace as csv or json"
+        },
+        {
+          "id": "flow.runSubflow",
+          "score": 0.40050093945740706,
+          "description": "Run another workflow as a child of the current one and return its result."
+        },
+        {
+          "id": "mlops.stage.move",
+          "score": 0.3954557894193501,
+          "description": "Move one stage up or down by one position in .punica/mlops.yaml; the order is the flow, so this changes what runs before what. A stage already at the end it is pushed toward is refused with the reason named"
+        },
+        {
+          "id": "mlops.stage.configure",
+          "score": 0.3919309008348103,
+          "description": "Write a stage's input into .punica/mlops.yaml: the bar a gate is measured against, the paths it reads, the options its engine takes. Every field is checked against the declaration of the capability the stage dispatches to, so a name the engine would silently ignore is refused instead of written"
+        },
+        {
+          "id": "debugger.open",
+          "score": 0.3903600291794133,
+          "description": "Reveal the Run and Debug sidebar"
+        },
+        {
+          "id": "mlops.dvc.stageList",
+          "score": 0.3879917968315853,
+          "description": "Name every stage dvc.yaml already declares, in the file's own order. A workspace with no pipeline file answers with an empty list, since that is the state before the first stage rather than a failure."
+        },
+        {
+          "id": "mlops.trigger.configure",
+          "score": 0.3855701541695039,
+          "description": "Write the triggers block of .punica/mlops.yaml: whether a reported drift retrains, and which stages a fired trigger runs. A subset naming a stage the file does not declare is refused, and an empty subset is refused because it would fire nothing while reading as configured"
+        },
+        {
+          "id": "evidence.runs",
+          "score": 0.38095238095238093,
+          "description": "The governed runs this workspace still has a durable record of."
+        },
+        {
+          "id": "duckdb.runActiveQuery",
+          "score": 0.37424059428255985,
+          "description": "Run the SQL in the active workbench tab."
+        },
+        {
+          "id": "experiments.log",
+          "score": 0.37424059428255985,
+          "description": "Create a run (or append to an existing one by runId) and record params and metric points. Returns the run id."
+        },
+        {
+          "id": "mlops.model.versionTrace",
+          "score": 0.3732338175823095,
+          "description": "Return the run that produced one version of a registered model, as the workspace's registry engine records it. Use this to find which training run a version came from before packaging or tracing it."
+        },
+        {
+          "id": "workspace.projectContext",
+          "score": 0.37219368415938836,
+          "description": "Summarize the project in a single read: language and stack, dependencies, the scripts it can run, version control state, a digest of the README, and the meaningful parts of the folder layout. The fastest way to get oriented in an unfamiliar project."
+        },
+        {
+          "id": "mlops.dvc.trials",
+          "score": 0.36667939881128453,
+          "description": "The parameters and metrics the pipeline declares, plus every trial with its point, its numbers and its state. This is a read and changes nothing"
+        },
+        {
+          "id": "edu.toggleTeachingMode",
+          "score": 0.36313651960128146,
+          "description": "Switch between the student view and the teaching view, where the gate, the hint ladder and the concept tags are edited."
+        },
+        {
+          "id": "mlops.stage.remove",
+          "score": 0.36256778547056945,
+          "description": "Take one stage out of .punica/mlops.yaml as a document edit, leaving every comment and untouched line as it was. Removing the last declared stage leaves the file runnable when a provider is still bound, and the answer says so"
+        },
+        {
+          "id": "mlops.mlflow.serverEnsure",
+          "score": 0.362030053499966,
+          "description": "Start, or adopt, the MLflow tracking server this workspace's training runs and its model quality gate share, and register it as the default backend. Answers the server's URL; on a host that cannot spawn a process, or with no MLflow installed, it answers the phase instead of starting anything."
+        },
+        {
+          "id": "mlops.dvc.sweep",
+          "score": 0.361873432227873,
+          "description": "Queue one trial per parameter point and start the workers. This returns once the workers are up, not once the trials are done"
+        },
+        {
+          "id": "evals.suite.run",
+          "score": 0.3596943895981084,
+          "description": "Run one configured eval suite (or all of them), score every output with the suite's engines, and answer a verdict a pipeline gate can hold"
+        },
+        {
+          "id": "test.runEngine",
+          "score": 0.3596943895981084,
+          "description": "Run one engine's test suite through its own capability. The hub dispatches, the engine runs the project's tests"
+        },
+        {
+          "id": "mlops.evidently.reveal",
+          "score": 0.3539191986482828,
+          "description": "Reveal the drift panel, which shows the engine's environment, the configured reference dataset and the last drift verdict"
+        },
+        {
+          "id": "mlops.config.init",
+          "score": 0.3504383220252312,
+          "description": "Create .punica/mlops.yaml as a commented starter from what was chosen: an engine binding, checks, or both. A file that already exists is refused rather than overwritten, and every chosen engine and check is confirmed against the capability catalog before anything is written"
+        },
+        {
+          "id": "evals.open",
+          "score": 0.3471825374147068,
+          "description": "Reveal the panel that holds the suites, their runs and their baselines."
+        },
+        {
+          "id": "mlops.dvc.lineage",
+          "score": 0.34291382751370236,
+          "description": "Read dvc.lock and report which data the pipeline consumed and which artifacts it produced, each with the digest DVC recorded for it"
+        },
+        {
+          "id": "mlops.gate.evaluate",
+          "score": 0.34188172937891387,
+          "description": "Run a single gate headlessly and return its pass/fail verdict with a reason and the numbers it compared"
+        },
+        {
+          "id": "edu.rules.open",
+          "score": 0.3409145938362817,
+          "description": "Reveal what limits the tutor and where each limit is enforced, read live from the mode, the lesson and the policy file"
+        },
+        {
+          "id": "llm.invoke",
+          "score": 0.34079908829549854,
+          "description": "Run one named instruction class — planner, code generator, validator — against a prompt, using the model and the provider chain that class is configured with."
+        },
+        {
+          "id": "sweeps.trials",
+          "score": 0.3368165348543039,
+          "description": "The parameters and metrics the pipeline declares, plus every trial ranked by the objective when one is named"
+        },
+        {
+          "id": "test.pytest.reveal",
+          "score": 0.3327791628198609,
+          "description": "Reveal the Python Tests panel, which shows the pytest engine's environment and the last run's result"
+        },
+        {
+          "id": "knowledge.base.ingest",
+          "score": 0.3274114050066991,
+          "description": "Resolve a base's globs against the workspace and index everything they name. The resolution is refused rather than built when it comes back empty: the build capability treats the path list as the whole corpus and deletes the chunks of every file the list no longer names, so a renamed folder or a typo in a pattern would clear an index and report success. Both of the base's collections are written in one call, and when the embedder is an endpoint every resolved file is sent off this machine."
+        },
+        {
+          "id": "speech.transcribe",
+          "score": 0.3270076477253151,
+          "description": "Turn a recording into text with a Whisper model on this machine, choosing the English model for English and the multilingual one for any other language. The audio never leaves the machine. The first call starts a local whisper-server process, and a language whose model is not downloaded yet is refused with the step that fixes it."
+        },
+        {
+          "id": "models.run",
+          "score": 0.3256694736394648,
+          "description": "Start the local llama-server with a locally stored model (GGUF)"
+        },
+        {
+          "id": "mlops.metric.history",
+          "score": 0.32417635938924316,
+          "description": "What the gates measured across past runs, read from this workspace's own audit records"
+        },
+        {
+          "id": "mlops.mlflow.versionTrace",
+          "score": 0.3236694374850748,
+          "description": "Report which governed run produced a registered model version, so a promotion can be filed under the trace that trained it rather than under one of its own. Reads the run's correlation tag and writes nothing."
+        },
+        {
+          "id": "speech.dictate",
+          "score": 0.32006096980144877,
+          "description": "Listen to the microphone until the speaker pauses and return what was said as text, transcribed on this machine. A language whose model is missing is offered for download first, and nothing is downloaded without a yes. The level is measured on the audio thread, so the take goes on while another window is in front; the button that asked hears the level and, on a fast machine, the words so far as events on the document."
+        },
+        {
+          "id": "mlops.evidently.engine",
+          "score": 0.31859654643215496,
+          "description": "Report the Evidently and pandas versions installed in the active Python environment, so a panel can offer the right install"
+        },
+        {
+          "id": "experiments.delete",
+          "score": 0.3185110286353031,
+          "description": "Permanently delete a run and its metrics/params/artifacts from the store."
+        },
+        {
+          "id": "mlops.dvc.ciExport",
+          "score": 0.3183035070396152,
+          "description": "Return this pipeline stage as a runnable step for a CI workflow: the dvc repro command with the same targets and flags this stage uses"
+        },
+        {
+          "id": "vectors.query",
+          "score": 0.3183035070396152,
+          "description": "Embed a question and return the nearest passages. This never fails into nothing: with no index, no embedder or an endpoint that stopped answering it falls back to workspace keyword search and says so in mode, with the reason attached. Callers render one list and label it; keyword results presented as semantic ones are the one way retrieval can lie. Several corpora can be read at once because a notebook's prose is routed away from its code, so asking only for code would silently lose the markdown that was moved out; the scores merge because every collection named here belongs to the same embedding space by construction."
+        },
+        {
+          "id": "database.runActiveQuery",
+          "score": 0.3175536744149779,
+          "description": "Execute the SQL in the active workbench tab"
+        },
+        {
+          "id": "test.pytest.run",
+          "score": 0.3175536744149779,
+          "description": "Run a project's pytest suite and report which tests failed and why. This is the engine behind a code test gate; the verdict comes from pytest's own reports, not from its terminal output"
+        },
+        {
+          "id": "vectors.probe",
+          "score": 0.3161043118774398,
+          "description": "The pipeline's self-test. Reads one notebook, treats each cell as a chunk, embeds them, stores them in a throwaway collection, asks a question in different words than the notebook uses, and reports whether the right cell came back. The throwaway collection is cleared afterwards. It also runs the same question through keyword search as a control, so \"semantic retrieval found it\" is a claim with a comparison behind it rather than an assertion."
+        },
+        {
+          "id": "mlops.mlflow.modelGet",
+          "score": 0.31518754028368906,
+          "description": "Return one registered model from MLflow with its complete version list, each version carrying the run that produced it. This is the engine call behind the hub's model detail."
+        },
+        {
+          "id": "mlops.dvc.pull",
+          "score": 0.3144854510165755,
+          "description": "Bring DVC-tracked data back from the configured remote into the local cache and the workspace"
+        },
+        {
+          "id": "llms.ollama.install",
+          "score": 0.31341871756008255,
+          "description": "Install the ollama engine on this machine using the platform's own package manager (Homebrew on macOS, winget on Windows) or the vendor's install script on Linux. The command runs in a terminal where it can be read and interrupted, and this waits until ollama answers. It runs a package manager or a script fetched over the network, so it is high risk and asks every time. Platforms with no automatable path return a manual plan and install nothing."
+        },
+        {
+          "id": "mlops.model.ciExport",
+          "score": 0.31298431857438064,
+          "description": "Return the model quality gate as a runnable step for a CI workflow: the same three rules, reading the same tracking server through the standard library, plus this stage's configured bar"
+        },
+        {
+          "id": "edu.openCourse",
+          "score": 0.3118047822311618,
+          "description": "Reveal the course sidebar listing the modules and lessons of the workspace"
+        },
+        {
+          "id": "mlops.pandera.reveal",
+          "score": 0.3105295017040594,
+          "description": "Reveal the data contracts panel, which shows the engine's environment and the configured contract gates"
+        },
+        {
+          "id": "experiments.list",
+          "score": 0.3086066999241838,
+          "description": "List all experiment runs in the active store with their params and last-seen metric values (secrets redacted)."
+        },
+        {
+          "id": "speech.reply",
+          "score": 0.3086066999241838,
+          "description": "Read an assistant's answer aloud in the natural Kokoro voice when it can run here and in the system voice when it cannot, unless the Voice setting turns reading off. Returns when the reading ends. An appended reply queues behind the one playing, and a reply that listens stops at the first words spoken over it."
+        },
+        {
+          "id": "source-control.ci.hook",
+          "score": 0.3073393159249119,
+          "description": "Install, remove or report the pre-push hook that runs the pipeline's gates before a push. Installs nothing when the plan is incomplete, and never overwrites a hook it did not write"
+        },
+        {
+          "id": "guardrails.open",
+          "score": 0.3067191794659487,
+          "description": "Reveal the guardrails panel, which shows the installed attack packs, the detectors available and the last verdict"
+        },
+        {
+          "id": "evidence.open",
+          "score": 0.3055050463303894,
+          "description": "Reveal the panel that lists runs and builds a package from one."
+        },
+        {
+          "id": "sweeps.run",
+          "score": 0.3055050463303894,
+          "description": "Expand a parameter space into points and queue one trial per point through the installed engine"
+        },
+        {
+          "id": "monitor.open",
+          "score": 0.3038948705590345,
+          "description": "Show the Monitor panel listing recent IvyNode / agent run executions with their status, duration, input, output, and errors."
+        },
+        {
+          "id": "edu.courses.uninstall",
+          "score": 0.30242156957551825,
+          "description": "Delete an installed course folder from the workspace, together with the learner's progress in it. Asks the learner first and refuses when there is no shell to ask with, so this cannot run unattended."
+        },
+        {
+          "id": "lineage.data",
+          "score": 0.3000495990744895,
+          "description": "Return the data versions this workspace's runs have named, and which run named each one. Use this to answer which version of a dataset or file a governed run actually used."
+        },
+        {
+          "id": "speech.voice.prepare",
+          "score": 0.29974532466509035,
+          "description": "Download the Kokoro model and a voice into the app's data folder once, about 326 MB, and warm the GPU so the first reading starts quickly."
+        },
+        {
+          "id": "mlops.params.importance",
+          "score": 0.2993924754260479,
+          "description": "Which parameter moved the objective across a set of runs, as an adjusted share of the objective's spread"
+        },
+        {
+          "id": "mlops.dvc.checkout",
+          "score": 0.2993924754260479,
+          "description": "Restore DVC-tracked data in the workspace to the version the local cache holds"
+        },
+        {
+          "id": "capability.search",
+          "score": 0.2969569354582493,
+          "description": "Search the installed capabilities by keyword and return the matches with a one-line summary each. Use it when the right tool is not in the list already at hand."
+        },
+        {
+          "id": "guardrails.promptfoo.open",
+          "score": 0.2960782627318961,
+          "description": "Reveal the Red Team panel, which shows the promptfoo installation, the local models configured and the last gradings"
+        },
+        {
+          "id": "mlops.dvc.dag",
+          "score": 0.2939723678960656,
+          "description": "Read the DAG declared in dvc.yaml as nodes with their dependencies, without running anything"
+        },
+        {
+          "id": "mlops.evidently.ciExport",
+          "score": 0.2916059217599022,
+          "description": "Return this drift gate as a runnable step for a CI workflow: the same Evidently driver the capability runs, plus the JSON request for this stage"
+        },
+        {
+          "id": "python.env.pick",
+          "score": 0.2910908682137297,
+          "description": "Show the environment picker and return the chosen environment (or null when the user cancels). Selecting through the picker also sets the active environment."
+        },
+        {
+          "id": "tasks.run",
+          "score": 0.29095718698132317,
+          "description": "Run a workspace task by name — a build, test or lint script defined for the workspace — as its shell command"
+        },
+        {
+          "id": "trace.read",
+          "score": 0.2895702534395041,
+          "description": "Return this project's runs as trees of governed calls, folded from the audit trail with the gate's verdict on each call"
+        },
+        {
+          "id": "mlops.pandera.ciExport",
+          "score": 0.28903665650804,
+          "description": "Return this data contract gate as a runnable step for a CI workflow: the same pandera driver the capability runs, plus the JSON request for this stage"
+        },
+        {
+          "id": "edu.progress.recordRun",
+          "score": 0.28867513459481287,
+          "description": "Fold one cell run into the learner model and re-resolve that cell's gate"
+        },
+        {
+          "id": "signing.sign",
+          "score": 0.28690229202651557,
+          "description": "Sign the given bytes with the host's package-signing key and return a detached signature carrying the public half, so a later reader can check the bytes were not altered without holding any secret."
+        },
+        {
+          "id": "kaggle.datasets.download",
+          "score": 0.2808882802059379,
+          "description": "Download a Kaggle dataset over HTTPS into the host data dir and flip the local record to DOWNLOADED with its filePaths set. Omit `file` to fetch the whole dataset (the zip is unpacked). Electron-only (needs the host data dir, curl and unzip)."
+        },
+        {
+          "id": "llms.ollama.model.pull",
+          "score": 0.279521419149395,
+          "description": "Download a model into the local ollama store, so it can be used with no network afterwards. The download runs in a terminal where its progress is visible, and this waits until the model shows up on the machine. It fetches several hundred megabytes and writes them to disk, so it asks every time."
+        },
+        {
+          "id": "llms-services.test-connection",
+          "score": 0.27888667551135854,
+          "description": "Persist the config and run a short probe chat against the remote endpoint"
+        },
+        {
+          "id": "fs.listFiles",
+          "score": 0.27774602993176545,
+          "description": "List every file and folder in the workspace as a nested tree, showing the whole project layout rather than the contents of one directory."
+        },
+        {
+          "id": "duckdb.query",
+          "score": 0.27774602993176545,
+          "description": "Run SQL over data files with DuckDB and return the columns and rows."
+        },
+        {
+          "id": "mlops.pandera.validate",
+          "score": 0.27713699773684664,
+          "description": "Check a dataset against a pandera contract and report which columns failed which checks. This is the engine behind an MLOps data contract gate; it reads the dataset and writes nothing"
+        },
+        {
+          "id": "edu.progress.recordAgentRun",
+          "score": 0.2760262237369417,
+          "description": "Record the outcome of running a student's MCP server against the test agent, including which tool the agent chose."
+        },
+        {
+          "id": "onboarding.tour",
+          "score": 0.2730094531159741,
+          "description": "Walk through the panels of the window that is open"
+        },
+        {
+          "id": "shell.toggleSlot",
+          "score": 0.2706659809803834,
+          "description": "Show or hide one whole area of the window — the left sidebar, the right sidebar, or the bottom panel — rather than a single view inside it."
+        },
+        {
+          "id": "mlops.gto.modelGet",
+          "score": 0.2697707921985813,
+          "description": "Return one model registered as git tags with its complete version list, each version carrying the commit that produced it. This is the engine call behind the hub's model detail."
+        },
+        {
+          "id": "experiments.logArtifact",
+          "score": 0.2672612419124244,
+          "description": "Attach a workspace file (e.g. a .pkl/.onnx model) to a run by copying it into the run's artifacts directory."
+        },
+        {
+          "id": "onboarding.intro",
+          "score": 0.2672612419124244,
+          "description": "Show the short introduction that opens the first time"
+        },
+        {
+          "id": "knowledge.base.list",
+          "score": 0.26703034662792907,
+          "description": "Report the knowledge bases this workspace defines and what their indexes actually hold. The definition and the index are read together on purpose: a definition alone says what someone intended and an index alone says what a build left behind, and only the pair shows a base that was defined and never built, or built and then cleared. Corpora holding chunks that no base defines are reported and never deleted, because the vector store is shared."
+        },
+        {
+          "id": "knowledge.query",
+          "score": 0.26703034662792907,
+          "description": "Ask one base a question and return the passages it holds. Every collection the base owns is read, which is the reason to call this rather than the vector query directly: a base routes a notebook's markdown into a second collection at build time, so asking for the base's own corpus alone reads half of it and reports success. The mode comes back untouched, because retrieval falls back to keyword search when there is no index and keyword hits presented as semantic ones are the one way retrieval can lie."
+        },
+        {
+          "id": "capability.serveCall",
+          "score": 0.26590801173915524,
+          "description": "Run one capability for a remote caller through the full policy, approval, and audit pipeline."
+        },
+        {
+          "id": "debugger.stepOver",
+          "score": 0.26590801173915524,
+          "description": "Execute the current line and pause on the next line in the same frame, stepping over any function calls"
+        },
+        {
+          "id": "vectors.embed",
+          "score": 0.2629368792488718,
+          "description": "Turn a batch of texts into vectors through the configured embedder. This is the only embedding path in the product; nothing reaches a model or an endpoint around it. The signature is plural on purpose — a capability call traverses the whole gateway pipeline, so embedding one chunk at a time would put governance in an inner loop. When the embedder is an endpoint every call sends its texts off this machine."
+        },
+        {
+          "id": "ivy-inputs.edit",
+          "score": 0.26226526415648105,
+          "description": "Edit the run input for an ivy-node. Ensures .punica/ivy-inputs/<slug>.json exists (seeded from the node's example input) and opens it inline in the Inputs panel. Falls back to the active .ivy.node when no slug is given."
+        },
+        {
+          "id": "approvals.list",
+          "score": 0.2602400194529422,
+          "description": "Return the calls waiting for a person in this process, the questions an agent outside it has open, and the decisions people made recently"
+        },
+        {
+          "id": "lineage.history",
+          "score": 0.2602400194529422,
+          "description": "Return the lineage graphs of past runs, read back from the audit trail rather than from a store of this extension's own"
+        },
+        {
+          "id": "ipynbViewer.scaffold",
+          "score": 0.25896619868911863,
+          "description": "Build and open a ready-to-run .ipynb that loads a downloaded dataset and/or runs a downloaded GGUF model by absolute path. The notebook body is authored by the LLM (llm.chat) tailored to the dataset/model shape, with a deterministic template fallback when no LLM provider is attached."
+        },
+        {
+          "id": "speech.voice.status",
+          "score": 0.25788071477756375,
+          "description": "Report the voices on offer, whether a voice is downloaded, and whether this machine has the WebGPU the voice runs on."
+        },
+        {
+          "id": "mlops.stage.rename",
+          "score": 0.2571722499368199,
+          "description": "Set or clear one stage's display name in .punica/mlops.yaml as a document edit. Null or an empty title removes the key so the stage shows its id, because a surface that can only set a value could never put one back to nothing"
+        },
+        {
+          "id": "mlops.dvc.reveal",
+          "score": 0.2545875386086578,
+          "description": "Reveal the DVC panel, which shows the engine's environment and which stages are out of date"
+        },
+        {
+          "id": "profiler.explain",
+          "score": 0.25197631533948484,
+          "description": "Profile a file or SQL result, derive deterministic findings, and narrate them through the language model (rule-based fallback when no model is attached). The model only interprets the computed statistics."
+        },
+        {
+          "id": "mlops.dvc.status",
+          "score": 0.2503130871608794,
+          "description": "Report which stages are out of date and why, without running them"
+        },
+        {
+          "id": "mlops.gto.modelPromote",
+          "score": 0.2493918745554199,
+          "description": "Move a stage such as champion onto a model version by adding a git tag. The previous assignment is kept, so the alias history is the tag log itself."
+        },
+        {
+          "id": "knowledge.chunk.compare",
+          "score": 0.24779731389167606,
+          "description": "Split one document several ways and report the shapes side by side. It measures chunk counts and sizes and nothing else; which split retrieves better needs a built index and a scored question set, and the answer says so rather than letting a table of counts read like a verdict. Nothing is embedded and nothing is stored, so this is free to run on any file. A strategy that refuses is reported beside the ones that ran."
+        },
+        {
+          "id": "ivy-node-explorer.open",
+          "score": 0.24688535993934707,
+          "description": "Show a preview of what a node does before using it, with the node's inputs, outputs, program, tests and runs in the side drawer"
+        },
+        {
+          "id": "edu.explorer.open",
+          "score": 0.24459979523511427,
+          "description": "Show the same syllabus view for a course already in the workspace, read from the .course.json that came with it."
+        },
+        {
+          "id": "guardrails.pack.install",
+          "score": 0.24459979523511427,
+          "description": "Write an attack pack into the workspace as an eval dataset and answer the suite stanza that runs it"
+        },
+        {
+          "id": "experiments.get",
+          "score": 0.2439750182371333,
+          "description": "Return one run's metadata, full metric series, and artifact listing (secrets redacted)."
+        },
+        {
+          "id": "mlops.mlflow.modelPromote",
+          "score": 0.24209101306752098,
+          "description": "Point a registry alias at a model version in MLflow. This is the engine call the registry hub delegates to once a human has approved the move."
+        },
+        {
+          "id": "test.pytest.engine",
+          "score": 0.24152294576982397,
+          "description": "Report the pytest and Python versions in the workspace's environment, so a panel can offer the install instead of an error"
+        },
+        {
+          "id": "knowledge.base.clear",
+          "score": 0.24124895481858197,
+          "description": "Delete the vectors one base owns. Destructive and not undoable, and scoped to that base's own collections one call at a time, because clearing the whole index would take every other base down with the one that was asked for. The definition survives."
+        },
+        {
+          "id": "shell.listViews",
+          "score": 0.23904572186687875,
+          "description": "List the panels, sidebars, and editor views this window has, and which of them are currently visible."
+        },
+        {
+          "id": "mlops.dvc.init",
+          "score": 0.23884840798937107,
+          "description": "Make this workspace a DVC repository so a pipeline can be written and run in it. A folder that is not a git repository is initialized without one and the answer says so; a workspace that already is a DVC repository is reported back and left as it is."
+        },
+        {
+          "id": "mlops.dvc.add",
+          "score": 0.23855936180684897,
+          "description": "Track a file or directory as data with DVC so its version travels with the code that used it"
+        },
+        {
+          "id": "debugger.stop",
+          "score": 0.23809523809523808,
+          "description": "Stop the active debug session and terminate the debuggee"
+        },
+        {
+          "id": "mlops.dvc.push",
+          "score": 0.2351585405008862,
+          "description": "Send DVC-tracked data from the local cache to the configured remote"
+        },
+        {
+          "id": "lineage.export",
+          "score": 0.23294541397390264,
+          "description": "Export this workspace's past lineage runs to the configured OpenLineage server, where Marquez, DataHub and Atlan read them"
+        },
+        {
+          "id": "workspace.writeOrientation",
+          "score": 0.23028309323591917,
+          "description": "Write the project summary into the workspace as CLAUDE.md and .claudeignore, so a terminal agent gets oriented from a file read."
+        },
+        {
+          "id": "capability.recommend",
+          "score": 0.23028309323591917,
+          "description": "Rank the installed capabilities against a goal written in plain language and return the closest ones. The way to find a tool when its name is not known."
+        },
+        {
+          "id": "test.pytest.ciExport",
+          "score": 0.22922730202450112,
+          "description": "Return this test gate as a runnable step for a CI workflow: the same pytest driver the capability runs, plus the JSON request for this stage"
+        },
+        {
+          "id": "vectors.chunk",
+          "score": 0.22788531344222138,
+          "description": "Split a file into the units that get embedded, under one of four strategies. Notebooks split by cell, because that is the unit a person thinks in and an assistant should quote back; everything else gets an overlapping line window so a passage straddling a boundary is still reachable from one side. That pair is the auto strategy and it is the default. Paragraph splits on blank lines, heading splits markdown into its sections, and file makes one chunk of the whole document, which is the baseline the other three are worth measuring against. Each chunk is labelled prose or code. This classifies content; it does not choose which collection anything lands in."
+        },
+        {
+          "id": "mlops.pandera.engine",
+          "score": 0.22750787759664506,
+          "description": "Report the installed pandera and pandas versions, without validating anything"
+        },
+        {
+          "id": "tasks.runCommand",
+          "score": 0.22522130823072542,
+          "description": "Run a shell command or program and return its exit code together with everything it printed. This is how tests, builds, installs, and any other command-line work get done."
+        },
+        {
+          "id": "otel.export.status",
+          "score": 0.22454435656953592,
+          "description": "What the trace exporter has sent, queued and dropped since this session started, and the address it is sending to."
+        },
+        {
+          "id": "edu.market.open",
+          "score": 0.222717701593687,
+          "description": "Reveal the panel listing every published course, with search"
+        },
+        {
+          "id": "mlops.evidently.report",
+          "score": 0.2217095981894773,
+          "description": "Compare a dataset against a reference dataset and report which columns have drifted. This is the engine behind an MLOps drift gate; it reads both datasets and writes nothing unless an HTML report path is given"
+        },
+        {
+          "id": "vectors.embedder.status",
+          "score": 0.2217095981894773,
+          "description": "Report which embedder is configured, the embedding space it names, the vector length, and — when it is remote — the address material would be sent to and whether a token was found. Reads configuration only; sends nothing."
+        },
+        {
+          "id": "signing.publicKey",
+          "score": 0.219942959691286,
+          "description": "Read the public half of the host's package-signing key, so a package can name the key in its header before its bytes are signed."
+        },
+        {
+          "id": "modelRegistry.open",
+          "score": 0.21821789023599242,
+          "description": "Reveal the Model Registry panel, which lists the registered models the installed registry engine reports and which version each alias points at."
+        },
+        {
+          "id": "shell.revealView",
+          "score": 0.2182178902359924,
+          "description": "Open a named panel such as settings, source control, the file explorer or the terminal, and focus it."
+        },
+        {
+          "id": "test.run",
+          "score": 0.2182178902359924,
+          "description": "Execute a single test case"
+        },
+        {
+          "id": "shell.moveView",
+          "score": 0.21821789023599236,
+          "description": "Move a view into a different area of the window, for example from the bottom panel into the right sidebar."
+        },
+        {
+          "id": "source-control.graph",
+          "score": 0.21821789023599236,
+          "description": "Read recent commits with their parent hashes and ref decorations, so a caller can rebuild the branch topology instead of a flat list"
+        },
+        {
+          "id": "mlops.pandera.contractFromProfile",
+          "score": 0.21821789023599236,
+          "description": "Draft a pandera contract from a dataset profile — column presence, nullability, numeric type and observed range — and write it into the workspace for editing"
+        },
+        {
+          "id": "llms.gguf.server.stop",
+          "score": 0.2173217144157399,
+          "description": "Stop the local llama-server and clear llm.local.endpoint when it still points at that server. The address is left alone when it belongs to another runtime, so stopping one engine never disconnects another. The stop itself is host wide: the host runs one llama-server at a time."
+        },
+        {
+          "id": "search.query",
+          "score": 0.21688321172034594,
+          "description": "Search the text of every file in the workspace and return the matching files with their matching lines and line numbers. This is how to answer where something is, which files mention a word, or where a function is defined."
+        },
+        {
+          "id": "edu.lab.notebook.open",
+          "score": 0.2148861237401014,
+          "description": "Open a lesson notebook in the guided editor. The curriculum extension plans the lesson first; without a plan the file does not open."
+        },
+        {
+          "id": "workspace.readFile",
+          "score": 0.21182963643408087,
+          "description": "Read a file's text from the workspace — the same operation as fs.readFile, kept for compatibility, and fs.readFile is the one to prefer."
+        },
+        {
+          "id": "source-control.unstage",
+          "score": 0.21170244960998524,
+          "description": "Remove the given files from the staging area"
+        },
+        {
+          "id": "vectors.index.upsert",
+          "score": 0.21016277499709352,
+          "description": "Write records a caller produced itself. This exists so a pipeline authored on the agent canvas can own its own last step instead of handing the whole build over. Vector length is checked against the configured embedder, because mixing lengths in one collection produces confident nonsense rather than an error."
+        },
+        {
+          "id": "otel.export.flush",
+          "score": 0.20998026278290402,
+          "description": "Sends everything waiting in the queue now instead of at the next interval, and reports what left."
+        },
+        {
+          "id": "profiler.profileQuery",
+          "score": 0.20965696734438366,
+          "description": "Compute the same profile over an arbitrary SQL query's full result (wrapped in a temporary view). Used by the DuckDB workbench \"Profile\" button."
+        },
+        {
+          "id": "terminals.send",
+          "score": 0.20786985482077452,
+          "description": "Type a line into an already open terminal and run it, using the terminal id returned by terminals.create."
+        },
+        {
+          "id": "mcpMonitor.open",
+          "score": 0.20597146021777488,
+          "description": "Show the MCP Monitor panel with a live log of MCP requests/responses in both directions (connected servers and the served MCP server), including bodies, durations, and token estimates."
+        },
+        {
+          "id": "debugger.stepOut",
+          "score": 0.2057377999494559,
+          "description": "Resume until the current function returns, then pause in the caller frame"
+        },
+        {
+          "id": "edu.openTutor",
+          "score": 0.2057377999494559,
+          "description": "Reveal the tutor panel for the lesson that is open"
+        },
+        {
+          "id": "knowledge.base.upsert",
+          "score": 0.2036532699906392,
+          "description": "Write one knowledge base into the workspace definition file. The include list is replaced rather than merged, because a merge would make removing a pattern impossible through this surface and the next build prunes on the list it is given. Nothing is embedded here; a definition is a file."
+        },
+        {
+          "id": "llms.ollama.model.remove",
+          "score": 0.20263448786303412,
+          "description": "Delete a model from the local ollama store and free the disk it occupied. The model has to be downloaded again to come back, so this asks every time. Removal goes through the daemon: when nothing is answering, this reports that rather than starting one. A zero exit code is not taken as proof — the model list is read again afterwards and only a model that is really gone is reported as removed."
+        },
+        {
+          "id": "ivy.mcp.debug",
+          "score": 0.20261022461827696,
+          "description": "Report whether an IvyMCP server's tool annotations agree with the governance of the capabilities they bind."
+        },
+        {
+          "id": "skills.list",
+          "score": 0.202325659555628,
+          "description": "List every skill in this project, in your own skills folder and in the installed extensions, with which one a run gets and whether it is turned off."
+        },
+        {
+          "id": "mlops.gto.engine",
+          "score": 0.20203050891044216,
+          "description": "Report whether this workspace's git-tag registry can be read and which of write, aliases and run link this engine supports."
+        },
+        {
+          "id": "search.toggleSemantic",
+          "score": 0.2014368240861657,
+          "description": "Switch the search box between matching characters and matching meaning. Semantic mode queries the vector index through vectors.query and falls back to keyword search when no index has been built, saying which one answered. It is a mode of the one search panel rather than a second panel, and it is off by default because keyword search is the better tool on code."
+        },
+        {
+          "id": "object-storage.download",
+          "score": 0.2005738892714385,
+          "description": "Fetch an object to disk. Objects at or below `objectStorage.workspaceDownloadMaxBytes` land in the workspace so the viewers and DuckDB can open them; larger ones go to the host data directory."
+        },
+        {
+          "id": "speech.speak",
+          "score": 0.19894589252079753,
+          "description": "Read a text aloud with the Kokoro neural voice on this machine, one sentence at a time, and return when it has finished or was stopped. Code blocks are not read. A new reading ends the one before unless it is appended, in which case its sentences follow the ones already queued."
+        },
+        {
+          "id": "docker.open",
+          "score": 0.1973855084879307,
+          "description": "Show the Docker sidebar, the panel with tabs for containers, images, volumes and networks."
+        },
+        {
+          "id": "llms.onnx.server.start",
+          "score": 0.1967604453669851,
+          "description": "Spawn the configured OpenAI-compatible onnxruntime server for a local model and bridge its address into llm.local.endpoint, so chat, embeddings and rerank calls routed to the local provider reach it. This starts a process with a command taken from settings, which is why it is high risk and asks every time. A server this extension already started is returned instead of spawning a second one on the same port."
+        },
+        {
+          "id": "capability.show",
+          "score": 0.19596545041740515,
+          "description": "List the capabilities of one source and show them in the Capabilities panel."
+        },
+        {
+          "id": "mlops.model.get",
+          "score": 0.1955795646794894,
+          "description": "Return one registered model with its complete version list — each version's run id, artifact source, registration status and aliases. Pick this before promoting, to see which versions exist and which one is production."
+        },
+        {
+          "id": "problems.setDiagnostics",
+          "score": 0.19518001458970666,
+          "description": "Replace the current diagnostics list shown in the Problems panel"
+        },
+        {
+          "id": "policyExport.write",
+          "score": 0.19518001458970666,
+          "description": "Write the previewed policy into the workspace."
+        },
+        {
+          "id": "secrets.get",
+          "score": 0.19399589841579265,
+          "description": "Read a stored credential — an API key, token, or password — from the host's secret store by name; the result is the secret itself, so it must never be written to a file, a log, or a message."
+        },
+        {
+          "id": "python.env.list",
+          "score": 0.19304683562633607,
+          "description": "List the Python environments found: workspace venvs, app-data venvs, conda, pyenv, poetry, pipenv and system interpreters, with the active one flagged."
+        },
+        {
+          "id": "vectors.index.build",
+          "score": 0.19287918745261487,
+          "description": "Build the semantic search index: chunk, embed and store a set of files."
+        },
+        {
+          "id": "vectors.index.clear",
+          "score": 0.19258222162991084,
+          "description": "Delete an index. Destructive and not undoable: rebuilding means embedding everything again, which on a remote embedder means sending it again. A corpus-scoped clear deletes that corpus's chunks by id rather than emptying the collections it touched, because a code corpus puts its notebooks' prose in the document collection and taking that down with it would be a surprise."
+        },
+        {
+          "id": "docker.compose.apply",
+          "score": 0.19138975058773822,
+          "description": "Add new services to a compose file by merging a compose YAML fragment into it and saving, or replace the whole file with the fragment. The fragment's services, volumes and networks are added with comments kept; a service name already taken gets a -2 suffix."
+        },
+        {
+          "id": "lineage.graph",
+          "score": 0.19098210422376913,
+          "description": "Return the workspace's data lineage as stages with what each one reads and writes, merged across every installed lineage engine"
+        },
+        {
+          "id": "models.stop",
+          "score": 0.19098210422376913,
+          "description": "Stop the local server currently serving a model. The host runs one at a time, so this takes no arguments — it stops whatever is running."
+        },
+        {
+          "id": "edu.tutor.outcome",
+          "score": 0.19098210422376913,
+          "description": "Compares a student's prediction with the cell's real output and says what the difference means."
+        },
+        {
+          "id": "llm.chat",
+          "score": 0.19047619047619047,
+          "description": "Send a conversation to a language model and get the reply back as text."
+        },
+        {
+          "id": "source-control.stage",
+          "score": 0.19047619047619047,
+          "description": "Stage the given files for the next commit"
+        },
+        {
+          "id": "source-control.pull",
+          "score": 0.19047619047619047,
+          "description": "Pull changes from the remote into the current branch"
+        },
+        {
+          "id": "capability.lint",
+          "score": 0.18993429409939658,
+          "description": "Check the installed capability declarations against the substrate conventions and report what is missing or malformed."
+        },
+        {
+          "id": "settings.open",
+          "score": 0.18993429409939658,
+          "description": "Open the settings panel to show or change the editor's preferences and every extension's options."
+        },
+        {
+          "id": "approvals.open",
+          "score": 0.18993429409939658,
+          "description": "Reveal the Approvals panel, which lists every call waiting for a person and the decisions people made"
+        },
+        {
+          "id": "source-control.diff",
+          "score": 0.18898223650461363,
+          "description": "Read the unified diff for a commit, for the working tree, for the index, or for a file git is not tracking yet"
+        },
+        {
+          "id": "trace.open",
+          "score": 0.18712029714127992,
+          "description": "Reveal the Trace panel, which lists every governed call in this project with what the gate decided"
+        },
+        {
+          "id": "ivy-node-marketplace.open",
+          "score": 0.18704390591656492,
+          "description": "Open the Ivy Marketplace to browse, search, preview and add published nodes and agents from the registry"
+        },
+        {
+          "id": "evals.guardrails.score",
+          "score": 0.18704390591656492,
+          "description": "Whether the guardrail held on one attack case, decided by whether any compliance marker the case planted appears in the output"
+        },
+        {
+          "id": "mlops.dvc.stageAdd",
+          "score": 0.18704390591656492,
+          "description": "Write one stage into dvc.yaml with its command, dependencies, outputs and metrics. Comments in a hand-written file survive; a stage that already exists is reported back rather than overwritten unless force is set."
+        },
+        {
+          "id": "test.pytest.discover",
+          "score": 0.18704390591656492,
+          "description": "List the tests pytest would run, without running them. Collection imports the test modules, so this executes their top-level code"
+        },
+        {
+          "id": "llms.ollama.server.stop",
+          "score": 0.18661690879115475,
+          "description": "Stop the ollama daemon when it is one this extension started. A daemon the user runs for their own work is left alone and reported as such, because taking it down would break tools outside IVYX Studio."
+        },
+        {
+          "id": "datasets.list",
+          "score": 0.18609684207969418,
+          "description": "Return the datasets known to the workspace index"
+        },
+        {
+          "id": "edu.openCohort",
+          "score": 0.18609684207969418,
+          "description": "Show which concepts the class is stuck on, read from the cohort source"
+        },
+        {
+          "id": "models.list",
+          "score": 0.18609684207969418,
+          "description": "Return the models known to the workspace index"
+        },
+        {
+          "id": "capability.serveList",
+          "score": 0.18442777839082938,
+          "description": "List the capabilities this installation exposes to a remote caller, with the schema each one accepts."
+        },
+        {
+          "id": "knowledge.open",
+          "score": 0.18442777839082938,
+          "description": "Reveal the knowledge panel, which shows the bases this workspace defines, what their indexes hold and a box to ask one a question."
+        },
+        {
+          "id": "kaggle.models.download",
+          "score": 0.18333969940564226,
+          "description": "Download one .gguf file from Kaggle over HTTPS and stamp the local record's filePath/format (Electron-only; needs the host data dir and curl)."
+        },
+        {
+          "id": "markdownViewer.saveActiveFile",
+          "score": 0.18200630207731605,
+          "description": "Save the markdown source being edited in the active tab"
+        },
+        {
+          "id": "edu.courses.listInstalled",
+          "score": 0.18156825980064073,
+          "description": "The courses present in this workspace, with the version each was installed at, so a market can tell an installed course from an available one."
+        },
+        {
+          "id": "ipynbViewer.cell.replace",
+          "score": 0.18128389273528472,
+          "description": "Rewrite one cell's source, keeping the previous source so a person can undo it. The notebook is saved with the change."
+        },
+        {
+          "id": "datasets.copyToWorkspace",
+          "score": 0.1800360108036013,
+          "description": "Copy one file of a downloaded dataset into the workspace's data folder, so a notebook, a pipeline stage or a profile can name it by a workspace path. A file that is already there is left as it is unless overwrite is set, a file over 48 MB is refused, and the download itself stays where it was."
+        },
+        {
+          "id": "source-control.commitFiles",
+          "score": 0.17937400083354382,
+          "description": "List the files one commit changed, with the status letter git gives each one. A merge is reported as its first-parent diff"
+        },
+        {
+          "id": "secret-manager.list",
+          "score": 0.17937400083354382,
+          "description": "List the names and metadata of secrets held in the OS keychain or HashiCorp Vault. Never returns values."
+        },
+        {
+          "id": "problems.open",
+          "score": 0.17817416127494962,
+          "description": "Reveal the Problems bottom panel listing diagnostics across the workspace"
+        },
+        {
+          "id": "profiler.profileRows",
+          "score": 0.1781741612749496,
+          "description": "Compute the profile (per-column stats, distributions, correlation matrix) over an already-fetched result set — columns + rows passed in memory, no engine or re-query. Used by the database workbench \"Profile\" button."
+        },
+        {
+          "id": "mlops.gto.modelList",
+          "score": 0.17699808135119718,
+          "description": "List every model registered as git tags in this workspace, each with the version its stages point at. Read-only; nothing is written."
+        },
+        {
+          "id": "hf.models.download",
+          "score": 0.17699808135119718,
+          "description": "Download a chosen GGUF file into the host data dir and stamp the local record's filePath/format (Electron-only)."
+        },
+        {
+          "id": "mlops.model.list",
+          "score": 0.1765469659009499,
+          "description": "List every registered model in this workspace's registry with its alias map, so a caller can see which version is currently `champion` (production) and which is the latest. Read-only; secrets redacted."
+        },
+        {
+          "id": "docker.compose.validate",
+          "score": 0.1749635530559413,
+          "description": "Check a compose file and return its problems, from the editor's own rules and from docker compose config when it is installed. With no file it takes the focused compose tab or the workspace's one compose file."
+        },
+        {
+          "id": "mlops.dvc.sweepStop",
+          "score": 0.1745743121887939,
+          "description": "Stop the sweep workers. Nothing running is reported as stopped rather than as a failure"
+        },
+        {
+          "id": "ivy-node.publish",
+          "score": 0.17118419700436519,
+          "description": "Publish the active IvyNode manifest to the node marketplace."
+        },
+        {
+          "id": "sweeps.stop",
+          "score": 0.17118419700436519,
+          "description": "Stop the sweep workers through the installed engine"
+        },
+        {
+          "id": "llms.ollama.server.status",
+          "score": 0.17045729691814085,
+          "description": "Report whether the ollama daemon is answering, which models are on this machine, and what to do next when something is missing. Reads over HTTP and starts nothing, including the ollama binary itself."
+        },
+        {
+          "id": "duckdb.describe",
+          "score": 0.17039954414774927,
+          "description": "List the registered views, or the column names and types of one view."
+        },
+        {
+          "id": "llms.gguf.server.start",
+          "score": 0.170367083999984,
+          "description": "Start the host's llama-server for a local GGUF model and bridge its address into llm.local.endpoint, so chat calls routed to the local provider reach it. This starts a process with a binary path and a model path taken from settings, which is why it is high risk and asks every time."
+        },
+        {
+          "id": "edu.resetProgress",
+          "score": 0.1690308509457033,
+          "description": "Clear the stored concept states and attempt counts for a course"
+        },
+        {
+          "id": "mlops.model.promote",
+          "score": 0.16868694244915797,
+          "description": "Point a registry alias (default `champion`) at a model version. This is the deploy signal — whatever reads `models:/<name>@champion` starts serving the new version — so it is gated by a step approval and refuses versions whose registration failed or is still pending."
+        },
+        {
+          "id": "tracking.openConsole",
+          "score": 0.1679842102263232,
+          "description": "Open the system diagnostics console (Trace, Health and Capabilities) and optionally focus a traceId/correlationId."
+        },
+        {
+          "id": "knowledge.chunk.preview",
+          "score": 0.16666666666666666,
+          "description": "Show the units one file would be embedded as, without embedding them. Pass a strategy to see a different split, or omit it for the default. The passages themselves are not returned, only their labels, their sizes and their first line. Comparing several splits over one document is knowledge.chunk.compare."
+        },
+        {
+          "id": "duckdb.export",
+          "score": 0.16638958140993046,
+          "description": "Run SQL and write its result to a workspace file as csv or json."
+        },
+        {
+          "id": "speech.prepare",
+          "score": 0.16638958140993046,
+          "description": "Download the Whisper model a language needs into the app's data folder, once. English takes about 490 MB and every other language about 575 MB."
+        },
+        {
+          "id": "ipynbViewer.cell.insert",
+          "score": 0.16568337391590282,
+          "description": "Add one cell to a notebook, marked as written by the caller so a person can keep or undo it. The notebook is saved with the new cell."
+        },
+        {
+          "id": "capability.schemaExport",
+          "score": 0.1649572197684645,
+          "description": "Export the installed capabilities as machine-readable tool schemas, in the format a model provider expects."
+        },
+        {
+          "id": "file-explorer.newFile",
+          "score": 0.1649572197684645,
+          "description": "Create a NEW file in the workspace, optionally seeded with its content via `content` (so \"create a new file with this content\" is a single call — never a separate empty-create then write). Writes into the current workspace. Errors if the name already exists; to overwrite/update an existing file's content use `fs.writeFile` instead."
+        },
+        {
+          "id": "mlops.mlflow.engine",
+          "score": 0.1649572197684645,
+          "description": "Report whether this workspace's MLflow registry can be reached right now, which server answers for it, and which parts of the registry contract this engine fills. Starts nothing and reads no models."
+        },
+        {
+          "id": "vectors.embedder.test",
+          "score": 0.1647172818672541,
+          "description": "Embed one short probe string and report whether the embedder answered, how long it took and what vector length came back. On a remote embedder this is a real request to the configured address, which is why it is a deliberate action and not something status does on its own."
+        },
+        {
+          "id": "file-explorer.duplicate",
+          "score": 0.16350382386265755,
+          "description": "Copy a file or folder next to itself, auto-naming the copy the way Finder does (\"report.txt\" becomes \"report copy.txt\", then \"report copy 2.txt\"). Folders are copied recursively. Pass `targetPath` to copy INTO a different folder instead of alongside the original. Never overwrites — the name is uniquified against whatever is already there."
+        },
+        {
+          "id": "context.recall",
+          "score": 0.16208817969462158,
+          "description": "Read back the facts saved for this project — all of them, or the one under a key."
+        },
+        {
+          "id": "lineage.open",
+          "score": 0.16208817969462158,
+          "description": "Reveal the Lineage panel, which shows where the workspace's data came from"
+        },
+        {
+          "id": "ai.artifact.plan",
+          "score": 0.16116459280507606,
+          "description": "Generate and PREVIEW an ivy-* artifact without finalizing it: run PLAN→RESOLVE→WIRE→VALIDATE, write the assembled manifest to a scratch draft, and publish ai.artifactPlanGenerated. No execution, no final write."
+        },
+        {
+          "id": "agents.open",
+          "score": 0.16087236302194674,
+          "description": "Reveal the Agents panel, which lists who has been driving this project through the gateway and what is served to agents outside it"
+        },
+        {
+          "id": "llms.instruction-classes.test",
+          "score": 0.15936381457791915,
+          "description": "Run an instruction class against a sample prompt via the LLM gateway"
+        },
+        {
+          "id": "docker.ps",
+          "score": 0.157485197087178,
+          "description": "List the Docker containers on this machine, running and stopped, with image, state and ports."
+        },
+        {
+          "id": "secret-manager.get",
+          "score": 0.15677236033392414,
+          "description": "Return the plaintext value of a managed secret, from the OS keychain or HashiCorp Vault. High-risk — requires approval."
+        },
+        {
+          "id": "ivy-nodes.search",
+          "score": 0.1543033499620919,
+          "description": "Search the ivy-node marketplace (keyword + semantic) and return matching node summaries the assistant can try or describe"
+        },
+        {
+          "id": "datasets.download",
+          "score": 0.1543033499620919,
+          "description": "Download a dataset's files into the host data dir through the provider that owns it"
+        },
+        {
+          "id": "hf.datasets.download",
+          "score": 0.1543033499620919,
+          "description": "Download an imported Hugging Face dataset's data files into the host data dir and mark it downloaded in the workspace index (Electron-only)"
+        },
+        {
+          "id": "vectors.index.status",
+          "score": 0.1527830828380352,
+          "description": "Report what is indexed: chunks and files per corpus, bytes on disk, when it was last built, and which embedding space it belongs to. Reads the manifest; embeds nothing and sends nothing."
+        },
+        {
+          "id": "datasets.files",
+          "score": 0.15220388682955233,
+          "description": "List the files a downloaded dataset holds, with the column names of each .csv read from its first line. A dataset that has not been downloaded answers with no files rather than an error."
+        },
+        {
+          "id": "lineage.trace",
+          "score": 0.15194743527951726,
+          "description": "Walk back from a workspace path or a registered model version to the data that produced it"
+        },
+        {
+          "id": "ivy-agent.edit",
+          "score": 0.15018785229652765,
+          "description": "Change the steps of an agent, their connections and inputs, and save the file."
+        },
+        {
+          "id": "ivy-node.instantiate",
+          "score": 0.15018785229652765,
+          "description": "Copy a library IvyNode manifest into the workspace and open its runnable canvas."
+        },
+        {
+          "id": "mlops.mlflow.modelList",
+          "score": 0.14712247158412492,
+          "description": "List every registered model in this workspace's MLflow registry with its alias map, as the Model Registry hub's MLflow engine. Read-only; secrets redacted."
+        },
+        {
+          "id": "evals.engines",
+          "score": 0.14547859349066158,
+          "description": "Which eval engines are installed, and what each one is. Reads the capability catalog and starts nothing"
+        },
+        {
+          "id": "object-storage.upload",
+          "score": 0.14547859349066158,
+          "description": "Send a workspace file to a bucket. This is the one operation that moves local data off the machine, so it is gated on approval."
+        },
+        {
+          "id": "modelRegistry.engines",
+          "score": 0.14451832825402,
+          "description": "Report which model-registry engines are installed, which one this workspace reads through, and for each whether its backend can be reached right now. This is the one question only the hub can answer."
+        },
+        {
+          "id": "kernels.jupyter.server.stop",
+          "score": 0.14349920066683505,
+          "description": "Stop the managed local jupyter-server (the endpoint is kept, marked stopped)."
+        },
+        {
+          "id": "llmops.open",
+          "score": 0.14349920066683505,
+          "description": "Reveal the LLMOps overview, which shows every lifecycle stage of this workspace with its live status and where to work on it."
+        },
+        {
+          "id": "policy-authoring",
+          "score": 0.14349920066683505,
+          "description": "How to write or change the rules in .punica/policy.yaml that decide which calls run, wait for a person or are refused."
+        },
+        {
+          "id": "vcs.commit",
+          "score": 0.14285714285714285,
+          "description": "Commit the current changes to version control with a message."
+        },
+        {
+          "id": "tracking.openTrace",
+          "score": 0.14285714285714285,
+          "description": "Open the console on its Trace tab and optionally focus a traceId/correlationId."
+        },
+        {
+          "id": "edu.lab.notebook.applyCellMeta",
+          "score": 0.14159846508095775,
+          "description": "Write an authored pedagogy block into a cell of the open lesson. The block is stored verbatim; this extension does not interpret it."
+        },
+        {
+          "id": "python.env.create",
+          "score": 0.14085904245475275,
+          "description": "Create a virtual environment (venv, or conda when requested) and optionally install packages into it. The new environment becomes active on success. This is the supported way to escape PEP 668 \"externally managed\" system Pythons."
+        },
+        {
+          "id": "debugger.stepInto",
+          "score": 0.13977131156292244,
+          "description": "Step into the function called on the current line, pausing at its first line; behaves like step over when there is no call"
+        },
+        {
+          "id": "terminals.create",
+          "score": 0.13957263155977062,
+          "description": "Open a new terminal in the app and return its id."
+        },
+        {
+          "id": "terminal.create",
+          "score": 0.13957263155977062,
+          "description": "Spawn a new PTY shell session (seeded with the active workspace environment)"
+        },
+        {
+          "id": "database.query",
+          "score": 0.13957263155977062,
+          "description": "Execute SQL against a connected database; returns column metadata and JSON rows"
+        },
+        {
+          "id": "kaggle.datasets.import",
+          "score": 0.13856849886842332,
+          "description": "Resolve a Kaggle dataset and add it to the workspace datasets index (metadata only; use kaggle.datasets.download for the data)"
+        },
+        {
+          "id": "ai.artifact.generate",
+          "score": 0.13856849886842332,
+          "description": "Generate and write an ivy-* artifact (node/agent/mcp) from a goal, running the full PLAN→…→SUMMARY pipeline. Publishes ai.artifactGenerated on success (or ai.planFailed/ai.planBlocked)."
+        },
+        {
+          "id": "signing.verify",
+          "score": 0.13801311186847084,
+          "description": "Check a detached signature against the given bytes and report whether they were altered since signing; this needs no key and works on a machine that did not produce them."
+        },
+        {
+          "id": "llms-instruction-class-service.open",
+          "score": 0.13801311186847084,
+          "description": "Open the Instruction Class editor in the content area."
+        },
+        {
+          "id": "llms-instruction-class-service.remove-class",
+          "score": 0.13746434980705374,
+          "description": "Delete this workspace's instruction class file and its registration. When another extension ships the same id, the shipped class takes its place."
+        },
+        {
+          "id": "mcp.local.connect",
+          "score": 0.13746434980705374,
+          "description": "Spawn and connect a local stdio MCP server. Once connected, the server's tools are indexed into the capability catalog under `mcp.<id>.<tool>`."
+        },
+        {
+          "id": "output.open",
+          "score": 0.13650472655798704,
+          "description": "Reveal the Output bottom panel showing extension and tool log channels"
+        },
+        {
+          "id": "debugger.getState",
+          "score": 0.13650472655798704,
+          "description": "Snapshot of the active session (state, threads, call stack, breakpoints) for agents and tooling"
+        },
+        {
+          "id": "evidence.conversations",
+          "score": 0.13650472655798704,
+          "description": "The agent sittings this workspace still has a durable record of, with what was refused in each."
+        },
+        {
+          "id": "docker.compose.up",
+          "score": 0.13638618139749525,
+          "description": "Start every service of a compose file in the background with docker compose up -d."
+        },
+        {
+          "id": "problems.setDiagnosticsForSource",
+          "score": 0.1363196353181994,
+          "description": "Replace only the diagnostics owned by a given source, leaving every other producer's entries in the panel untouched. An empty items array clears just that source."
+        },
+        {
+          "id": "docker.networks",
+          "score": 0.13468700594029479,
+          "description": "List the Docker networks on this machine with driver and scope."
+        },
+        {
+          "id": "evidence.build",
+          "score": 0.13468700594029479,
+          "description": "Write a signed package for one run, one model version or one agent sitting, stating on its face which of the five questions it answers."
+        },
+        {
+          "id": "llms-instruction-class-service.save-config",
+          "score": 0.1336306209562122,
+          "description": "Persist the remote endpoint URL and API token"
+        },
+        {
+          "id": "llm.chatStream",
+          "score": 0.13311166512794437,
+          "description": "Send a conversation to a language model and stream the reply as it is generated. Same contract as llm.chat, with live tokens delivered as events."
+        },
+        {
+          "id": "capability.catalog",
+          "score": 0.13311166512794437,
+          "description": "List the capabilities available on this installation, filtered by where they came from, which extension declared them, their tags, their risk, or their side effects."
+        },
+        {
+          "id": "docker.images",
+          "score": 0.13311166512794437,
+          "description": "List the Docker images on this machine with tag, size and age."
+        },
+        {
+          "id": "docker.volumes",
+          "score": 0.13311166512794437,
+          "description": "List the Docker volumes on this machine with name and driver."
+        },
+        {
+          "id": "llms.gguf.server.status",
+          "score": 0.13311166512794437,
+          "description": "Report whether the host's llama-server is running, at which address, and which weights it has loaded. Reads state and starts nothing."
+        },
+        {
+          "id": "problems.getDiagnostics",
+          "score": 0.1315903389919538,
+          "description": "Return the current diagnostics list"
+        },
+        {
+          "id": "test.engines",
+          "score": 0.1315903389919538,
+          "description": "Which test engines are installed, and what each one last reported. Reads the capability catalog and starts no engine"
+        },
+        {
+          "id": "vcs.status",
+          "score": 0.13093073414159545,
+          "description": "Show what has changed in the repository: which files have uncommitted changes — modified, added, deleted, and untracked."
+        },
+        {
+          "id": "terminal.newSession",
+          "score": 0.13093073414159545,
+          "description": "Create a fresh PTY session in the terminal panel and switch to it"
+        },
+        {
+          "id": "llms-services.save-config",
+          "score": 0.13093073414159545,
+          "description": "Persist the remote LLM endpoint URL and API token"
+        },
+        {
+          "id": "kernels.jupyter.server.reveal",
+          "score": 0.13093073414159545,
+          "description": "Open the Local Jupyter launcher and status drawer."
+        },
+        {
+          "id": "llms.ollama.server.start",
+          "score": 0.13028094981238422,
+          "description": "Make sure the local ollama daemon is answering, starting one only when none is. On most machines ollama already runs its own background service and nothing is started at all. When one has to be started, this spawns a process, which is why it is high risk and asks every time."
+        },
+        {
+          "id": "secrets.set",
+          "score": 0.1286978904175574,
+          "description": "Store a credential — an API key, token, or password — in the host's secret store under a name, so other capabilities can use it without the value being written anywhere else."
+        },
+        {
+          "id": "hf.models.import",
+          "score": 0.1286978904175574,
+          "description": "Add a Hugging Face model to the workspace models index (metadata only; use download to fetch the GGUF)"
+        },
+        {
+          "id": "speech.stop",
+          "score": 0.1283881477532739,
+          "description": "Stop the reading that is playing and drop every sentence queued behind it."
+        },
+        {
+          "id": "duckdb.inspect",
+          "score": 0.12598815766974242,
+          "description": "Return a data file's columns, row count, first rows and the view name to query it with."
+        },
+        {
+          "id": "models.addLocal",
+          "score": 0.12598815766974242,
+          "description": "Pick a local model file (e.g. GGUF) and add it to the workspace index"
+        },
+        {
+          "id": "workspace.listFiles",
+          "score": 0.12469593727770995,
+          "description": "List every file in the workspace as one flat list of paths, without the folder structure that fs.listFiles returns."
+        },
+        {
+          "id": "fs.list",
+          "score": 0.12371791482634838,
+          "description": "List the files and folders directly inside one directory, optionally recursing into subfolders."
+        },
+        {
+          "id": "database.mysql.query",
+          "score": 0.12371791482634838,
+          "description": "Execute SQL against a connected MySQL database; returns column metadata and JSON rows"
+        },
+        {
+          "id": "database.postgresql.query",
+          "score": 0.12371791482634838,
+          "description": "Execute SQL against a connected PostgreSQL database; returns column metadata and JSON rows"
+        },
+        {
+          "id": "python.env.packages",
+          "score": 0.12371791482634838,
+          "description": "List the packages installed in a Python environment, with their versions."
+        },
+        {
+          "id": "edu.tutor.diagnose",
+          "score": 0.12344267996967354,
+          "description": "Checks a student's output and reasoning separately and names a misconception when only the reasoning is wrong."
+        },
+        {
+          "id": "ivy.agent.turn",
+          "score": 0.12222646627042817,
+          "description": "Let a model decide inside an agent graph, calling tools through the gateway until it answers"
+        },
+        {
+          "id": "terminal.attachSession",
+          "score": 0.12156613477096617,
+          "description": "Attach the terminal panel to an existing PTY session and print a note describing it"
+        },
+        {
+          "id": "speech.dictate.stop",
+          "score": 0.12156613477096617,
+          "description": "End the dictation that is listening; with keep false what was said is thrown away instead of transcribed."
+        },
+        {
+          "id": "debugger.pause",
+          "score": 0.12104550653376049,
+          "description": "Pause the running debuggee"
+        },
+        {
+          "id": "evals.manifest.score",
+          "score": 0.11952286093343938,
+          "description": "Whether an LLM's output is a structurally valid manifest, measured with the substrate's own validators"
+        },
+        {
+          "id": "policy.open",
+          "score": 0.11952286093343938,
+          "description": "Reveal the Policy panel, which lists this project's rules with what each one did today"
+        },
+        {
+          "id": "jsonViewer.open",
+          "score": 0.11878277418329973,
+          "description": "Show a workspace JSON or JSON Lines file, or JSON text you already hold, in a tab with a formatted editor and a tree"
+        },
+        {
+          "id": "edu.explorer.openRegistryCourse",
+          "score": 0.1175792702504431,
+          "description": "Show what a published course teaches — its goal, outcomes, prerequisites and full module-by-module syllabus — before it is downloaded."
+        },
+        {
+          "id": "requirements.add",
+          "score": 0.1175792702504431,
+          "description": "Declare a requirement in requirements.txt and install it into the selected runtime target"
+        },
+        {
+          "id": "requirements.remove",
+          "score": 0.1175792702504431,
+          "description": "Remove a requirement from requirements.txt and uninstall the package"
+        },
+        {
+          "id": "browser.open",
+          "score": 0.11664236870396087,
+          "description": "Open an http or https address in a browser tab inside the app, reusing the tab when that address is already open"
+        },
+        {
+          "id": "hf.datasets.import",
+          "score": 0.11664236870396087,
+          "description": "Add a Hugging Face dataset to the workspace datasets index without downloading its files; the Datasets panel's Download action fetches them later"
+        },
+        {
+          "id": "hf.models.quants",
+          "score": 0.11664236870396087,
+          "description": "List the downloadable GGUF files (path + byte size) of a Hugging Face model repo, so the Models panel can offer a quant picker"
+        },
+        {
+          "id": "policyExport.targets",
+          "score": 0.11664236870396087,
+          "description": "The gateway schemas this build can emit."
+        },
+        {
+          "id": "ivy-agent.describe",
+          "score": 0.11565525051480624,
+          "description": "Read an agent's steps, how they are connected, its inputs, outputs, settings and problems, from the open editor or the file."
+        },
+        {
+          "id": "duckdb.queryFile",
+          "score": 0.11501092655705904,
+          "description": "Open a data file in the SQL workbench with a preview query, or a .sql file as a query. It reads csv, tsv, parquet, xlsx, xlsm, json and jsonl, gzipped or not."
+        },
+        {
+          "id": "ivy-mcp-server.stop",
+          "score": 0.11396057645963795,
+          "description": "Stop serving and unregister the hosted MCP server"
+        },
+        {
+          "id": "speech.status",
+          "score": 0.11396057645963795,
+          "description": "Report which Whisper model a language uses, which models are downloaded, and whether the speech server is running."
+        },
+        {
+          "id": "commandPalette.open",
+          "score": 0.1126872339638022,
+          "description": "Show the command palette"
+        },
+        {
+          "id": "debugger.openConsole",
+          "score": 0.1126872339638022,
+          "description": "Reveal the Debug Console bottom panel"
+        },
+        {
+          "id": "debugger.restart",
+          "score": 0.1126872339638022,
+          "description": "Restart the active debug session"
+        },
+        {
+          "id": "secret-manager.delete",
+          "score": 0.11227217828476796,
+          "description": "Delete a managed secret and its value from the OS keychain or HashiCorp Vault. High-risk — requires approval."
+        },
+        {
+          "id": "tracking.debugInfo",
+          "score": 0.11227217828476796,
+          "description": "Read the recent audit ring and summarize it by kind, optionally filtered by correlationId, kind or free text."
+        },
+        {
+          "id": "mcp.remote.connect",
+          "score": 0.11175975124542252,
+          "description": "Connect a remote HTTP MCP server. Once connected, the server's tools are indexed into the capability catalog under `mcp.<id>.<tool>`."
+        },
+        {
+          "id": "ivy-mcp-server.status",
+          "score": 0.11065666703449763,
+          "description": "Report whether the MCP server is running and where it is reachable"
+        },
+        {
+          "id": "skills.get",
+          "score": 0.11065666703449763,
+          "description": "Read one skill as its SKILL.md says it, with the files in its folder."
+        },
+        {
+          "id": "source-control.init",
+          "score": 0.1091089451179962,
+          "description": "Initialize a Git repository in the current workspace"
+        },
+        {
+          "id": "source-control.push",
+          "score": 0.1091089451179962,
+          "description": "Push local commits to the remote"
+        },
+        {
+          "id": "source-control.switchBranch",
+          "score": 0.1091089451179962,
+          "description": "Switch the working tree to another branch"
+        },
+        {
+          "id": "edu.courses.refresh",
+          "score": 0.10910894511799618,
+          "description": "Re-scan the workspace for courses and lessons without revealing any panel. Called after a course is downloaded."
+        },
+        {
+          "id": "guardrails.check",
+          "score": 0.10910894511799618,
+          "description": "Whether one piece of text breaches a guardrail, checked against the markers it was given and every installed detector"
+        },
+        {
+          "id": "skills.open",
+          "score": 0.10910894511799618,
+          "description": "Show the Skills panel, which lists every skill an agent can load and where each one is kept."
+        },
+        {
+          "id": "guardrails.promptfoo.status",
+          "score": 0.10762440050012628,
+          "description": "Whether promptfoo is installed and reachable, which local models are configured, and what an install and a grading each cost"
+        },
+        {
+          "id": "kaggle.models.import",
+          "score": 0.10762440050012628,
+          "description": "Resolve a Kaggle model and add it to the workspace models index"
+        },
+        {
+          "id": "ivy-agent-explorer.open",
+          "score": 0.1074430618700507,
+          "description": "Show what an agent does before running it, with what it asks for, what it touches, its steps, tests and runs, without opening it for editing"
+        },
+        {
+          "id": "source-control.fetch",
+          "score": 0.10585122480499262,
+          "description": "Fetch refs from the remote without merging"
+        },
+        {
+          "id": "debugger.continueOrStart",
+          "score": 0.10585122480499262,
+          "description": "Continue the paused session, or start one when idle"
+        },
+        {
+          "id": "debugger.getBreakpoints",
+          "score": 0.10585122480499262,
+          "description": "Return the stored breakpoints for a document path"
+        },
+        {
+          "id": "object-storage.listBuckets",
+          "score": 0.10585122480499262,
+          "description": "List the buckets/containers visible to a connection's credentials"
+        },
+        {
+          "id": "secret-manager.open",
+          "score": 0.10585122480499262,
+          "description": "Reveal the Secrets sidebar"
+        },
+        {
+          "id": "sweeps.open",
+          "score": 0.10585122480499262,
+          "description": "Reveal the sweep hub"
+        },
+        {
+          "id": "workspace.writeFile",
+          "score": 0.10482848367219183,
+          "description": "Create a workspace file with the given text, kept for compatibility; prefer fs.writeFile, which also updates a file that already exists."
+        },
+        {
+          "id": "settings.import",
+          "score": 0.10482848367219183,
+          "description": "Import settings from a JSON string. Without merge the entire settings store is replaced. Destructive and not undoable."
+        },
+        {
+          "id": "edu.mcp.agent",
+          "score": 0.10432810619146021,
+          "description": "Decides, as the lab's test agent, whether to call one MCP tool or answer the user directly."
+        },
+        {
+          "id": "file-explorer.refresh",
+          "score": 0.10286889997472795,
+          "description": "Refresh the file explorer"
+        },
+        {
+          "id": "search.find",
+          "score": 0.10286889997472795,
+          "description": "Find text in the currently open/active file only"
+        },
+        {
+          "id": "terminal.open",
+          "score": 0.10286889997472795,
+          "description": "Reveal the integrated terminal bottom panel"
+        },
+        {
+          "id": "editor.saveActiveFile",
+          "score": 0.10286889997472795,
+          "description": "Save the currently active code editor tab"
+        },
+        {
+          "id": "welcome.open",
+          "score": 0.10286889997472795,
+          "description": "Show the IVYX Studio welcome screen"
+        },
+        {
+          "id": "database.describe",
+          "score": 0.10286889997472795,
+          "description": "List tables, or the columns of one table, for a connection"
+        },
+        {
+          "id": "python.env.resolve",
+          "score": 0.10101525445522108,
+          "description": "Which Python environment is active: its interpreter, prefix, version and the variables a child process needs, or null when none is selected."
+        },
+        {
+          "id": "edu.tutor.socratic",
+          "score": 0.10101525445522108,
+          "description": "Reframes the misconception behind a student's error and asks one leading question."
+        },
+        {
+          "id": "policyExport.preview",
+          "score": 0.10012523486435176,
+          "description": "The policy a target would enforce, plus everything that could not be represented."
+        },
+        {
+          "id": "requirements.uninstall",
+          "score": 0.10012523486435176,
+          "description": "Uninstall a package from the selected runtime target"
+        },
+        {
+          "id": "source-control.discard",
+          "score": 0.09983374884595828,
+          "description": "Discard working-tree changes for the given files. Tracked files are restored to HEAD; untracked files are deleted. Destructive and not undoable."
+        },
+        {
+          "id": "edu.lesson.plan",
+          "score": 0.09983374884595828,
+          "description": "Turn a lesson notebook into per-cell render directives: which cells are gated, which are read-only, and where the tutor mounts its own surfaces."
+        },
+        {
+          "id": "python.env.select",
+          "score": 0.09983374884595828,
+          "description": "Set the active environment (persisted to .punica/python.yaml) and publish `python.env.changed` so every consumer re-resolves."
+        },
+        {
+          "id": "ivy-node-authoring",
+          "score": 0.09983374884595828,
+          "description": "How to write or fix an IvyNode manifest (.ivy.node) by hand so it is generic, runs and passes its own tests."
+        },
+        {
+          "id": "skills.setEnabled",
+          "score": 0.09820572322804726,
+          "description": "Turn a skill off so no agent is offered it or loads it, or turn it back on, recorded in the skills.yaml of the place it is kept."
+        },
+        {
+          "id": "file-explorer.newFolder",
+          "score": 0.09759000729485333,
+          "description": "Create a new folder at the given path or under a parent directory"
+        },
+        {
+          "id": "database.open",
+          "score": 0.09759000729485333,
+          "description": "Reveal the Database connections sidebar"
+        },
+        {
+          "id": "object-storage.minio.listBuckets",
+          "score": 0.09759000729485333,
+          "description": "List the buckets visible to a connection's credentials"
+        },
+        {
+          "id": "object-storage.minio.disconnect",
+          "score": 0.09759000729485333,
+          "description": "Drop the client for a MinIO connection"
+        },
+        {
+          "id": "requirements.install",
+          "score": 0.09759000729485333,
+          "description": "Install a single package into the selected runtime target"
+        },
+        {
+          "id": "docker.pull",
+          "score": 0.09759000729485331,
+          "description": "Pull an image from a registry and return when the download is done."
+        },
+        {
+          "id": "ivy-node.generate",
+          "score": 0.09759000729485331,
+          "description": "Create a new node from a description in plain words, where a node is a reusable Python step that is written, tested on the kernel and saved to this workspace."
+        },
+        {
+          "id": "fs.writeBytes",
+          "score": 0.09698572899377439,
+          "description": "Write raw bytes to a file, creating it when it does not exist and replacing its contents when it does. The binary counterpart to fs.writeFile, which encodes as UTF-8 and would corrupt an image or any other non-text payload. Bytes travel base64-encoded because capability inputs are JSON."
+        },
+        {
+          "id": "object-storage.aws.listBuckets",
+          "score": 0.09523809523809523,
+          "description": "List the buckets visible to a connection's credentials"
+        },
+        {
+          "id": "kernels.jupyter.server.start",
+          "score": 0.09449111825230681,
+          "description": "Start the local Jupyter server and register it as a token-authenticated kernel endpoint; { device } picks CPU or GPU, defaulting to cpu."
+        },
+        {
+          "id": "fs.mkdir",
+          "score": 0.09304842103984709,
+          "description": "Create a folder, optionally creating the missing parent folders above it."
+        },
+        {
+          "id": "ai.session.archive",
+          "score": 0.09304842103984709,
+          "description": "Move a saved assistant conversation out of the active list without deleting it."
+        },
+        {
+          "id": "file-explorer.open",
+          "score": 0.09304842103984709,
+          "description": "Open a file in the editor"
+        },
+        {
+          "id": "debugger.evaluate",
+          "score": 0.09304842103984709,
+          "description": "Evaluate an expression in the paused frame (watch/repl context)"
+        },
+        {
+          "id": "kernels.exec",
+          "score": 0.09304842103984709,
+          "description": "Execute code in the active kernel session."
+        },
+        {
+          "id": "object-storage.abs.listBuckets",
+          "score": 0.09304842103984709,
+          "description": "List the buckets visible to a connection's credentials"
+        },
+        {
+          "id": "object-storage.gcs.listBuckets",
+          "score": 0.09304842103984709,
+          "description": "List the buckets visible to a connection's credentials"
+        },
+        {
+          "id": "ipynbViewer.describe",
+          "score": 0.09258200997725516,
+          "description": "Return a notebook's cells with their ids, sources, execution counts and output summaries, and its kernel."
+        },
+        {
+          "id": "llms-instruction-class-service.register-class",
+          "score": 0.09258200997725516,
+          "description": "Save an instruction class to its workspace .ic.yaml file and register it in the kernel registry."
+        },
+        {
+          "id": "fs.writeFile",
+          "score": 0.09166984970282113,
+          "description": "Write text to a file, creating it when it does not exist and replacing its contents when it does. The canonical way to save, edit, or generate a file."
+        },
+        {
+          "id": "source-control.commit",
+          "score": 0.09100315103865803,
+          "description": "Create a commit from the currently staged changes"
+        },
+        {
+          "id": "output.append",
+          "score": 0.09100315103865803,
+          "description": "Append a log entry to the Output panel"
+        },
+        {
+          "id": "output.clear",
+          "score": 0.09100315103865803,
+          "description": "Clear all entries from the Output panel"
+        },
+        {
+          "id": "terminal.openForSession",
+          "score": 0.09100315103865803,
+          "description": "Attach the terminal panel to an existing PTY session"
+        },
+        {
+          "id": "debugger.toggleBreakpoint",
+          "score": 0.09100315103865803,
+          "description": "Toggle a breakpoint at the active editor cursor, or at an explicit file/line"
+        },
+        {
+          "id": "evals.text.score",
+          "score": 0.09100315103865803,
+          "description": "Whether an LLM's answer satisfies the assertions its eval case declares"
+        },
+        {
+          "id": "speech.reply.stop",
+          "score": 0.09100315103865803,
+          "description": "Stop the answer being read aloud, in either voice."
+        },
+        {
+          "id": "models.remove",
+          "score": 0.09100315103865803,
+          "description": "Remove a model record from the workspace index"
+        },
+        {
+          "id": "ivy.agent.planner",
+          "score": 0.09078412990032037,
+          "description": "Plans which nodes an agent needs and in what order before the manifest is written."
+        },
+        {
+          "id": "docker.compose.removeService",
+          "score": 0.0899235973995271,
+          "description": "Remove one service from a compose file, drop the depends_on references to it, and save."
+        },
+        {
+          "id": "fs.stat",
+          "score": 0.08908708063747481,
+          "description": "Get a path's size, modification time, and whether it is a directory, without reading its contents."
+        },
+        {
+          "id": "fs.copy",
+          "score": 0.08908708063747481,
+          "description": "Copy a file or folder to another path, leaving the original in place."
+        },
+        {
+          "id": "ai.session.list",
+          "score": 0.08908708063747481,
+          "description": "List the saved assistant conversations, optionally limited to one workspace."
+        },
+        {
+          "id": "object-storage.listObjects",
+          "score": 0.08908708063747481,
+          "description": "List the objects in a bucket under a prefix, one page at a time."
+        },
+        {
+          "id": "object-storage.aws.disconnect",
+          "score": 0.08908708063747481,
+          "description": "Drop the client for a AWS S3 connection"
+        },
+        {
+          "id": "test.runSuite",
+          "score": 0.08908708063747481,
+          "description": "Execute all test cases for a test specification"
+        },
+        {
+          "id": "edu.mcp.tutor",
+          "score": 0.08827348295047495,
+          "description": "Judges a student's MCP tool and says whether the fault is in its code or its design."
+        },
+        {
+          "id": "llms.instruction-classes.delete",
+          "score": 0.08728715609439695,
+          "description": "Unregister an instruction class from the workspace registry"
+        },
+        {
+          "id": "settings.set",
+          "score": 0.08728715609439695,
+          "description": "Set a single extension setting value at the given scope."
+        },
+        {
+          "id": "hf.datasets.open",
+          "score": 0.08728715609439695,
+          "description": "Open the Hugging Face Datasets sidebar"
+        },
+        {
+          "id": "python.env.open",
+          "score": 0.08728715609439695,
+          "description": "Open the Python Environments sidebar."
+        },
+        {
+          "id": "evals.rag.score",
+          "score": 0.08728715609439695,
+          "description": "How much of what a case declared relevant the retrieval actually returned, counted rather than judged"
+        },
+        {
+          "id": "ivy-node.open",
+          "score": 0.08728715609439695,
+          "description": "Open a .ivy.node manifest in the IvyNode editor."
+        },
+        {
+          "id": "object-storage.open",
+          "score": 0.08728715609439695,
+          "description": "Reveal the Object Storage sidebar"
+        },
+        {
+          "id": "file-explorer.revealFile",
+          "score": 0.08559209850218259,
+          "description": "Reveal a file or folder in the explorer tree"
+        },
+        {
+          "id": "tasks.open",
+          "score": 0.08559209850218259,
+          "description": "Reveal the Tasks panel listing workspace task definitions"
+        },
+        {
+          "id": "ivy-nodes.open",
+          "score": 0.08559209850218259,
+          "description": "Show the Ivy node palette sidebar"
+        },
+        {
+          "id": "llms-instruction-class-service.test-connection",
+          "score": 0.08559209850218259,
+          "description": "Send a short probe to the configured remote LLM endpoint"
+        },
+        {
+          "id": "fs.history",
+          "score": 0.0839921051131616,
+          "description": "List the earlier saved versions of one file, so a change can be reviewed or rolled back."
+        },
+        {
+          "id": "edu.lab.notebook.save",
+          "score": 0.0839921051131616,
+          "description": "Persist the active lesson back to its .lesson.ipynb file"
+        },
+        {
+          "id": "mcpMonitor.clear",
+          "score": 0.0839921051131616,
+          "description": "Clear all recorded MCP traffic from the monitor's in-memory buffer."
+        },
+        {
+          "id": "rag-knowledge-base-setup",
+          "score": 0.08314109932105399,
+          "description": "Use when someone wants a knowledge base (bilgi tabanı), RAG or document search over files in the project (docs, notes, manuals) so an assistant can answer questions from them; builds, checks and queries it."
+        },
+        {
+          "id": "editor.openFile",
+          "score": 0.08247860988423225,
+          "description": "Open a text file in the code editor"
+        },
+        {
+          "id": "ivy-mcp-server.generateClientConfig",
+          "score": 0.08247860988423225,
+          "description": "Generate a Claude Desktop client config snippet for the running server"
+        },
+        {
+          "id": "kernels.jupyter.server.status",
+          "score": 0.08247860988423225,
+          "description": "Report whether the managed local jupyter-server is running."
+        },
+        {
+          "id": "object-storage.abs.disconnect",
+          "score": 0.08247860988423225,
+          "description": "Drop the client for a Azure Blob Storage connection"
+        },
+        {
+          "id": "object-storage.gcs.disconnect",
+          "score": 0.08247860988423225,
+          "description": "Drop the client for a Google Cloud Storage connection"
+        },
+        {
+          "id": "skills.save",
+          "score": 0.08247860988423225,
+          "description": "Create or replace a skill's SKILL.md in this project (.punica/skills/<name>/) or in your own skills folder, with the files it carries."
+        },
+        {
+          "id": "hf.models.open",
+          "score": 0.08104408984731079,
+          "description": "Open the Hugging Face Models sidebar"
+        },
+        {
+          "id": "kaggle.models.open",
+          "score": 0.08104408984731079,
+          "description": "Open the Kaggle Models sidebar"
+        },
+        {
+          "id": "secret-manager.local.get",
+          "score": 0.08104408984731079,
+          "description": "Return the value of a local secret. High-risk — requires approval."
+        },
+        {
+          "id": "hf.datasets.search",
+          "score": 0.07968190728895957,
+          "description": "Search datasets on the Hugging Face Hub"
+        },
+        {
+          "id": "llms-viewer.open",
+          "score": 0.07968190728895957,
+          "description": "View and test LLM instruction classes and their capabilities"
+        },
+        {
+          "id": "models.open",
+          "score": 0.07968190728895957,
+          "description": "Open the Models sidebar to manage AI models"
+        },
+        {
+          "id": "capability.describe",
+          "score": 0.07938841860374447,
+          "description": "Return one capability in full: what it does, the exact arguments it takes, what it returns, and whether calling it needs approval. Read this before calling a capability that is not already described."
+        },
+        {
+          "id": "flow.migrate",
+          "score": 0.07838618016696207,
+          "description": "Bring a saved workflow document up to a newer schema version, or report what migrating it would change. Reads only; nothing runs."
+        },
+        {
+          "id": "llms-services.register-class",
+          "score": 0.07838618016696207,
+          "description": "Register (or update) a remote instruction class in the kernel registry"
+        },
+        {
+          "id": "mlops.mlflow.reveal",
+          "score": 0.07838618016696207,
+          "description": "Reveal this workspace's MLflow model registry, where a version is promoted after a human approves it."
+        },
+        {
+          "id": "guardrails.promptfoo.generate",
+          "score": 0.07838618016696207,
+          "description": "Write new attack cases for one threat class with a local model and optionally save them as an eval dataset"
+        },
+        {
+          "id": "ipynbViewer.save",
+          "score": 0.07838618016696207,
+          "description": "Persist the active notebook back to its .ipynb file"
+        },
+        {
+          "id": "hf.models.search",
+          "score": 0.07838618016696207,
+          "description": "Search GGUF models on the Hugging Face Hub"
+        },
+        {
+          "id": "ipynbViewer.openVariables",
+          "score": 0.07715167498104596,
+          "description": "Reveal the notebook Variables inspector panel"
+        },
+        {
+          "id": "secret-manager.set",
+          "score": 0.07715167498104596,
+          "description": "Create or update a managed secret value in the OS keychain or HashiCorp Vault. High-risk — requires approval."
+        },
+        {
+          "id": "llms.onnx.server.stop",
+          "score": 0.07662141663581956,
+          "description": "Stop a running ONNX server and clear llm.local.endpoint when it still points at that server. The address is left alone when it belongs to another runtime, so stopping one engine never disconnects another."
+        },
+        {
+          "id": "fs.readFile",
+          "score": 0.07597371763975863,
+          "description": "Read a file's full text content from disk by path. The usual first step before changing a file: look at what it says."
+        },
+        {
+          "id": "evals.suite.ciExport",
+          "score": 0.07597371763975863,
+          "description": "What this eval stage looks like outside the editor. Answers honestly that no headless runner exists yet"
+        },
+        {
+          "id": "llms.open",
+          "score": 0.07377111135633176,
+          "description": "Open the LLM Capabilities sidebar to manage LLM instruction classes"
+        },
+        {
+          "id": "lidarViewer.open",
+          "score": 0.07377111135633176,
+          "description": "Open PCD / PLY point-cloud files in the 3D LIDAR viewer"
+        },
+        {
+          "id": "guardrails.packs",
+          "score": 0.07273929674533079,
+          "description": "Which attack packs ship with this build, how many cases each carries and where those attack shapes came from"
+        },
+        {
+          "id": "imageViewer.open",
+          "score": 0.07273929674533079,
+          "description": "Open image files in the image viewer"
+        },
+        {
+          "id": "markdownViewer.open",
+          "score": 0.07273929674533079,
+          "description": "Open markdown files in the markdown viewer"
+        },
+        {
+          "id": "duckdb.cancelQuery",
+          "score": 0.07174960033341753,
+          "description": "Cancel a running query, by its id or the active workbench tab's."
+        },
+        {
+          "id": "llms-instruction-class-service.compare",
+          "score": 0.07079923254047887,
+          "description": "Open the model comparison tab for an instruction class."
+        },
+        {
+          "id": "llms.instruction-classes.invoke",
+          "score": 0.06988565578146122,
+          "description": "Invoke an instruction class via the kernel llm.invoke capability"
+        },
+        {
+          "id": "csvViewer.open",
+          "score": 0.06988565578146122,
+          "description": "Open CSV/TSV files as a table in the CSV viewer"
+        },
+        {
+          "id": "skills.remove",
+          "score": 0.06988565578146122,
+          "description": "Delete a skill's folder, the files it carries included, from this project or from your own skills folder."
+        },
+        {
+          "id": "docker.logs",
+          "score": 0.06900655593423542,
+          "description": "Return the last lines of one container's log without following it."
+        },
+        {
+          "id": "docker.start",
+          "score": 0.06900655593423542,
+          "description": "Start a stopped Docker container by id or name."
+        },
+        {
+          "id": "docker.inspect",
+          "score": 0.0681598176590997,
+          "description": "Return the full inspect JSON of one container, image, volume or network."
+        },
+        {
+          "id": "ivy-mcp-server.start",
+          "score": 0.0681598176590997,
+          "description": "Host the selected .ivy.mcp manifest as a governed MCP server (stdio + HTTP)"
+        },
+        {
+          "id": "risk-assessor",
+          "score": 0.0681598176590997,
+          "description": "Answers low, medium or high for the risk of a task in one word."
+        },
+        {
+          "id": "edu.tutor.predict",
+          "score": 0.06734350297014739,
+          "description": "Grades a student's prediction of what a cell will print before it runs."
+        },
+        {
+          "id": "ivy-agent.publish",
+          "score": 0.06655583256397218,
+          "description": "Publish an IvyAgent to the marketplace after its own test cases pass on this machine."
+        },
+        {
+          "id": "skills.install",
+          "score": 0.06655583256397218,
+          "description": "Install a skill into this project or your own skills folder, from the marketplace or a folder a person chose."
+        },
+        {
+          "id": "llms.onnx.server.status",
+          "score": 0.0657951694959769,
+          "description": "Report whether an ONNX server started by this extension is still running, and at which address. Reads state and starts nothing."
+        },
+        {
+          "id": "llms-ai-core-service.open",
+          "score": 0.0643489452087787,
+          "description": "Open the AI core service sidebar for managing remote LLM models"
+        },
+        {
+          "id": "edu.tutor.hint",
+          "score": 0.0643489452087787,
+          "description": "Rewrites the instructor's hint for this student's own code."
+        },
+        {
+          "id": "edu.market.install",
+          "score": 0.06366070140792304,
+          "description": "Download a published course into the workspace as lesson notebooks under courses/<slug>/. Replacing a course that is already there asks first, so a learner's edited cells are never overwritten silently."
+        },
+        {
+          "id": "ipynbViewer.open",
+          "score": 0.06366070140792304,
+          "description": "Open a Jupyter (.ipynb) notebook in the notebook editor"
+        },
+        {
+          "id": "source-control.commit-message",
+          "score": 0.06366070140792304,
+          "description": "Writes a commit message from the staged diff."
+        },
+        {
+          "id": "kaggle.datasets.search",
+          "score": 0.06234796863885497,
+          "description": "Search Kaggle datasets over the Kaggle REST API (public datasets need no credentials)"
+        },
+        {
+          "id": "kaggle.models.search",
+          "score": 0.06234796863885497,
+          "description": "Search Kaggle models over the Kaggle REST API (public models need no credentials)"
+        },
+        {
+          "id": "duckdb.open",
+          "score": 0.06172133998483677,
+          "description": "Open a SQL workbench tab, with a data file registered and previewed when one is named."
+        },
+        {
+          "id": "ivy.agent.debug",
+          "score": 0.061113233135214086,
+          "description": "Which of this extension's surfaces are reachable on this host, the agent loop above all"
+        },
+        {
+          "id": "docker.compose.describe",
+          "score": 0.05994906493301807,
+          "description": "Read a compose file and return its services, volumes, networks and current problems."
+        },
+        {
+          "id": "kaggle.models.files",
+          "score": 0.058848988633649964,
+          "description": "List the downloadable .gguf files of a Kaggle model across its instance-versions, smallest first. Public models need no credentials."
+        },
+        {
+          "id": "docker.compose.generator",
+          "score": 0.058848988633649964,
+          "description": "Drafts a Docker Compose spec as JSON from a plain description of the services."
+        },
+        {
+          "id": "ivy.mcp.generator",
+          "score": 0.057807331301608,
+          "description": "Writes an Ivy MCP server manifest from a description of the tools it should expose."
+        },
+        {
+          "id": "dataset-first-look",
+          "score": 0.05730682550612528,
+          "description": "Use when someone asks what is in a data file (csv, parquet, xlsx, json), what is wrong with it, its missing values, or whether it is ready for modelling; profiles every column and reports measured numbers."
+        },
+        {
+          "id": "docker.compose.down",
+          "score": 0.055427399547369326,
+          "description": "Stop and remove a compose stack's containers with docker compose down."
+        },
+        {
+          "id": "docker.compose.open",
+          "score": 0.0545544725589981,
+          "description": "Open a compose file in the visual compose designer, a canvas of its services."
+        },
+        {
+          "id": "skills.move",
+          "score": 0.0545544725589981,
+          "description": "Move a skill from .punica/instruction-classes into its own folder under .punica/skills as a SKILL.md, copying the files it names in beside it."
+        },
+        {
+          "id": "knowledge.base.remove",
+          "score": 0.05292561240249631,
+          "description": "Forget a knowledge base definition. The index survives unless clearIndex is set, because deleting a definition edits a file while deleting an index means embedding everything again to get it back, which on a remote embedder means sending it again."
+        },
+        {
+          "id": "instruction.class.refiner",
+          "score": 0.05292561240249631,
+          "description": "Rewrites an instruction class's prompt from the author's feedback."
+        },
+        {
+          "id": "instruction.class.generator",
+          "score": 0.05179539792436707,
+          "description": "Writes a new instruction class from a description of the job it should do."
+        },
+        {
+          "id": "ivy-agent.generate",
+          "score": 0.051080944423879705,
+          "description": "Create a new agent from a description in plain words, where an agent is a flow of nodes and model turns that is planned, wired and saved to this workspace."
+        },
+        {
+          "id": "requirements.refresh",
+          "score": 0.048795003647426664,
+          "description": "Re-read requirements.txt and recompute install status"
+        },
+        {
+          "id": "requirements.bootstrap",
+          "score": 0.048795003647426664,
+          "description": "Read requirements.txt and detect installed vs missing packages (no install)"
+        },
+        {
+          "id": "llm.edit-workflow",
+          "score": 0.046524210519923545,
+          "description": "Edit and optimize Workflow IR structures"
+        },
+        {
+          "id": "ai.session.create",
+          "score": 0.04550157551932901,
+          "description": "Create a new persistent assistant conversation in a workspace and return it."
+        },
+        {
+          "id": "terminal.openForTaskSession",
+          "score": 0.04550157551932901,
+          "description": "Attach to a task's PTY session and show its command line"
+        },
+        {
+          "id": "object-storage.delete",
+          "score": 0.04550157551932901,
+          "description": "Permanently remove an object from a bucket. Destructive and not undoable."
+        },
+        {
+          "id": "evidence.verify",
+          "score": 0.044543540318737404,
+          "description": "Check a package was not altered and report which questions it actually answers."
+        },
+        {
+          "id": "object-storage.stat",
+          "score": 0.044543540318737404,
+          "description": "Return size, content type, etag and timestamps for one object (a HEAD, not a GET)"
+        },
+        {
+          "id": "object-storage.minio.connect",
+          "score": 0.044543540318737404,
+          "description": "Open a client for a configured MinIO connection and list its buckets"
+        },
+        {
+          "id": "kernel-explorer.open",
+          "score": 0.04364357804719848,
+          "description": "View kernel endpoint details, installed packages and health status"
+        },
+        {
+          "id": "object-storage.minio.deleteObject",
+          "score": 0.04364357804719848,
+          "description": "Permanently remove an object from a bucket. Destructive and not undoable."
+        },
+        {
+          "id": "ai.session.delete",
+          "score": 0.042796049251091296,
+          "description": "Delete a saved assistant conversation and its whole message history. Cannot be undone."
+        },
+        {
+          "id": "object-storage.aws.deleteObject",
+          "score": 0.042796049251091296,
+          "description": "Permanently remove an object from a bucket. Destructive and not undoable."
+        },
+        {
+          "id": "context.remember",
+          "score": 0.0419960525565808,
+          "description": "Save a durable fact about this project under a key so it survives across sessions and is not rediscovered every time."
+        },
+        {
+          "id": "profiler.profile",
+          "score": 0.0419960525565808,
+          "description": "Profile a CSV, TSV or Parquet data file: per-column statistics, distributions and a correlation matrix, returned as JSON."
+        },
+        {
+          "id": "datasets.remove",
+          "score": 0.0419960525565808,
+          "description": "Delete a downloaded dataset's files from this machine and remove its record."
+        },
+        {
+          "id": "mcps.disconnect",
+          "score": 0.0419960525565808,
+          "description": "Disconnect an MCP server and unregister its tools"
+        },
+        {
+          "id": "object-storage.abs.deleteObject",
+          "score": 0.0419960525565808,
+          "description": "Permanently remove an object from a bucket. Destructive and not undoable."
+        },
+        {
+          "id": "object-storage.gcs.deleteObject",
+          "score": 0.0419960525565808,
+          "description": "Permanently remove an object from a bucket. Destructive and not undoable."
+        },
+        {
+          "id": "excelViewer.open",
+          "score": 0.041239304942116126,
+          "description": "Open an xlsx or xlsm workbook as a table with one tab per sheet"
+        },
+        {
+          "id": "object-storage.aws.connect",
+          "score": 0.041239304942116126,
+          "description": "Open a client for a configured AWS S3 connection and list its buckets"
+        },
+        {
+          "id": "object-storage.minio.statObject",
+          "score": 0.041239304942116126,
+          "description": "Return size, content type, etag and timestamps for one object (a HEAD, not a GET)"
+        },
+        {
+          "id": "database.mysql.schema",
+          "score": 0.040522044923655395,
+          "description": "Introspect schemas, tables, and columns for a connected MySQL database"
+        },
+        {
+          "id": "database.postgresql.schema",
+          "score": 0.040522044923655395,
+          "description": "Introspect schemas, tables, and columns for a connected PostgreSQL database"
+        },
+        {
+          "id": "object-storage.aws.statObject",
+          "score": 0.040522044923655395,
+          "description": "Return size, content type, etag and timestamps for one object (a HEAD, not a GET)"
+        },
+        {
+          "id": "commit-conventions",
+          "score": 0.040522044923655395,
+          "description": "How to read staged changes and write a commit message in this repository's own style before committing."
+        }
+      ],
+      "path": "text-similarity",
+      "count": 502
+    },
+    "duration": 12,
+    "timestamp": 1792268108450
+  }
+}

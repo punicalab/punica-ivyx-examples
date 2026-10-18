@@ -1,0 +1,10 @@
+stages:
+  train:
+    cmd: .venv/bin/python src/train.py
+    deps:
+    - data/train.csv
+    - src/train.py
+    outs:
+    - model.pkl
+    metrics:
+    - metrics.json

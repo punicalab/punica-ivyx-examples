@@ -1,0 +1,30 @@
+{
+  "name": "policy.approvalRequested",
+  "envelope": {
+    "id": "36f4f261-6efd-430f-989b-64f80326e15e",
+    "correlationId": "07ff7e78-278b-4500-8ac0-a278972e13ca",
+    "timestampMs": 1792268092771,
+    "source": "kernel:policy",
+    "kind": "info"
+  },
+  "payload": {
+    "request": {
+      "kind": "capability",
+      "id": "mlops.pipeline.run",
+      "risk": "medium",
+      "approval": "none",
+      "reason": "Run the configured stages in order; a failing stage marked stop ends the run",
+      "argsBinding": "44136fa355b3678a1146ad16f7e8649e",
+      "argsPreview": {},
+      "action": [
+        "process.exec",
+        "file.read",
+        "file.write"
+      ]
+    },
+    "context": {
+      "traceId": "fixture-1792268092769",
+      "reason": "A person says yes before anything in this project writes to disk."
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "approval.granted",
+  "envelope": {
+    "id": "a82f4d7f-1b1a-4099-8f5b-24e1db80bfb5",
+    "traceId": "fixture-1792268092769",
+    "parentSpanId": "07ff7e78-278b-4500-8ac0-a278972e13ca",
+    "timestampMs": 1792268114637,
+    "source": "kernel:policy",
+    "kind": "audit"
+  },
+  "payload": {
+    "request": {
+      "kind": "capability",
+      "id": "mlops.pipeline.run",
+      "risk": "medium",
+      "approval": "none",
+      "reason": "A person says yes before anything in this project writes to disk.",
+      "argsBinding": "44136fa355b3678a1146ad16f7e8649e",
+      "argsPreview": {}
+    },
+    "scope": "once"
+  }
+}

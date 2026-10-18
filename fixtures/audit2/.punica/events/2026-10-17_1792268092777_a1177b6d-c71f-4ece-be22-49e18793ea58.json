@@ -1,0 +1,18 @@
+{
+  "name": "capability.failed",
+  "envelope": {
+    "id": "a1177b6d-c71f-4ece-be22-49e18793ea58",
+    "correlationId": "07ff7e78-278b-4500-8ac0-a278972e13ca",
+    "traceId": "fixture-1792268092769",
+    "spanId": "07ff7e78-278b-4500-8ac0-a278972e13ca",
+    "timestampMs": 1792268092777,
+    "source": "runtime:capabilities:gateway",
+    "kind": "error"
+  },
+  "payload": {
+    "invocationId": "07ff7e78-278b-4500-8ac0-a278972e13ca",
+    "capability": "mlops.pipeline.run",
+    "error": "A person says yes before anything in this project writes to disk.",
+    "durationMs": 7
+  }
+}

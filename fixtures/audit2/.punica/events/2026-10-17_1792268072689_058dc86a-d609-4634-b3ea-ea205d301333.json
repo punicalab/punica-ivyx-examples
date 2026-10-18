@@ -1,0 +1,32 @@
+{
+  "name": "policy.evaluated",
+  "envelope": {
+    "id": "058dc86a-d609-4634-b3ea-ea205d301333",
+    "correlationId": "d3026bbb-5835-4f33-a626-42b69ccf6b0d",
+    "traceId": "479a7a99-7e00-46ad-9eb7-0c38ed199623",
+    "parentSpanId": "d3026bbb-5835-4f33-a626-42b69ccf6b0d",
+    "timestampMs": 1792268072689,
+    "source": "kernel:policy",
+    "kind": "info"
+  },
+  "payload": {
+    "request": {
+      "kind": "capability",
+      "id": "problems.setDiagnosticsForSource",
+      "risk": "low",
+      "approval": "none",
+      "reason": "Replace only the diagnostics owned by a given source, leaving every other producer's entries in the panel untouched. An empty items array clears just that source.",
+      "argsBinding": "b24f1c286315483f5ce7568794fb1251",
+      "argsPreview": {
+        "source": "policy",
+        "items": []
+      }
+    },
+    "decision": {
+      "allowed": true,
+      "mode": "execute",
+      "requiresApproval": false
+    },
+    "context": {}
+  }
+}

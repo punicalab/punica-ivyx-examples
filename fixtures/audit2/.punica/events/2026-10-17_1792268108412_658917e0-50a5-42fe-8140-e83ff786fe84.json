@@ -1,0 +1,16 @@
+{
+  "name": "ai.agentStarted",
+  "envelope": {
+    "id": "658917e0-50a5-42fe-8140-e83ff786fe84",
+    "correlationId": "77a141e5-484b-416a-a2d8-96f01733e2c1",
+    "traceId": "77a141e5-484b-416a-a2d8-96f01733e2c1",
+    "timestampMs": 1792268108412,
+    "source": "kernel:ai",
+    "kind": "audit"
+  },
+  "payload": {
+    "runId": "77a141e5-484b-416a-a2d8-96f01733e2c1",
+    "query": "Run the MLOps pipeline with mlops.pipeline.run and tell me the result.",
+    "stance": "assist"
+  }
+}

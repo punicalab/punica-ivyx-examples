@@ -1,0 +1,27 @@
+# MLOps pipeline. Stages run in the order below; a failing stage
+# whose onFailure is "stop" ends the run.
+version: 1
+
+pipeline:
+  # Which engine runs the DAG.
+  provider: dvc
+
+stages:
+  - id: pandera
+    kind: gate
+    capability: mlops.pandera.validate
+    input:
+      contract: contracts/train_contract.py
+      data: data/train.csv
+    onFailure: stop
+    title: Data Contract
+  - id: pytest
+    kind: gate
+    capability: test.pytest.run
+    onFailure: stop
+    input:
+      paths:
+        - tests
+  - id: train
+    kind: pipeline
+    onFailure: stop

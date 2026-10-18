@@ -1,0 +1,43 @@
+{
+  "name": "capability.audited",
+  "envelope": {
+    "id": "c182119e-1250-4a4f-9627-0dbf82b91776",
+    "correlationId": "d2d63a72-e205-43ea-a6b4-b320744ed517",
+    "traceId": "10803c8c-3322-462d-afd4-532cd57b54a2",
+    "spanId": "d2d63a72-e205-43ea-a6b4-b320744ed517",
+    "timestampMs": 1792268068519,
+    "source": "runtime:capabilities:gateway",
+    "kind": "audit"
+  },
+  "payload": {
+    "invocationId": "d2d63a72-e205-43ea-a6b4-b320744ed517",
+    "runId": "10803c8c-3322-462d-afd4-532cd57b54a2",
+    "spanId": "d2d63a72-e205-43ea-a6b4-b320744ed517",
+    "capability": "shell.revealView",
+    "actor": {
+      "type": "extension",
+      "extensionName": "extension-file-explorer"
+    },
+    "origin": {
+      "kind": "command",
+      "id": "extension:extension-file-explorer"
+    },
+    "capabilityOrigin": "core",
+    "policyDecision": {
+      "allowed": true,
+      "requiresApproval": false,
+      "reason": "",
+      "argsBinding": "35a148828608a083e9ea084a3004bbaf"
+    },
+    "input": {
+      "viewId": "file-explorer-sidebar",
+      "focus": false
+    },
+    "output": {
+      "viewId": "file-explorer-sidebar",
+      "revealed": true
+    },
+    "duration": 5,
+    "timestamp": 1792268068519
+  }
+}

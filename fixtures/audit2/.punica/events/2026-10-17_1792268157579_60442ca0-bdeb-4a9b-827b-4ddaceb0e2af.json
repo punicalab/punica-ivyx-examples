@@ -1,0 +1,29 @@
+{
+  "name": "policy.evaluated",
+  "envelope": {
+    "id": "60442ca0-bdeb-4a9b-827b-4ddaceb0e2af",
+    "correlationId": "44a1a873-1d62-47f1-831b-c664034d74ff",
+    "traceId": "e280f70b-0b06-45ff-af8a-50fd612ab906",
+    "parentSpanId": "44a1a873-1d62-47f1-831b-c664034d74ff",
+    "timestampMs": 1792268157579,
+    "source": "kernel:policy",
+    "kind": "info"
+  },
+  "payload": {
+    "request": {
+      "kind": "capability",
+      "id": "capability.catalog",
+      "risk": "low",
+      "approval": "none",
+      "reason": "List the capabilities available on this installation, filtered by where they came from, which extension declared them, their tags, their risk, or their side effects.",
+      "argsBinding": "44136fa355b3678a1146ad16f7e8649e",
+      "argsPreview": {}
+    },
+    "decision": {
+      "allowed": true,
+      "mode": "execute",
+      "requiresApproval": false
+    },
+    "context": {}
+  }
+}

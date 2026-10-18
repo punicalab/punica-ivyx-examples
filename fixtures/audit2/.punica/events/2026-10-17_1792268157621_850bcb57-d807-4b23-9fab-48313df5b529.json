@@ -1,0 +1,38 @@
+{
+  "name": "policy.evaluated",
+  "envelope": {
+    "id": "850bcb57-d807-4b23-9fab-48313df5b529",
+    "correlationId": "96d872f2-142f-4661-be44-efe71562f4d2",
+    "traceId": "77a141e5-484b-416a-a2d8-96f01733e2c1",
+    "parentSpanId": "96d872f2-142f-4661-be44-efe71562f4d2",
+    "timestampMs": 1792268157621,
+    "source": "kernel:policy",
+    "kind": "info"
+  },
+  "payload": {
+    "request": {
+      "kind": "capability",
+      "id": "mlops.pandera.validate",
+      "risk": "low",
+      "approval": "none",
+      "reason": "Check a dataset against a pandera contract and report which columns failed which checks. This is the engine behind an MLOps data contract gate; it reads the dataset and writes nothing",
+      "argsBinding": "fbc012bfe7b643c9775d71d94016d1cf",
+      "argsPreview": {
+        "contract": "contracts/train_contract.py",
+        "data": "data/train.csv"
+      },
+      "action": [
+        "process.exec",
+        "file.read"
+      ]
+    },
+    "decision": {
+      "allowed": true,
+      "mode": "execute",
+      "requiresApproval": false
+    },
+    "context": {
+      "workspaceId": "<machine>/ws/mlops1"
+    }
+  }
+}

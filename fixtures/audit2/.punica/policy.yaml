@@ -1,0 +1,111 @@
+# What may happen, and under what arguments.
+#
+# serve.yaml decides what is reachable; this file decides whether a particular
+# call goes through. It lives in the repository on purpose: policy that travels
+# in the commit is policy that shows up in the diff and gets reviewed.
+#
+# Precedence is fixed: deny beats require beats allow, and file order never
+# decides. A deny is terminal — no approval and no standing grant satisfies it.
+#
+#   op   eq neq in notIn startsWith endsWith glob exists absent lt lte gt gte
+#   path dotted, with * for every element of an array
+#
+# Check a rule before trusting it:
+#   ivyx policy lint
+#   ivyx policy explain <capability.id> --args '{...}'
+version: 1
+
+templates:
+  - name: house-rules
+    description: Written by ivyx init. Edit freely.
+    rules:
+      # Everything that writes needs a person to say yes.
+      #
+      # An action rule reaches every id that declares that reach, which is why
+      # this one line covers a family you have not read: with MLOps served it
+      # already requires a person for mlops.stage.configure, .stage.remove,
+      # .stage.move, .trigger.configure, .pipeline.run and .trigger.fire.
+      #
+      # What it does NOT reach is mlops.model.promote, the family's only
+      # high-risk id — a promotion moves an alias over the network and declares
+      # net.request, not file.write. "Everything that writes needs a person" is
+      # true and is not the same sentence as "everything dangerous does".
+      #
+      # ── Two things to know before you keep this rule ──────────────────────
+      #
+      # It also reaches fs.mkdir and fs.writeFile, which is more than it looks
+      # like. A capability that writes its own output through them — evidence
+      # build is the shipped example — is stopped INSIDE, after its own call
+      # was approved: the client's retry gets past the gate, the handler runs,
+      # and its write is refused. Measured over `ivyx serve --stdio` on
+      # 2026-09-09. An inner refusal files no question of its own, so there is
+      # nothing an operator can answer; `ivyx runs show <run>` is where it is
+      # visible.
+      #
+      # And you cannot write an exception for those two ids. Precedence is by
+      # strictness — deny beats require beats allow — wherever the rules sit,
+      # so `- id: fs.writeFile / effect: allow` above this rule changes
+      # nothing. `ivyx policy lint` says so about any allow it displaces.
+      #
+      # The exits: name the ids you mean instead of the action (`id: mlops.*`),
+      # or keep this rule and approve those writes in IVYX Studio, where a
+      # nested prompt exists.
+      - kind: capability
+        action: [file.write]
+        effect: require
+        approval: step
+        reason: A person says yes before anything in this project writes to disk.
+
+      # ── The sentence a person reads ────────────────────────────────────────
+      #
+      # Uncomment with the MLOps recipe in serve.yaml. It changes no verdict:
+      # mlops.model.promote declares risk: high / approval: step, so the gate
+      # already stops it with no rule at all. What the rule adds is the reason.
+      #
+      # Without one the refusal reads "Approval required (step)." — the
+      # substrate's fallback, correct and about nothing in particular. With one,
+      # your sentence is what a headless server files with the request and what
+      # a model relays to whoever has to decide. That sentence is the entire
+      # argument for an automatic refusal being acceptable, so it is worth
+      # writing even where the rule is redundant as governance.
+      #
+      #  - kind: capability
+      #    id: mlops.model.promote
+      #    effect: require
+      #    approval: step
+      #    reason: A person signs off on moving a model alias in this project.
+
+      # ── Conditions, and the one that reads as complete ─────────────────────
+      #
+      # A `when:` condition tests the arguments the gate was handed, and a path
+      # that addresses nothing matches only `op: absent`. So a rule about a
+      # field the capability declares OPTIONAL is silent about the call that
+      # leaves it out — and if the capability fills the field in itself, the
+      # omitted call is the dangerous one.
+      #
+      #  - kind: capability
+      #    id: some.capability
+      #    effect: deny
+      #    when:
+      #      - path: target
+      #        op: in
+      #        value: [production]
+      #
+      # That rule reads as complete and covers one of two cases. `ivyx policy
+      # lint` says so, names the field, and names both exits: a companion rule
+      # with `op: absent` on the same path, or the capability requiring the
+      # field. Run it before trusting a rule you just wrote.
+
+# ── Answering one ─────────────────────────────────────────────────────────────
+#
+# A require rule is a permanent refusal on a headless server unless somebody can
+# answer it out of band:
+#
+#   ivyx serve --stdio --approve terminal    # file the question instead of only refusing
+#   ivyx approve                             # what is waiting
+#   ivyx approve <request-id>                # yes, for one call, bound to its arguments
+#   ivyx approve --deny <request-id>         # no, and the decision goes on the trail
+#
+# Nothing is pre-authorisable: a grant covers the one call it was asked for and
+# is revoked as soon as that call returns. With no --approve the server refuses
+# and records, which is the CI behaviour and is unchanged by any of this.

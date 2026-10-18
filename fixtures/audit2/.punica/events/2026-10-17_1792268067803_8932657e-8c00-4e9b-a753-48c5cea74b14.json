@@ -1,0 +1,22 @@
+{
+  "name": "policy.rulesLoaded",
+  "envelope": {
+    "id": "8932657e-8c00-4e9b-a753-48c5cea74b14",
+    "timestampMs": 1792268067803,
+    "source": "runtime:policy:rules",
+    "kind": "info"
+  },
+  "payload": {
+    "file": ".punica/policy.yaml",
+    "present": true,
+    "installed": [
+      {
+        "name": "house-rules",
+        "rules": 1,
+        "digest": "56165e353a4244c753accda670a6bd88"
+      }
+    ],
+    "retired": [],
+    "problems": []
+  }
+}

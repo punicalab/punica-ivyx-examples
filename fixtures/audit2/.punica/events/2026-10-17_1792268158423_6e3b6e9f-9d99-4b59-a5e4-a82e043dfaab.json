@@ -1,0 +1,38 @@
+{
+  "name": "policy.evaluated",
+  "envelope": {
+    "id": "6e3b6e9f-9d99-4b59-a5e4-a82e043dfaab",
+    "correlationId": "cb0bbe34-16e3-4477-9f80-1c8ece47a895",
+    "traceId": "77a141e5-484b-416a-a2d8-96f01733e2c1",
+    "parentSpanId": "cb0bbe34-16e3-4477-9f80-1c8ece47a895",
+    "timestampMs": 1792268158423,
+    "source": "kernel:policy",
+    "kind": "info"
+  },
+  "payload": {
+    "request": {
+      "kind": "capability",
+      "id": "llm.chatStream",
+      "risk": "low",
+      "approval": "none",
+      "reason": "Send a conversation to a language model and stream the reply as it is generated. Same contract as llm.chat, with live tokens delivered as events.",
+      "argsBinding": "3818b883d6b010851a26bcec7f418626",
+      "argsPreview": {
+        "truncated": true,
+        "droppedChars": 72958,
+        "head": "{\"cacheHints\":{\"cacheKey\":\"77a141e5-484b-416a-a2d8-96f01733e2c1\",\"stableMessagePrefix\":4,\"stableToolsAndSystem\":true},\"correlationId\":\"77a141e5-484b-416a-a2d8-96f01733e2c1\",\"messages\":[{\"content\":\"You are an autonomous agent operating inside an IDE. You are given a set of tools (capabilities). To accomplish the user request, call the tools you need one or more times; after each tool result, decide whether to call another tool or to answer. When you have enough information, reply with a concise final answer and no further tool calls.\",\"role\":\"system\"},{\"content\":\"Skills are written procedures for this product. Before you start a task one of them covers, call that skill by its id with no arguments; it returns its instructions, and you follow them. A skill may list files it carries; read one by calling the skill with { \\\"file\\\": \\\"<path>\\\" }. Load each skill at most once per run, and never load one marked \\\"loaded above\\\".\\n- commit-conventions — How to read staged changes and write a commit message in this repository's own style before committing.\\n- dataset-first-look — Use when someone asks what is in a data file (csv, parquet, xlsx, json), what is wrong with it, its missing values, or whether it is ready for modelling; profiles every column…\\n- ivy-node-authoring — How to write or fix an IvyNode manifest (.ivy.node) by hand so it is generic, runs and passes its own tests.\\n- mlops-pipeline-setup — How to set up or change a project's MLOps pipeline in .punica/mlops.yaml with checks that guard training.\\n- policy-authoring — How to write or change the rules in .punica/policy.yaml that decide which calls run, wait for a person or are refused.\\n- rag-knowledge-base-setup — Use when someone wants a knowledge base (bilgi tabanı), RAG or document search over files in the project (docs, notes, manuals) so an assistant can answer questions from…\",\"role\":\"system\"},{\"content\":\"Additional tools exist but are not loaded yet. Index (id — purpose):\\n[agents] agents.list — Return every actor that drove a run through the gateway…"
+      },
+      "action": [
+        "model.invoke"
+      ]
+    },
+    "decision": {
+      "allowed": true,
+      "mode": "execute",
+      "requiresApproval": false
+    },
+    "context": {
+      "workspaceId": "<machine>/ws/mlops1"
+    }
+  }
+}

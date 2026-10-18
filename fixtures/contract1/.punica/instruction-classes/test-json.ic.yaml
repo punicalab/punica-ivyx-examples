@@ -1,0 +1,16 @@
+apiVersion: ic/v0.1
+kind: InstructionClass
+id: test-json
+role: classifier
+systemPrompt: |
+  Classify the user's message. Return ONLY a JSON object with keys "sentiment" (one of positive, neutral, negative) and "words" (the number of words in the message).
+temperature: 0.1
+maxTokens: 200
+reasoning: none
+responseFormat: json_object
+outputSchema:
+  type: object
+  required: [sentiment, words]
+  properties:
+    sentiment: { type: string }
+    words: { type: number }

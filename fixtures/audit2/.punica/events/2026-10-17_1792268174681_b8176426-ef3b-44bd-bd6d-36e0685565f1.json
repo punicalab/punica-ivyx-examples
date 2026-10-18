@@ -1,0 +1,1095 @@
+{
+  "name": "capability.audited",
+  "envelope": {
+    "id": "b8176426-ef3b-44bd-bd6d-36e0685565f1",
+    "correlationId": "cb0bbe34-16e3-4477-9f80-1c8ece47a895",
+    "traceId": "77a141e5-484b-416a-a2d8-96f01733e2c1",
+    "spanId": "cb0bbe34-16e3-4477-9f80-1c8ece47a895",
+    "parentSpanId": "45f0a05f-6dd1-41d0-be4d-e29dfd132541",
+    "timestampMs": 1792268174681,
+    "source": "runtime:capabilities:gateway",
+    "kind": "audit"
+  },
+  "payload": {
+    "invocationId": "cb0bbe34-16e3-4477-9f80-1c8ece47a895",
+    "runId": "77a141e5-484b-416a-a2d8-96f01733e2c1",
+    "spanId": "cb0bbe34-16e3-4477-9f80-1c8ece47a895",
+    "parentSpanId": "45f0a05f-6dd1-41d0-be4d-e29dfd132541",
+    "capability": "llm.chatStream",
+    "actor": {
+      "type": "ai",
+      "id": "ai:agent"
+    },
+    "origin": {
+      "kind": "ai",
+      "id": "kernel.agentLoop"
+    },
+    "capabilityOrigin": "core",
+    "workspace": "<machine>/ws/mlops1",
+    "policyDecision": {
+      "allowed": true,
+      "requiresApproval": false,
+      "reason": "",
+      "argsBinding": "3818b883d6b010851a26bcec7f418626"
+    },
+    "input": {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are an autonomous agent operating inside an IDE. You are given a set of tools (capabilities). To accomplish the user request, call the tools you need one or more times; after each tool result, decide whether to call another tool or to answer. When you have enough information, reply with a concise final answer and no further tool calls."
+        },
+        {
+          "role": "system",
+          "content": "Skills are written procedures for this product. Before you start a task one of them covers, call that skill by its id with no arguments; it returns its instructions, and you follow them. A skill may list files it carries; read one by calling the skill with { \"file\": \"<path>\" }. Load each skill at most once per run, and never load one marked \"loaded above\".\n- commit-conventions — How to read staged changes and write a commit message in this repository's own style before committing.\n- dataset-first-look — Use when someone asks what is in a data file (csv, parquet, xlsx, json), what is wrong with it, its missing values, or whether it is ready for modelling; profiles every column…\n- ivy-node-authoring — How to write or fix an IvyNode manifest (.ivy.node) by hand so it is generic, runs and passes its own tests.\n- mlops-pipeline-setup — How to set up or change a project's MLOps pipeline in .punica/mlops.yaml with checks that guard training.\n- policy-authoring — How to write or change the rules in .punica/policy.yaml that decide which calls run, wait for a person or are refused.\n- rag-knowledge-base-setup — Use when someone wants a knowledge base (bilgi tabanı), RAG or document search over files in the project (docs, notes, manuals) so an assistant can answer questions from…"
+        },
+        {
+          "role": "system",
+          "content": "Additional tools exist but are not loaded yet. Index (id — purpose):\n[agents] agents.list — Return every actor that drove a run through the gateway, with its door, its runs and verdicts, plus…\n[agents] agents.open — Reveal the Agents panel, which lists who has been driving this project through the gateway and what…\n[ai.assistant] ai.assistant.open — Show AI assistant panel\n[ai.plan] ai.plan.generate — Plan a capability workflow (Workflow) from a natural-language query\n[approvals] approvals.list — Return the calls waiting for a person in this process, the questions an agent outside it has open,…\n[approvals] approvals.open — Reveal the Approvals panel, which lists every call waiting for a person and the decisions people ma…\n[browser] browser.open — Open an http or https address in a browser tab inside the app, reusing the tab when that address is…\n[capability] capability.show — List the capabilities of one source and show them in the Capabilities panel.\n[commandPalette] commandPalette.open — Show the command palette\n[context] context.recall — Read back the facts saved for this project — all of them, or the one under a key.\n[context] context.remember — Save a durable fact about this project under a key so it survives across sessions and is not redisc…\n[csvViewer] csvViewer.open — Open CSV/TSV files as a table in the CSV viewer\n[database] database.connect — Open a pooled connection to a configured database\n[database] database.describe — List tables, or the columns of one table, for a connection\n[database] database.disconnect — Close a pooled connection\n[database] database.export — Run SQL and write the result into the workspace as csv or json\n[database] database.listConnections — List configured connections (metadata only — no secrets)\n[database] database.newQuery — Open a SQL workbench tab for a connection\n[database] database.open — Reveal the Database connections sidebar\n[database] database.query — Execute SQL against a connected database; returns column metadata and JSON rows\n[database] database.runActiveQuery — Execute the SQL in the active workbench tab\n[datasets] datasets.copyToWorkspace — Copy one file of a downloaded dataset into the workspace's data folder, so a notebook, a pipeline s…\n[datasets] datasets.download — Download a dataset's files into the host data dir through the provider that owns it\n[datasets] datasets.files — List the files a downloaded dataset holds, with the column names of each .csv read from its first l…\n[datasets] datasets.list — Return the datasets known to the workspace index\n[datasets] datasets.open — Show datasets sidebar\n[datasets] datasets.remove — Delete a downloaded dataset's files from this machine and remove its record.\n[debugger] debugger.continueOrStart — Continue the paused session, or start one when idle\n[debugger] debugger.evaluate — Evaluate an expression in the paused frame (watch/repl context)\n[debugger] debugger.getBreakpoints — Return the stored breakpoints for a document path\n[debugger] debugger.getState — Snapshot of the active session (state, threads, call stack, breakpoints) for agents and tooling\n[debugger] debugger.open — Reveal the Run and Debug sidebar\n[debugger] debugger.openConsole — Reveal the Debug Console bottom panel\n[debugger] debugger.pause — Pause the running debuggee\n[debugger] debugger.restart — Restart the active debug session\n[debugger] debugger.start — Start a debug session using a launch configuration (spawns a local debug adapter process)\n[debugger] debugger.stepInto — Step into the function called on the current line, pausing at its first line; behaves like step ove…\n[debugger] debugger.stepOut — Resume until the current function returns, then pause in the caller frame\n[debugger] debugger.stepOver — Execute the current line and pause on the next line in the same frame, stepping over any function c…\n[debugger] debugger.stop — Stop the active debug session and terminate the debuggee\n[debugger] debugger.toggleBreakpoint — Toggle a breakpoint at the active editor cursor, or at an explicit file/line\n[docker] docker.images — List the Docker images on this machine with tag, size and age.\n[docker] docker.inspect — Return the full inspect JSON of one container, image, volume or network.\n[docker] docker.logs — Return the last lines of one container's log without following it.\n[docker] docker.networks — List the Docker networks on this machine with driver and scope.\n[docker] docker.open — Show the Docker sidebar, the panel with tabs for containers, images, volumes and networks.\n[docker] docker.ps — List the Docker containers on this machine, running and stopped, with image, state and ports.\n[docker] docker.pull — Pull an image from a registry and return when the download is done.\n[docker] docker.remove — Remove a container, image, volume or network from this machine.\n[docker] docker.restart — Stop and start a Docker container by id or name.\n[docker] docker.start — Start a stopped Docker container by id or name.\n[docker] docker.stop — Stop a running Docker container by id or name.\n[docker] docker.volumes — List the Docker volumes on this machine with name and driver.\n[docker.compose] docker.compose.apply — Add new services to a compose file by merging a compose YAML fragment into it and saving, or replac…\n[docker.compose] docker.compose.describe — Read a compose file and return its services, volumes, networks and current problems.\n[docker.compose] docker.compose.down — Stop and remove a compose stack's containers with docker compose down.\n[docker.compose] docker.compose.generator — Drafts a Docker Compose spec as JSON from a plain description of the services.\n[docker.compose] docker.compose.open — Open a compose file in the visual compose designer, a canvas of its services.\n[docker.compose] docker.compose.removeService — Remove one service from a compose file, drop the dependson references to it, and save.\n[docker.compose] docker.compose.setService — Change one existing service in a compose file and save: its image, ports, environment, volumes or a…\n[docker.compose] docker.compose.up — Start every service of a compose file in the background with docker compose up -d.\n[docker.compose] docker.compose.validate — Check a compose file and return its problems, from the editor's own rules and from docker compose c…\n[duckdb] duckdb.cancelQuery — Cancel a running query, by its id or the active workbench tab's.\n[duckdb] duckdb.describe — List the registered views, or the column names and types of one view.\n[duckdb] duckdb.export — Run SQL and write its result to a workspace file as csv or json.\n[duckdb] duckdb.newQuery — Open a new empty SQL workbench tab.\n[duckdb] duckdb.open — Open a SQL workbench tab, with a data file registered and previewed when one is named.\n[duckdb] duckdb.registerSource — Register a workspace data file, or every file of a dataset, as queryable views.\n[editor] editor.openFile — Open a text file in the code editor\n[editor] editor.saveActiveFile — Save the currently active code editor tab\n[edu] edu.openCohort — Show which concepts the class is stuck on, read from the cohort source\n[edu] edu.openCourse — Reveal the course sidebar listing the modules and lessons of the workspace\n[edu] edu.openTutor — Reveal the tutor panel for the lesson that is open\n[edu] edu.resetProgress — Clear the stored concept states and attempt counts for a course\n[edu] edu.toggleTeachingMode — Switch between the student view and the teaching view, where the gate, the hint ladder and the conc…\n[edu.courses] edu.courses.listInstalled — The courses present in this workspace, with the version each was installed at, so a market can tell…\n[edu.courses] edu.courses.refresh — Re-scan the workspace for courses and lessons without revealing any panel.\n[edu.courses] edu.courses.uninstall — Delete an installed course folder from the workspace, together with the learner's progress in it.\n[edu.explorer] edu.explorer.open — Show the same syllabus view for a course already in the workspace, read from the .course.json that…\n[edu.explorer] edu.explorer.openRegistryCourse — Show what a published course teaches — its goal, outcomes, prerequisites and full module-by-module…\n[edu.lab.notebook] edu.lab.notebook.applyCellMeta — Write an authored pedagogy block into a cell of the open lesson.\n[edu.lab.notebook] edu.lab.notebook.open — Open a lesson notebook in the guided editor.\n[edu.lab.notebook] edu.lab.notebook.save — Persist the active lesson back to its .lesson.ipynb file\n[edu.lesson] edu.lesson.plan — Turn a lesson notebook into per-cell render directives: which cells are gated, which are read-only,…\n[edu.market] edu.market.checkUpdates — Which installed courses have a newer version published.\n[edu.market] edu.market.install — Download a published course into the workspace as lesson notebooks under courses/<slug/.\n[edu.market] edu.market.open — Reveal the panel listing every published course, with search\n[edu.progress] edu.progress.recordAgentRun — Record the outcome of running a student's MCP server against the test agent, including which tool t…\n[edu.progress] edu.progress.recordRun — Fold one cell run into the learner model and re-resolve that cell's gate\n[edu.rules] edu.rules.open — Reveal what limits the tutor and where each limit is enforced, read live from the mode, the lesson…\n[evals] evals.engines — Which eval engines are installed, and what each one is.\n[evals] evals.open — Reveal the panel that holds the suites, their runs and their baselines.\n[evals.adjudication] evals.adjudication.queue — Which eval cases and which gated calls are waiting for a human decision.\n[evals.guardrails] evals.guardrails.score — Whether the guardrail held on one attack case, decided by whether any compliance marker the case pl…\n[evals.manifest] evals.manifest.score — Whether an LLM's output is a structurally valid manifest, measured with the substrate's own validat…\n[evals.rag] evals.rag.score — How much of what a case declared relevant the retrieval actually returned, counted rather than judg…\n[evals.suite] evals.suite.ciExport — What this eval stage looks like outside the editor.\n[evals.suite] evals.suite.run — Run one configured eval suite (or all of them), score every output with the suite's engines, and an…\n[evals.text] evals.text.score — Whether an LLM's answer satisfies the assertions its eval case declares\n[evidence] evidence.build — Write a signed package for one run, one model version or one agent sitting, stating on its face whi…\n[evidence] evidence.verify — Check a package was not altered and report which questions it actually answers.\n[excelViewer] excelViewer.open — Open an xlsx or xlsm workbook as a table with one tab per sheet\n[experiments] experiments.delete — Permanently delete a run and its metrics/params/artifacts from the store.\n[experiments] experiments.get — Return one run's metadata, full metric series, and artifact listing (secrets redacted).\n[experiments] experiments.list — List all experiment runs in the active store with their params and last-seen metric values (secrets…\n[experiments] experiments.log — Create a run (or append to an existing one by runId) and record params and metric points.\n[experiments] experiments.logArtifact — Attach a workspace file (e.g.\n[extension-manager] extension-manager.open — Show installed extensions\n[extension-viewer] extension-viewer.open — View detailed information about extensions\n[file-explorer] file-explorer.delete — Delete selected file or folder\n[file-explorer] file-explorer.duplicate — Copy a file or folder next to itself, auto-naming the copy the way Finder does (\"report.txt\" become…\n[file-explorer] file-explorer.newFile — Create a NEW file in the workspace, optionally seeded with its content via content (so \"create a ne…\n[file-explorer] file-explorer.newFolder — Create a new folder at the given path or under a parent directory\n[file-explorer] file-explorer.open — Open a file in the editor\n[file-explorer] file-explorer.refresh — Refresh the file explorer\n[file-explorer] file-explorer.rename — Rename selected file or folder\n[file-explorer] file-explorer.revealFile — Reveal a file or folder in the explorer tree\n[flow] flow.migrate — Bring a saved workflow document up to a newer schema version, or report what migrating it would cha…\n[flow] flow.runSubflow — Run another workflow as a child of the current one and return its result.\n[fs] fs.copy — Copy a file or folder to another path, leaving the original in place.\n[fs] fs.exists — Check whether a file or folder exists at a path, before reading it or overwriting it.\n[fs] fs.history — List the earlier saved versions of one file, so a change can be reviewed or rolled back.\n[fs] fs.list — List the files and folders directly inside one directory, optionally recursing into subfolders.\n[fs] fs.listFiles — List every file and folder in the workspace as a nested tree, showing the whole project layout rath…\n[fs] fs.mkdir — Create a folder, optionally creating the missing parent folders above it.\n[fs] fs.readAtVersion — Read a file's contents as they were at one of its earlier saved versions.\n[fs] fs.readFile — Read a file's full text content from disk by path.\n[fs] fs.stat — Get a path's size, modification time, and whether it is a directory, without reading its contents.\n[fs] fs.writeBytes — Write raw bytes to a file, creating it when it does not exist and replacing its contents when it do…\n[fs] fs.writeFile — Write text to a file, creating it when it does not exist and replacing its contents when it does.\n[guardrails] guardrails.check — Whether one piece of text breaches a guardrail, checked against the markers it was given and every…\n[guardrails] guardrails.open — Reveal the guardrails panel, which shows the installed attack packs, the detectors available and th…\n[guardrails] guardrails.packs — Which attack packs ship with this build, how many cases each carries and where those attack shapes…\n[guardrails.pack] guardrails.pack.install — Write an attack pack into the workspace as an eval dataset and answer the suite stanza that runs it\n[guardrails.promptfoo] guardrails.promptfoo.detect — Whether a text exhibits a guardrail breach, graded against a rubric by a local model through prompt…\n[guardrails.promptfoo] guardrails.promptfoo.generate — Write new attack cases for one threat class with a local model and optionally save them as an eval…\n[guardrails.promptfoo] guardrails.promptfoo.install — Download promptfoo into a private folder so attacks can be generated and graded without leaving thi…\n[guardrails.promptfoo] guardrails.promptfoo.open — Reveal the Red Team panel, which shows the promptfoo installation, the local models configured and…\n[guardrails.promptfoo] guardrails.promptfoo.status — Whether promptfoo is installed and reachable, which local models are configured, and what an instal…\n[hf.datasets] hf.datasets.download — Download an imported Hugging Face dataset's data files into the host data dir and mark it downloade…\n[hf.datasets] hf.datasets.import — Add a Hugging Face dataset to the workspace datasets index without downloading its files; the Datas…\n[hf.datasets] hf.datasets.open — Open the Hugging Face Datasets sidebar\n[hf.datasets] hf.datasets.search — Search datasets on the Hugging Face Hub\n[hf.models] hf.models.download — Download a chosen GGUF file into the host data dir and stamp the local record's filePath/format (El…\n[hf.models] hf.models.import — Add a Hugging Face model to the workspace models index (metadata only; use download to fetch the GG…\n[hf.models] hf.models.open — Open the Hugging Face Models sidebar\n[hf.models] hf.models.quants — List the downloadable GGUF files (path + byte size) of a Hugging Face model repo, so the Models pan…\n[hf.models] hf.models.search — Search GGUF models on the Hugging Face Hub\n[imageViewer] imageViewer.open — Open image files in the image viewer\n[ipynbViewer] ipynbViewer.describe — Return a notebook's cells with their ids, sources, execution counts and output summaries, and its k…\n[ipynbViewer] ipynbViewer.open — Open a Jupyter (.ipynb) notebook in the notebook editor\n[ipynbViewer] ipynbViewer.openVariables — Reveal the notebook Variables inspector panel\n[ipynbViewer] ipynbViewer.save — Persist the active notebook back to its .ipynb file\n[ipynbViewer] ipynbViewer.scaffold — Build and open a ready-to-run .ipynb that loads a downloaded dataset and/or runs a downloaded GGUF…\n[ipynbViewer] ipynbViewer.toPipelineStage — Extract a notebook's code cells into a Python script and add that script as a stage of the workspac…\n[ipynbViewer.cell] ipynbViewer.cell.insert — Add one cell to a notebook, marked as written by the caller so a person can keep or undo it.\n[ipynbViewer.cell] ipynbViewer.cell.replace — Rewrite one cell's source, keeping the previous source so a person can undo it.\n[ivy-agent] ivy-agent.describe — Read an agent's steps, how they are connected, its inputs, outputs, settings and problems, from the…\n[ivy-agent] ivy-agent.edit — Change the steps of an agent, their connections and inputs, and save the file.\n[ivy-agent] ivy-agent.generate — Create a new agent from a description in plain words, where an agent is a flow of nodes and model t…\n[ivy-agent] ivy-agent.publish — Publish an IvyAgent to the marketplace after its own test cases pass on this machine.\n[ivy-agent-explorer] ivy-agent-explorer.open — Show what an agent does before running it, with what it asks for, what it touches, its steps, tests…\n[ivy-inputs] ivy-inputs.edit — Edit the run input for an ivy-node.\n[ivy-mcp] ivy-mcp.generate — Generate an IvyMCP manifest using an LLM instruction class.\n[ivy-mcp-server] ivy-mcp-server.generateClientConfig — Generate a Claude Desktop client config snippet for the running server\n[ivy-mcp-server] ivy-mcp-server.start — Host the selected .ivy.mcp manifest as a governed MCP server (stdio + HTTP)\n[ivy-mcp-server] ivy-mcp-server.status — Report whether the MCP server is running and where it is reachable\n[ivy-mcp-server] ivy-mcp-server.stop — Stop serving and unregister the hosted MCP server\n[ivy-node] ivy-node.generate — Create a new node from a description in plain words, where a node is a reusable Python step that is…\n[ivy-node] ivy-node.instantiate — Copy a library IvyNode manifest into the workspace and open its runnable canvas.\n[ivy-node] ivy-node.open — Open a .ivy.node manifest in the IvyNode editor.\n[ivy-node] ivy-node.publish — Publish the active IvyNode manifest to the node marketplace.\n[ivy-node-explorer] ivy-node-explorer.open — Show a preview of what a node does before using it, with the node's inputs, outputs, program, tests…\n[ivy-node-marketplace] ivy-node-marketplace.open — Open the Ivy Marketplace to browse, search, preview and add published nodes and agents from the reg…\n[ivy-nodes] ivy-nodes.catalog — List available ivy-node manifests (bundled library + workspace) with their input/output schemas\n[ivy-nodes] ivy-nodes.open — Show the Ivy node palette sidebar\n[ivy-nodes] ivy-nodes.search — Search the ivy-node marketplace (keyword + semantic) and return matching node summaries the assista…\n[ivy.mcp] ivy.mcp.debug — Report whether an IvyMCP server's tool annotations agree with the governance of the capabilities th…\n[jsonViewer] jsonViewer.open — Show a workspace JSON or JSON Lines file, or JSON text you already hold, in a tab with a formatted…\n[kaggle.datasets] kaggle.datasets.download — Download a Kaggle dataset over HTTPS into the host data dir and flip the local record to DOWNLOADED…\n[kaggle.datasets] kaggle.datasets.files — List a dataset's files with their byte sizes.\n[kaggle.datasets] kaggle.datasets.import — Resolve a Kaggle dataset and add it to the workspace datasets index (metadata only; use kaggle.data…\n[kaggle.datasets] kaggle.datasets.open — Open Kaggle Datasets sidebar\n[kaggle.datasets] kaggle.datasets.search — Search Kaggle datasets over the Kaggle REST API (public datasets need no credentials)\n[kaggle.models] kaggle.models.download — Download one .gguf file from Kaggle over HTTPS and stamp the local record's filePath/format (Electr…\n[kaggle.models] kaggle.models.files — List the downloadable .gguf files of a Kaggle model across its instance-versions, smallest first.\n[kaggle.models] kaggle.models.import — Resolve a Kaggle model and add it to the workspace models index\n[kaggle.models] kaggle.models.open — Open the Kaggle Models sidebar\n[kaggle.models] kaggle.models.search — Search Kaggle models over the Kaggle REST API (public models need no credentials)\n[kernel-explorer] kernel-explorer.open — View kernel endpoint details, installed packages and health status\n[kernels] kernels.exec — Execute code in the active kernel session.\n[kernels] kernels.open — Show kernel manager sidebar\n[kernels.jupyter.server] kernels.jupyter.server.reveal — Open the Local Jupyter launcher and status drawer.\n[kernels.jupyter.server] kernels.jupyter.server.start — Start the local Jupyter server and register it as a token-authenticated kernel endpoint; { device }…\n[kernels.jupyter.server] kernels.jupyter.server.status — Report whether the managed local jupyter-server is running.\n[kernels.jupyter.server] kernels.jupyter.server.stop — Stop the managed local jupyter-server (the endpoint is kept, marked stopped).\n[kernels.local.endpoint] kernels.local.endpoint.add — Register a Jupyter Server as a runtime kernel endpoint.\n[kernels.local.endpoint] kernels.local.endpoint.update — Change a registered runtime kernel endpoint's label, URL or device.\n[knowledge.base] knowledge.base.remove — Forget a knowledge base definition.\n[knowledge.chunk] knowledge.chunk.compare — Split one document several ways and report the shapes side by side.\n[knowledge.chunk] knowledge.chunk.preview — Show the units one file would be embedded as, without embedding them.\n[lidarViewer] lidarViewer.open — Open PCD / PLY point-cloud files in the 3D LIDAR viewer\n[lineage] lineage.data — Return the data versions this workspace's runs have named, and which run named each one.\n[lineage] lineage.export — Export this workspace's past lineage runs to the configured OpenLineage server, where Marquez, Data…\n[lineage] lineage.graph — Return the workspace's data lineage as stages with what each one reads and writes, merged across ev…\n[lineage] lineage.history — Return the lineage graphs of past runs, read back from the audit trail rather than from a store of…\n[lineage] lineage.open — Reveal the Lineage panel, which shows where the workspace's data came from\n[lineage] lineage.trace — Walk back from a workspace path or a registered model version to the data that produced it\n[llm] llm.edit-workflow — Edit and optimize Workflow IR structures\n[llm] llm.generate-code — Generate code from requirements\n[llmops] llmops.open — Reveal the LLMOps overview, which shows every lifecycle stage of this workspace with its live statu…\n[llms] llms.open — Open the LLM Capabilities sidebar to manage LLM instruction classes\n[llms-ai-core-service] llms-ai-core-service.add — Register a remote LLM model (endpoint + model id, optional token/metadata)\n[llms-ai-core-service] llms-ai-core-service.open — Open the AI core service sidebar for managing remote LLM models\n[llms-ai-core-service] llms-ai-core-service.update — Update an existing remote LLM model configuration\n[llms-instruction-class-service] llms-instruction-class-service.compare — Open the model comparison tab for an instruction class.\n[llms-instruction-class-service] llms-instruction-class-service.open — Open the Instruction Class editor in the content area.\n[llms-instruction-class-service] llms-instruction-class-service.register-class — Save an instruction class to its workspace .ic.yaml file and register it in the kernel registry.\n[llms-instruction-class-service] llms-instruction-class-service.remove-class — Delete this workspace's instruction class file and its registration.\n[llms-instruction-class-service] llms-instruction-class-service.save-config — Persist the remote endpoint URL and API token\n[llms-instruction-class-service] llms-instruction-class-service.test-connection — Send a short probe to the configured remote LLM endpoint\n[llms-services] llms-services.open — Open LLM Services management interface\n[llms-services] llms-services.register-class — Register (or update) a remote instruction class in the kernel registry\n[llms-services] llms-services.save-config — Persist the remote LLM endpoint URL and API token\n[llms-services] llms-services.test-connection — Persist the config and run a short probe chat against the remote endpoint\n[llms-viewer] llms-viewer.open — View and test LLM instruction classes and their capabilities\n[llms.gguf.server] llms.gguf.server.start — Start the host's llama-server for a local GGUF model and bridge its address into llm.local.endpoint…\n[llms.gguf.server] llms.gguf.server.status — Report whether the host's llama-server is running, at which address, and which weights it has loade…\n[llms.gguf.server] llms.gguf.server.stop — Stop the local llama-server and clear llm.local.endpoint when it still points at that server.\n[llms.instruction-classes] llms.instruction-classes.delete — Unregister an instruction class from the workspace registry\n[llms.instruction-classes] llms.instruction-classes.invoke — Invoke an instruction class via the kernel llm.invoke capability\n[llms.instruction-classes] llms.instruction-classes.test — Run an instruction class against a sample prompt via the LLM gateway\n[llms.instruction-classes] llms.instruction-classes.track — Track instruction classes contributed by an extension\n[llms.ollama] llms.ollama.install — Install the ollama engine on this machine using the platform's own package manager (Homebrew on mac…\n[llms.ollama.model] llms.ollama.model.pull — Download a model into the local ollama store, so it can be used with no network afterwards.\n[llms.ollama.model] llms.ollama.model.remove — Delete a model from the local ollama store and free the disk it occupied.\n[llms.ollama.server] llms.ollama.server.start — Make sure the local ollama daemon is answering, starting one only when none is.\n[llms.ollama.server] llms.ollama.server.status — Report whether the ollama daemon is answering, which models are on this machine, and what to do nex…\n[llms.ollama.server] llms.ollama.server.stop — Stop the ollama daemon when it is one this extension started.\n[llms.onnx.server] llms.onnx.server.start — Spawn the configured OpenAI-compatible onnxruntime server for a local model and bridge its address…\n[llms.onnx.server] llms.onnx.server.status — Report whether an ONNX server started by this extension is still running, and at which address.\n[llms.onnx.server] llms.onnx.server.stop — Stop a running ONNX server and clear llm.local.endpoint when it still points at that server.\n[markdownViewer] markdownViewer.open — Open markdown files in the markdown viewer\n[markdownViewer] markdownViewer.saveActiveFile — Save the markdown source being edited in the active tab\n[mcp-explorer] mcp-explorer.open — Open MCP explorer to inspect schemas and test tool execution\n[mcp.local] mcp.local.connect — Spawn and connect a local stdio MCP server.\n[mcp.remote] mcp.remote.connect — Connect a remote HTTP MCP server.\n[mcpMonitor] mcpMonitor.clear — Clear all recorded MCP traffic from the monitor's in-memory buffer.\n[mcpMonitor] mcpMonitor.open — Show the MCP Monitor panel with a live log of MCP requests/responses in both directions (connected…\n[mcps] mcps.connect — Connect a local or remote MCP server at runtime and register its tools.\n[mcps] mcps.disconnect — Disconnect an MCP server and unregister its tools\n[mlops.config] mlops.config.init — Create .punica/mlops.yaml as a commented starter from what was chosen: an engine binding, checks, o…\n[mlops.dvc] mlops.dvc.add — Track a file or directory as data with DVC so its version travels with the code that used it\n[mlops.dvc] mlops.dvc.checkout — Restore DVC-tracked data in the workspace to the version the local cache holds\n[mlops.dvc] mlops.dvc.ciExport — Return this pipeline stage as a runnable step for a CI workflow: the dvc repro command with the sam…\n[mlops.dvc] mlops.dvc.dag — Read the DAG declared in dvc.yaml as nodes with their dependencies, without running anything\n[mlops.dvc] mlops.dvc.init — Make this workspace a DVC repository so a pipeline can be written and run in it.\n[mlops.dvc] mlops.dvc.lineage — Read dvc.lock and report which data the pipeline consumed and which artifacts it produced, each wit…\n[mlops.dvc] mlops.dvc.pull — Bring DVC-tracked data back from the configured remote into the local cache and the workspace\n[mlops.dvc] mlops.dvc.push — Send DVC-tracked data from the local cache to the configured remote\n[mlops.dvc] mlops.dvc.reveal — Reveal the DVC panel, which shows the engine's environment and which stages are out of date\n[mlops.dvc] mlops.dvc.stageAdd — Write one stage into dvc.yaml with its command, dependencies, outputs and metrics.\n[mlops.dvc] mlops.dvc.status — Report which stages are out of date and why, without running them\n[mlops.dvc] mlops.dvc.sweep — Queue one trial per parameter point and start the workers.\n[mlops.dvc] mlops.dvc.sweepStop — Stop the sweep workers.\n[mlops.evidently] mlops.evidently.ciExport — Return this drift gate as a runnable step for a CI workflow: the same Evidently driver the capabili…\n[mlops.evidently] mlops.evidently.engine — Report the Evidently and pandas versions installed in the active Python environment, so a panel can…\n[mlops.evidently] mlops.evidently.report — Compare a dataset against a reference dataset and report which columns have drifted.\n[mlops.evidently] mlops.evidently.reveal — Reveal the drift panel, which shows the engine's environment, the configured reference dataset and…\n[mlops.gate] mlops.gate.evaluate — Run a single gate headlessly and return its pass/fail verdict with a reason and the numbers it comp…\n[mlops.gto] mlops.gto.engine — Report whether this workspace's git-tag registry can be read and which of write, aliases and run li…\n[mlops.gto] mlops.gto.modelPromote — Move a stage such as champion onto a model version by adding a git tag.\n[mlops.metric] mlops.metric.history — What the gates measured across past runs, read from this workspace's own audit records\n[mlops.mlflow] mlops.mlflow.engine — Report whether this workspace's MLflow registry can be reached right now, which server answers for…\n[mlops.mlflow] mlops.mlflow.modelPromote — Point a registry alias at a model version in MLflow.\n[mlops.mlflow] mlops.mlflow.reveal — Reveal this workspace's MLflow model registry, where a version is promoted after a human approves i…\n[mlops.mlflow] mlops.mlflow.serverEnsure — Start, or adopt, the MLflow tracking server this workspace's training runs and its model quality ga…\n[mlops.model] mlops.model.get — Return one registered model with its complete version list — each version's run id, artifact source…\n[mlops.model] mlops.model.list — List every registered model in this workspace's registry with its alias map, so a caller can see wh…\n[mlops.model] mlops.model.promote — Point a registry alias (default champion) at a model version.\n[mlops.pandera] mlops.pandera.ciExport — Return this data contract gate as a runnable step for a CI workflow: the same pandera driver the ca…\n[mlops.pandera] mlops.pandera.contractFromProfile — Draft a pandera contract from a dataset profile — column presence, nullability, numeric type and ob…\n[mlops.pandera] mlops.pandera.engine — Report the installed pandera and pandas versions, without validating anything\n[mlops.pandera] mlops.pandera.reveal — Reveal the data contracts panel, which shows the engine's environment and the configured contract g…\n[mlops.pandera] mlops.pandera.validate — Check a dataset against a pandera contract and report which columns failed which checks.\n[mlops.params] mlops.params.importance — Which parameter moved the objective across a set of runs, as an adjusted share of the objective's s…\n[mlops.stage] mlops.stage.add — Add one stage to .punica/mlops.yaml as a document edit, leaving every comment and untouched line as…\n[mlops.stage] mlops.stage.configure — Write a stage's input into .punica/mlops.yaml: the bar a gate is measured against, the paths it rea…\n[mlops.stage] mlops.stage.move — Move one stage up or down by one position in .punica/mlops.yaml; the order is the flow, so this cha…\n[mlops.stage] mlops.stage.remove — Take one stage out of .punica/mlops.yaml as a document edit, leaving every comment and untouched li…\n[mlops.stage] mlops.stage.rename — Set or clear one stage's display name in .punica/mlops.yaml as a document edit.\n[modelRegistry] modelRegistry.engines — Report which model-registry engines are installed, which one this workspace reads through, and for…\n[modelRegistry] modelRegistry.open — Reveal the Model Registry panel, which lists the registered models the installed registry engine re…\n[models] models.addLocal — Pick a local model file (e.g.\n[models] models.list — Return the models known to the workspace index\n[models] models.open — Open the Models sidebar to manage AI models\n[models] models.remove — Remove a model record from the workspace index\n[models] models.run — Start the local llama-server with a locally stored model (GGUF)\n[models] models.stop — Stop the local server currently serving a model.\n[monitor] monitor.open — Show the Monitor panel listing recent IvyNode / agent run executions with their status, duration, i…\n[notifications] notifications.open — Show notifications panel\n[object-storage] object-storage.delete — Permanently remove an object from a bucket.\n[object-storage] object-storage.download — Fetch an object to disk.\n[object-storage] object-storage.listBuckets — List the buckets/containers visible to a connection's credentials\n[object-storage] object-storage.listConnections — List configured object-storage connections.\n[object-storage] object-storage.listObjects — List the objects in a bucket under a prefix, one page at a time.\n[object-storage] object-storage.open — Reveal the Object Storage sidebar\n[object-storage] object-storage.stat — Return size, content type, etag and timestamps for one object (a HEAD, not a GET)\n[object-storage] object-storage.upload — Send a workspace file to a bucket.\n[object-storage.abs] object-storage.abs.connect — Open a client for a configured Azure Blob Storage connection and list its buckets\n[object-storage.abs] object-storage.abs.disconnect — Drop the client for a Azure Blob Storage connection\n[object-storage.aws] object-storage.aws.connect — Open a client for a configured AWS S3 connection and list its buckets\n[object-storage.aws] object-storage.aws.disconnect — Drop the client for a AWS S3 connection\n[object-storage.gcs] object-storage.gcs.connect — Open a client for a configured Google Cloud Storage connection and list its buckets\n[object-storage.gcs] object-storage.gcs.disconnect — Drop the client for a Google Cloud Storage connection\n[object-storage.minio] object-storage.minio.connect — Open a client for a configured MinIO connection and list its buckets\n[object-storage.minio] object-storage.minio.disconnect — Drop the client for a MinIO connection\n[onboarding] onboarding.intro — Show the short introduction that opens the first time\n[onboarding] onboarding.tour — Walk through the panels of the window that is open\n[otel.export] otel.export.flush — Sends everything waiting in the queue now instead of at the next interval, and reports what left.\n[otel.export] otel.export.status — What the trace exporter has sent, queued and dropped since this session started, and the address it…\n[output] output.append — Append a log entry to the Output panel\n[output] output.clear — Clear all entries from the Output panel\n[output] output.open — Reveal the Output bottom panel showing extension and tool log channels\n[policy] policy.explain — Say whether a capability call would be allowed, held for a person or denied, and by which rule, wit…\n[policy] policy.open — Reveal the Policy panel, which lists this project's rules with what each one did today\n[policyExport] policyExport.preview — The policy a target would enforce, plus everything that could not be represented.\n[policyExport] policyExport.targets — The gateway schemas this build can emit.\n[policyExport] policyExport.write — Write the previewed policy into the workspace.\n[problems] problems.getDiagnostics — Return the current diagnostics list\n[problems] problems.open — Reveal the Problems bottom panel listing diagnostics across the workspace\n[problems] problems.setDiagnostics — Replace the current diagnostics list shown in the Problems panel\n[problems] problems.setDiagnosticsForSource — Replace only the diagnostics owned by a given source, leaving every other producer's entries in the…\n[profiler] profiler.explain — Profile a file or SQL result, derive deterministic findings, and narrate them through the language…\n[profiler] profiler.profile — Profile a CSV, TSV or Parquet data file: per-column statistics, distributions and a correlation mat…\n[profiler] profiler.profileQuery — Compute the same profile over an arbitrary SQL query's full result (wrapped in a temporary view).\n[profiler] profiler.profileRows — Compute the profile (per-column stats, distributions, correlation matrix) over an already-fetched r…\n[python.env] python.env.create — Create a virtual environment (venv, or conda when requested) and optionally install packages into i…\n[python.env] python.env.install — Install packages into a Python environment with its own package manager: pip, uv when available, co…\n[python.env] python.env.list — List the Python environments found: workspace venvs, app-data venvs, conda, pyenv, poetry, pipenv a…\n[python.env] python.env.open — Open the Python Environments sidebar.\n[python.env] python.env.packages — List the packages installed in a Python environment, with their versions.\n[python.env] python.env.pick — Show the environment picker and return the chosen environment (or null when the user cancels).\n[python.env] python.env.remove — Delete an environment created by this extension (its directory is removed).\n[python.env] python.env.resolve — Which Python environment is active: its interpreter, prefix, version and the variables a child proc…\n[python.env] python.env.select — Set the active environment (persisted to .punica/python.yaml) and publish python.env.changed so eve…\n[python.env] python.env.terminal — Open a terminal whose PATH/VIRTUALENV point at an environment, so python and pip resolve to it with…\n[python.env] python.env.uninstall — Uninstall packages from an environment.\n[requirements] requirements.add — Declare a requirement in requirements.txt and install it into the selected runtime target\n[requirements] requirements.bootstrap — Read requirements.txt and detect installed vs missing packages (no install)\n[requirements] requirements.install — Install a single package into the selected runtime target\n[requirements] requirements.installAll — Install everything declared in requirements.txt (pip install -r)\n[requirements] requirements.open — Show requirements sidebar\n[requirements] requirements.refresh — Re-read requirements.txt and recompute install status\n[requirements] requirements.remove — Remove a requirement from requirements.txt and uninstall the package\n[requirements] requirements.uninstall — Uninstall a package from the selected runtime target\n[search] search.find — Find text in the currently open/active file only\n[search] search.findInFiles — Open search sidebar UI to find text across all files in workspace\n[search] search.query — Search the text of every file in the workspace and return the matching files with their matching li…\n[search] search.replace — Replace text in current file\n[search] search.replaceInFiles — Replace text across all files in workspace\n[search] search.toggleCaseSensitive — Toggle case sensitive search\n[search] search.toggleRegex — Toggle regular expression mode\n[search] search.toggleSemantic — Switch the search box between matching characters and matching meaning.\n[search] search.toggleWholeWord — Toggle whole word matching\n[secret-manager] secret-manager.delete — Delete a managed secret and its value from the OS keychain or HashiCorp Vault.\n[secret-manager] secret-manager.get — Return the plaintext value of a managed secret, from the OS keychain or HashiCorp Vault.\n[secret-manager] secret-manager.list — List the names and metadata of secrets held in the OS keychain or HashiCorp Vault.\n[secret-manager] secret-manager.open — Reveal the Secrets sidebar\n[secret-manager] secret-manager.set — Create or update a managed secret value in the OS keychain or HashiCorp Vault.\n[secrets] secrets.get — Read a stored credential — an API key, token, or password — from the host's secret store by name; t…\n[secrets] secrets.set — Store a credential — an API key, token, or password — in the host's secret store under a name, so o…\n[settings] settings.export — Export settings to a JSON string.\n[settings] settings.import — Import settings from a JSON string.\n[settings] settings.open — Open the settings panel to show or change the editor's preferences and every extension's options.\n[settings] settings.reset — Reset a single extension setting to its default value.\n[settings] settings.set — Set a single extension setting value at the given scope.\n[shell] shell.hideView — Hide a panel, sidebar, or editor view.\n[shell] shell.listViews — List the panels, sidebars, and editor views this window has, and which of them are currently visibl…\n[shell] shell.moveView — Move a view into a different area of the window, for example from the bottom panel into the right s…\n[shell] shell.revealView — Open a named panel such as settings, source control, the file explorer or the terminal, and focus i…\n[shell] shell.toggleSlot — Show or hide one whole area of the window — the left sidebar, the right sidebar, or the bottom pane…\n[shell] shell.toggleView — Show a panel if it is hidden, hide it if it is showing.\n[signing] signing.publicKey — Read the public half of the host's package-signing key, so a package can name the key in its header…\n[signing] signing.sign — Sign the given bytes with the host's package-signing key and return a detached signature carrying t…\n[signing] signing.verify — Check a detached signature against the given bytes and report whether they were altered since signi…\n[skills] skills.convert — Rewrite a skill folder's old skill.ic.yaml as a SKILL.md, renaming a dotted id to its dashed name.\n[skills] skills.get — Read one skill as its SKILL.md says it, with the files in its folder.\n[skills] skills.install — Install a skill into this project or your own skills folder, from the marketplace or a folder a per…\n[skills] skills.list — List every skill in this project, in your own skills folder and in the installed extensions, with w…\n[skills] skills.move — Move a skill from .punica/instruction-classes into its own folder under .punica/skills as a SKILL.m…\n[skills] skills.open — Show the Skills panel, which lists every skill an agent can load and where each one is kept.\n[skills] skills.remove — Delete a skill's folder, the files it carries included, from this project or from your own skills f…\n[skills] skills.save — Create or replace a skill's SKILL.md in this project (.punica/skills/<name/) or in your own skills…\n[skills] skills.setEnabled — Turn a skill off so no agent is offered it or loads it, or turn it back on, recorded in the skills.…\n[source-control] source-control.commit — Create a commit from the currently staged changes\n[source-control] source-control.commitFiles — List the files one commit changed, with the status letter git gives each one.\n[source-control] source-control.createBranch — Create a new branch, optionally checking it out\n[source-control] source-control.diff — Read the unified diff for a commit, for the working tree, for the index, or for a file git is not t…\n[source-control] source-control.discard — Discard working-tree changes for the given files.\n[source-control] source-control.fetch — Fetch refs from the remote without merging\n[source-control] source-control.graph — Read recent commits with their parent hashes and ref decorations, so a caller can rebuild the branc…\n[source-control] source-control.init — Initialize a Git repository in the current workspace\n[source-control] source-control.open — Show source control sidebar\n[source-control] source-control.pull — Pull changes from the remote into the current branch\n[source-control] source-control.push — Push local commits to the remote\n[source-control] source-control.stage — Stage the given files for the next commit\n[source-control] source-control.switchBranch — Switch the working tree to another branch\n[source-control] source-control.unstage — Remove the given files from the staging area\n[sweeps] sweeps.open — Reveal the sweep hub\n[tasks] tasks.open — Reveal the Tasks panel listing workspace task definitions\n[tasks] tasks.run — Run a workspace task by name — a build, test or lint script defined for the workspace — as its shel…\n[tasks] tasks.runCommand — Run a shell command or program and return its exit code together with everything it printed.\n[terminal] terminal.attachSession — Attach the terminal panel to an existing PTY session and print a note describing it\n[terminal] terminal.create — Spawn a new PTY shell session (seeded with the active workspace environment)\n[terminal] terminal.newSession — Create a fresh PTY session in the terminal panel and switch to it\n[terminal] terminal.open — Reveal the integrated terminal bottom panel\n[terminal] terminal.openForSession — Attach the terminal panel to an existing PTY session\n[terminal] terminal.openForTaskSession — Attach to a task's PTY session and show its command line\n[terminal] terminal.write — Write raw input data to an existing PTY session\n[terminals] terminals.create — Open a new terminal in the app and return its id.\n[terminals] terminals.send — Type a line into an already open terminal and run it, using the terminal id returned by terminals.c…\n[test] test.engines — Which test engines are installed, and what each one last reported.\n[test] test.registerSpec — Register a test specification\n[test] test.run — Execute a single test case\n[test] test.runEngine — Run one engine's test suite through its own capability.\n[test] test.runSuite — Execute all test cases for a test specification\n[test] test.viewReport — Display test report in panel\n[test.pytest] test.pytest.ciExport — Return this test gate as a runnable step for a CI workflow: the same pytest driver the capability r…\n[test.pytest] test.pytest.discover — List the tests pytest would run, without running them.\n[test.pytest] test.pytest.engine — Report the pytest and Python versions in the workspace's environment, so a panel can offer the inst…\n[test.pytest] test.pytest.reveal — Reveal the Python Tests panel, which shows the pytest engine's environment and the last run's result\n[test.pytest] test.pytest.run — Run a project's pytest suite and report which tests failed and why.\n[theme] theme.open — Show theme manager sidebar\n[trace] trace.open — Reveal the Trace panel, which lists every governed call in this project with what the gate decided\n[trace] trace.read — Return this project's runs as trees of governed calls, folded from the audit trail with the gate's…\n[tracking] tracking.debugInfo — Read the recent audit ring and summarize it by kind, optionally filtered by correlationId, kind or…\n[tracking] tracking.openConsole — Open the system diagnostics console (Trace, Health and Capabilities) and optionally focus a traceId…\n[tracking] tracking.openTrace — Open the console on its Trace tab and optionally focus a traceId/correlationId.\n[vcs] vcs.commit — Commit the current changes to version control with a message.\n[vcs] vcs.status — Show what has changed in the repository: which files have uncommitted changes — modified, added, de…\n[vectors] vectors.chunk — Split a file into the units that get embedded, under one of four strategies.\n[vectors] vectors.embed — Turn a batch of texts into vectors through the configured embedder.\n[vectors] vectors.probe — The pipeline's self-test.\n[vectors] vectors.query — Embed a question and return the nearest passages.\n[vectors.embedder] vectors.embedder.status — Report which embedder is configured, the embedding space it names, the vector length, and — when it…\n[vectors.embedder] vectors.embedder.test — Embed one short probe string and report whether the embedder answered, how long it took and what ve…\n[vectors.index] vectors.index.build — Build the semantic search index: chunk, embed and store a set of files.\n[vectors.index] vectors.index.clear — Delete an index.\n[vectors.index] vectors.index.status — Report what is indexed: chunks and files per corpus, bytes on disk, when it was last built, and whi…\n[vectors.index] vectors.index.upsert — Write records a caller produced itself.\n[welcome] welcome.open — Show the IVYX Studio welcome screen\n[workspace] workspace.listFiles — List every file in the workspace as one flat list of paths, without the folder structure that fs.li…\n[workspace] workspace.projectContext — Summarize the project in a single read: language and stack, dependencies, the scripts it can run, v…\n[workspace] workspace.readFile — Read a file's text from the workspace — the same operation as fs.readFile, kept for compatibility,…\n[workspace] workspace.writeFile — Create a workspace file with the given text, kept for compatibility; prefer fs.writeFile, which als…\n[workspace] workspace.writeOrientation — Write the project summary into the workspace as CLAUDE.md and .claudeignore, so a terminal agent ge…\nTo use one: call capability.search to find candidates, then capability.describe to load full schemas. You may also call an indexed tool directly by its id if its arguments are obvious."
+        },
+        {
+          "role": "user",
+          "content": "Run the MLOps pipeline with mlops.pipeline.run and tell me the result."
+        },
+        {
+          "role": "assistant",
+          "content": "[calling tools: mlops.pipeline.run({})]",
+          "toolCalls": [
+            {
+              "id": "call_7hrssvi0",
+              "name": "mlops.pipeline.run",
+              "arguments": {}
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "content": "{\"runId\":\"a34a956d-3ce9-4215-8b3c-bb69eb6465c2\",\"traceId\":\"77a141e5-484b-416a-a2d8-96f01733e2c1\",\"ok\":false,\"stoppedAt\":\"pandera\",\"stages\":[{\"id\":\"pandera\",\"kind\":\"gate\",\"status\":\"failed\",\"reason\":\"label failed isin([0, 1]) (2) on 10 rows\",\"elapsedMs\":797,\"output\":{\"pass\":false,\"contract\":\"contracts/train_contract.py\",\"data\":\"data/train.csv\",\"rowCount\":400,\"columnCount\":3,\"failureCount\":10,\"failures\":[{\"column\":\"label\",\"check\":\"isin([0, 1])\",\"count\":10,\"examples\":[2]}],\"reason\":\"label failed isin([0, 1]) (2) on 10 rows\",\"metric\":\"contractViolations\",\"value\":10,\"bound\":0,\"boundKind\":\"max\",\"elapsedMs\":783},\"metric\":\"contractViolations\",\"value\":10,\"bound\":0,\"boundKind\":\"max\"},{\"id\":\"pytest\",\"kind\":\"gate\",\"status\":\"skipped\",\"reason\":\"the run stopped at \\\"pandera\\\"\",\"elapsedMs\":0},{\"id\":\"train\",\"kind\":\"pipeline\",\"status\":\"skipped\",\"reason\":\"the run stopped at \\\"pandera\\\"\",\"elapsedMs\":0}],\"elapsedMs\":838}",
+          "name": "mlops.pipeline.run",
+          "toolCallId": "call_7hrssvi0"
+        }
+      ],
+      "tools": [
+        {
+          "name": "capability.describe",
+          "description": "Return one capability in full: what it does, the exact arguments it takes, what it returns, and whether calling it needs approval.",
+          "parameters": {
+            "type": "object",
+            "required": [
+              "ids"
+            ],
+            "properties": {
+              "ids": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 1,
+                "maxItems": 16,
+                "description": "Capability ids to load full definitions for."
+              }
+            }
+          }
+        },
+        {
+          "name": "capability.search",
+          "description": "Search the installed capabilities by keyword and return the matches with a one-line summary each.",
+          "parameters": {
+            "type": "object",
+            "required": [
+              "query"
+            ],
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "What you need to do, in natural language."
+              },
+              "limit": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        {
+          "name": "commit-conventions",
+          "description": "How to read staged changes and write a commit message in this repository's own style before committing.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "file": {
+                "type": "string",
+                "description": "A file in the skill folder, as the skill names it. Omit it to load the skill."
+              }
+            }
+          }
+        },
+        {
+          "name": "dataset-first-look",
+          "description": "Use when someone asks what is in a data file (csv, parquet, xlsx, json), what is wrong with it, its missing values, or whether it is ready for modelling; profiles every column and reports measured nu…",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "file": {
+                "type": "string",
+                "description": "A file in the skill folder, as the skill names it. Omit it to load the skill."
+              }
+            }
+          }
+        },
+        {
+          "name": "duckdb.inspect",
+          "description": "Return a data file's columns, row count, first rows and the view name to query it with.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "file": {
+                "type": "string",
+                "description": "Workspace-relative data file (csv, tsv, parquet, xlsx, xlsm, json, jsonl, gzipped or not) or an absolute dataset file;…"
+              },
+              "sheet": {
+                "type": "string",
+                "description": "For a workbook, the sheet to describe; the first visible one when absent, with the others listed under views."
+              },
+              "rows": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 50,
+                "description": "How many first rows to return."
+              }
+            }
+          }
+        },
+        {
+          "name": "duckdb.query",
+          "description": "Run SQL over data files with DuckDB and return the columns and rows.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "sql": {
+                "type": "string",
+                "description": "SQL text; multiple statements allowed, the last result set is returned"
+              },
+              "maxRows": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100000
+              },
+              "queryId": {
+                "type": "string",
+                "description": "A caller-chosen id; duckdb.cancelQuery with the same id stops this query while it runs"
+              },
+              "file": {
+                "type": "string",
+                "description": "A data file to register before the SQL runs; write {{file}} in the SQL where its table goes, and its view name comes ba…"
+              }
+            },
+            "required": [
+              "sql"
+            ]
+          }
+        },
+        {
+          "name": "duckdb.queryFile",
+          "description": "Open a data file in the SQL workbench with a preview query, or a .sql file as a query.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string",
+                "description": "Workspace-relative path of the file to open, or an absolute path to a downloaded dataset file."
+              }
+            },
+            "required": [
+              "path"
+            ]
+          }
+        },
+        {
+          "name": "duckdb.runActiveQuery",
+          "description": "Run the SQL in the active workbench tab.",
+          "parameters": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        {
+          "name": "evidence.conversations",
+          "description": "The agent sittings this workspace still has a durable record of, with what was refused in each.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 500,
+                "description": "How many sittings to return, newest first."
+              },
+              "since": {
+                "type": "integer",
+                "description": "Epoch ms floor. Absent reads as far back as retention allows."
+              }
+            }
+          }
+        },
+        {
+          "name": "evidence.open",
+          "description": "Reveal the panel that lists runs and builds a package from one.",
+          "parameters": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        {
+          "name": "evidence.outputs",
+          "description": "The files a run wrote, the notebook cells it added and the capabilities it registered, folded from its audit records, with the package line beside them.",
+          "parameters": {
+            "type": "object",
+            "required": [
+              "runId"
+            ],
+            "properties": {
+              "runId": {
+                "type": "string",
+                "description": "The run to read, as `evidence.runs` lists it."
+              }
+            }
+          }
+        },
+        {
+          "name": "evidence.runs",
+          "description": "The governed runs this workspace still has a durable record of.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 500,
+                "description": "How many runs to return, newest first."
+              },
+              "since": {
+                "type": "integer",
+                "description": "Epoch ms floor. Absent reads as far back as retention allows."
+              }
+            }
+          }
+        },
+        {
+          "name": "ivy-node-authoring",
+          "description": "How to write or fix an IvyNode manifest (.ivy.node) by hand so it is generic, runs and passes its own tests.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "file": {
+                "type": "string",
+                "description": "A file in the skill folder, as the skill names it. Omit it to load the skill."
+              }
+            }
+          }
+        },
+        {
+          "name": "knowledge.base.clear",
+          "description": "Delete the vectors one base owns.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "base": {
+                "type": "string",
+                "subject": "collection",
+                "description": "The base id."
+              }
+            },
+            "required": [
+              "base"
+            ]
+          }
+        },
+        {
+          "name": "knowledge.base.ingest",
+          "description": "Resolve a base's globs against the workspace and index everything they name.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "base": {
+                "type": "string",
+                "subject": "collection",
+                "description": "The base id."
+              },
+              "force": {
+                "type": "boolean",
+                "description": "Re-index everything, ignoring the unchanged check."
+              },
+              "dryRun": {
+                "type": "boolean",
+                "description": "Resolve the globs and report the paths without embedding anything."
+              },
+              "strategy": {
+                "type": "string",
+                "enum": [
+                  "auto",
+                  "paragraph",
+                  "heading",
+                  "file"
+                ],
+                "description": "Override the definition's split for this build. A file whose strategy changed is re-indexed even though its bytes did n…"
+              },
+              "windowLines": {
+                "type": "integer",
+                "description": "Lines per window for this build."
+              },
+              "overlapLines": {
+                "type": "integer",
+                "description": "Lines the next window repeats for this build."
+              }
+            },
+            "required": [
+              "base"
+            ]
+          }
+        },
+        {
+          "name": "knowledge.base.list",
+          "description": "Report the knowledge bases this workspace defines and what their indexes actually hold.",
+          "parameters": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        {
+          "name": "knowledge.base.upsert",
+          "description": "Write one knowledge base into the workspace definition file.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "subject": "collection",
+                "description": "The corpus name, lowercase letters, digits and dashes. Also the base's identity."
+              },
+              "title": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "include": {
+                "type": "array",
+                "description": "Workspace-relative globs. The union of what these match is the corpus.",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "exclude": {
+                "type": "array",
+                "description": "Removed from the include set, applied after it.",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "proseCorpus": {
+                "type": "string",
+                "subject": "collection",
+                "description": "Where a notebook's markdown cells go. Defaults to the base id with a -prose suffix rather than to the shared doc collec…"
+              },
+              "topK": {
+                "type": "integer",
+                "description": "Default number of passages a query on this base returns."
+              },
+              "strategy": {
+                "type": "string",
+                "enum": [
+                  "auto",
+                  "paragraph",
+                  "heading",
+                  "file"
+                ],
+                "description": "How this base's files are split, auto by default. It is stored with the definition and a build uses it unless the build…"
+              },
+              "windowLines": {
+                "type": "integer",
+                "description": "Lines per window, 50 by default. The file strategy ignores it."
+              },
+              "overlapLines": {
+                "type": "integer",
+                "description": "Lines the next window repeats, 10 by default."
+              }
+            },
+            "required": [
+              "id",
+              "include"
+            ]
+          }
+        },
+        {
+          "name": "knowledge.open",
+          "description": "Reveal the knowledge panel, which shows the bases this workspace defines, what their indexes hold and a box to ask one a question.",
+          "parameters": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        {
+          "name": "knowledge.query",
+          "description": "Ask one base a question and return the passages it holds.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "base": {
+                "type": "string",
+                "subject": "collection",
+                "description": "The base id."
+              },
+              "query": {
+                "type": "string",
+                "description": "The question. On a remote embedder this text is sent to the configured address."
+              },
+              "topK": {
+                "type": "integer",
+                "description": "How many passages to return. Defaults to the base's own setting."
+              },
+              "keywordFallback": {
+                "type": "boolean",
+                "description": "Set false to receive an empty semantic answer instead of keyword results."
+              }
+            },
+            "required": [
+              "base",
+              "query"
+            ]
+          }
+        },
+        {
+          "name": "llmops.run",
+          "description": "Run the process declared in .punica/llmops.yaml, stage by stage, stopping at the first gate that does not pass.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "stages": {
+                "type": "array",
+                "description": "Stage ids to run, in the process's own order. Omit to run all of them.",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "stopOnFailure": {
+                "type": "boolean",
+                "description": "Stop at the first failing gate. Default true; false records every stage instead."
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        {
+          "name": "mlops-pipeline-setup",
+          "description": "How to set up or change a project's MLOps pipeline in .punica/mlops.yaml with checks that guard training.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "file": {
+                "type": "string",
+                "description": "A file in the skill folder, as the skill names it. Omit it to load the skill."
+              }
+            }
+          }
+        },
+        {
+          "name": "mlops.ci.plan",
+          "description": "Ask every stage's provider what it runs outside the editor — the driver files, the pip requirements and the secrets a generated workflow would need.",
+          "parameters": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        {
+          "name": "mlops.dvc.repro",
+          "description": "Run dvc repro over the workspace DAG and report which stages ran, which were cache hits, and where it stopped.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "targets": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Stage names to reproduce. Omit to reproduce the whole DAG."
+              },
+              "force": {
+                "type": "boolean",
+                "description": "Re-run stages even when DVC considers them up to date."
+              }
+            }
+          }
+        },
+        {
+          "name": "mlops.dvc.stageList",
+          "description": "Name every stage dvc.yaml already declares, in the file's own order.",
+          "parameters": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        {
+          "name": "mlops.dvc.trialApply",
+          "description": "Bring one trial's parameters into the workspace so the pipeline can be run over them",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "trial": {
+                "type": "string",
+                "description": "The trial's name, as reported by mlops.dvc.trials."
+              }
+            },
+            "required": [
+              "trial"
+            ]
+          }
+        },
+        {
+          "name": "mlops.dvc.trials",
+          "description": "The parameters and metrics the pipeline declares, plus every trial with its point, its numbers and its state.",
+          "parameters": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        {
+          "name": "mlops.model.ciExport",
+          "description": "Return the model quality gate as a runnable step for a CI workflow: the same three rules, reading the same tracking server through the standard library, plus this stage's configured bar",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "stageId": {
+                "type": "string",
+                "description": "The stage this export is for, from .punica/mlops.yaml."
+              },
+              "input": {
+                "type": "object",
+                "description": "That stage's declared input — thresholds, champion and slices — so the exported step checks the same bar."
+              }
+            }
+          }
+        },
+        {
+          "name": "mlops.model.evaluate",
+          "description": "Judge a training run against the quality bar — metric thresholds, the current champion, and per-slice regression — and answer with a gate verdict.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "runId": {
+                "type": "string",
+                "description": "Run to judge. Omit to take the latest completed run, which is what a pipeline stage usually wants."
+              },
+              "experiment": {
+                "type": "string",
+                "description": "Narrows \"the latest run\" to one experiment, by name."
+              },
+              "thresholds": {
+                "type": "object",
+                "description": "Per-metric bar, e.g. { f1: { min: 0.8 }, latency_ms: { max: 250 } }. A bare number is read as a floor. A metric the run…"
+              },
+              "champion": {
+                "type": "object",
+                "description": "Comparison against a registered model's champion, e.g. { model: churn, metric: f1, tolerance: 0.005 }. No champion yet…",
+                "properties": {
+                  "model": {
+                    "type": "string"
+                  },
+                  "metric": {
+                    "type": "string",
+                    "description": "Which metric decides. Defaults to the single thresholded metric."
+                  },
+                  "direction": {
+                    "type": "string",
+                    "description": "higher (default) or lower, for metrics where less is better."
+                  },
+                  "tolerance": {
+                    "type": "number"
+                  },
+                  "alias": {
+                    "type": "string",
+                    "description": "Alias to compare against; champion unless told otherwise."
+                  }
+                }
+              },
+              "slices": {
+                "type": "object",
+                "description": "Slice regression, e.g. { prefix: f1_slice_ } or { metrics: [f1_north] }. A slice the champion reports and this run does…",
+                "properties": {
+                  "prefix": {
+                    "type": "string"
+                  },
+                  "metrics": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "direction": {
+                    "type": "string"
+                  },
+                  "tolerance": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "thresholds"
+                ]
+              },
+              {
+                "required": [
+                  "champion"
+                ]
+              },
+              {
+                "required": [
+                  "slices"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "mlops.model.scaffold",
+          "description": "Write the two training components a generated workflow calls.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "what": {
+                "type": "array",
+                "description": "Which components to write. Both by default.",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "train",
+                    "evaluate"
+                  ]
+                }
+              },
+              "experiment": {
+                "type": "string",
+                "description": "The MLflow experiment the run is recorded under."
+              },
+              "data": {
+                "type": "string"
+              },
+              "holdout": {
+                "type": "string",
+                "description": "The set evaluate.py scores, which must not be the training set."
+              },
+              "target": {
+                "type": "string"
+              },
+              "task": {
+                "type": "string",
+                "enum": [
+                  "classification",
+                  "regression"
+                ]
+              },
+              "modelName": {
+                "type": "string",
+                "description": "Registered model name. Without one nothing is registered and the gate cannot compare a run with a champion."
+              },
+              "sliceColumns": {
+                "type": "array",
+                "description": "Columns evaluated group by group. Empty means the gate's slice rule checks nothing.",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "minSliceRows": {
+                "type": "integer",
+                "description": "Groups smaller than this are named in the output and not scored."
+              },
+              "trainPath": {
+                "type": "string"
+              },
+              "evaluatePath": {
+                "type": "string"
+              },
+              "overwrite": {
+                "type": "boolean",
+                "description": "Replace a file that is already there. Off by default because the edited half is the user's work."
+              }
+            }
+          }
+        },
+        {
+          "name": "mlops.model.versionTrace",
+          "description": "Return the run that produced one version of a registered model, as the workspace's registry engine records it.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Registered model name"
+              },
+              "version": {
+                "type": "string",
+                "description": "The version to look up, as the registry names it"
+              }
+            },
+            "required": [
+              "name",
+              "version"
+            ]
+          }
+        },
+        {
+          "name": "mlops.open",
+          "description": "Reveal the MLOps pipeline sidebar",
+          "parameters": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        {
+          "name": "mlops.pipeline.author",
+          "description": "Train a model from one sentence: choose the data file and the target column, write src/train.py, make the workspace a DVC repository, add the train stage, create .punica/mlops.yaml and run the pipeli…",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "directive": {
+                "type": "string",
+                "description": "What to train, in plain words (predict the Survived column of data/titanic.csv)."
+              },
+              "data": {
+                "type": "string",
+                "description": "Leave this out unless the exact path of an existing .csv file is known; the directive alone is enough and the file is f…"
+              },
+              "target": {
+                "type": "string",
+                "description": "The column to predict, as the file spells it. Leave this out unless it is known; it is read from the directive."
+              },
+              "task": {
+                "type": "string",
+                "description": "classification or regression. Decided from the target when omitted."
+              },
+              "run": {
+                "type": "boolean",
+                "description": "Set false to write the pipeline without training. Trains by default."
+              }
+            }
+          }
+        },
+        {
+          "name": "mlops.pipeline.bind",
+          "description": "Write which engine runs the DAG (pipeline.provider in .punica/mlops.yaml) as a document edit.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "provider": {
+                "description": "The engine's provider name (dvc), or null to remove the binding."
+              }
+            },
+            "required": [
+              "provider"
+            ]
+          }
+        },
+        {
+          "name": "mlops.pipeline.describe",
+          "description": "The configured stages from .punica/mlops.yaml plus which providers answer for them",
+          "parameters": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        {
+          "name": "mlops.pipeline.run",
+          "description": "Run the configured stages in order; a failing stage marked stop ends the run",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "stages": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Subset of stage ids to run, in configured order. Omit to run all."
+              },
+              "stopOnFailure": {
+                "type": "boolean",
+                "description": "Set false to record every stage's verdict instead of stopping at the first stop-gate."
+              }
+            }
+          }
+        },
+        {
+          "name": "mlops.trigger.configure",
+          "description": "Write the triggers block of .punica/mlops.yaml: whether a reported drift retrains, and which stages a fired trigger runs.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "onDrift": {
+                "description": "retrain or ignore; null removes the key, which reads back as ignore.",
+                "enum": [
+                  "retrain",
+                  "ignore",
+                  null
+                ]
+              },
+              "stages": {
+                "description": "Stage ids a fired trigger runs; null removes the subset so a trigger runs the whole pipeline.",
+                "oneOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "name": "mlops.trigger.fire",
+          "description": "Run the configured pipeline from outside the editor — a drift report, a schedule, a commit hook or an MCP client — and record who asked and why",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "source": {
+                "type": "string",
+                "description": "Who fired it, e.g. drift, schedule, commit, or a client's name. Recorded verbatim."
+              },
+              "reason": {
+                "type": "string",
+                "description": "Why, in the caller's own words. Recorded verbatim; this is what makes an unattended run auditable afterwards."
+              },
+              "stages": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Stage ids to run instead of the configured triggers.stages. Omit to use the file's answer."
+              }
+            }
+          }
+        },
+        {
+          "name": "policy-authoring",
+          "description": "How to write or change the rules in .punica/policy.yaml that decide which calls run, wait for a person or are refused.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "file": {
+                "type": "string",
+                "description": "A file in the skill folder, as the skill names it. Omit it to load the skill."
+              }
+            }
+          }
+        },
+        {
+          "name": "rag-knowledge-base-setup",
+          "description": "Use when someone wants a knowledge base (bilgi tabanı), RAG or document search over files in the project (docs, notes, manuals) so an assistant can answer questions from them; builds, checks and quer…",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "file": {
+                "type": "string",
+                "description": "A file in the skill folder, as the skill names it. Omit it to load the skill."
+              }
+            }
+          }
+        },
+        {
+          "name": "source-control.ci.generate",
+          "description": "Write a GitHub Actions workflow for the pipeline in .punica/mlops.yaml, together with the gate drivers it calls, so a runner executes the same checks the editor does.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "preview": {
+                "type": "boolean",
+                "description": "Return the file contents without writing anything."
+              },
+              "overwrite": {
+                "type": "boolean",
+                "description": "Replace files that already exist. Off by default because a regenerated workflow discards whatever was edited into it by…"
+              },
+              "pythonVersion": {
+                "type": "string",
+                "description": "The Python the runner sets up, defaulting to the version this workspace's active environment reports."
+              }
+            }
+          }
+        },
+        {
+          "name": "source-control.ci.hook",
+          "description": "Install, remove or report the pre-push hook that runs the pipeline's gates before a push.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "action": {
+                "type": "string",
+                "enum": [
+                  "install",
+                  "remove",
+                  "status"
+                ]
+              },
+              "overwrite": {
+                "type": "boolean",
+                "description": "Replace an existing hook that was written by something else. Read it first."
+              }
+            }
+          }
+        },
+        {
+          "name": "source-control.ci.status",
+          "description": "Read what GitHub reported for the generated MLOps workflow, through the gh CLI.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "limit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 50,
+                "description": "How many recent runs to read."
+              }
+            }
+          }
+        },
+        {
+          "name": "source-control.ci.verify",
+          "description": "Run each generated CI step here, the way a runner would, and compare its verdict with the gate the pipeline runs.",
+          "parameters": {
+            "type": "object",
+            "properties": {}
+          }
+        },
+        {
+          "name": "sweeps.apply",
+          "description": "Bring a trial's parameters into the workspace and run the MLOps pipeline over them, both under one trace",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "trial": {
+                "type": "string"
+              },
+              "runPipeline": {
+                "type": "boolean",
+                "description": "Set false to apply the point without running the pipeline over it."
+              },
+              "engine": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "trial"
+            ]
+          }
+        },
+        {
+          "name": "sweeps.run",
+          "description": "Expand a parameter space into points and queue one trial per point through the installed engine",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "space": {
+                "type": "object",
+                "description": "Parameter name to the list of values to try. The product is the sweep, capped at 200 trials and refused rather than cut…"
+              },
+              "objective": {
+                "type": "string",
+                "description": "The metric to optimise. Recorded on this call so a later reader knows what the sweep was for; the engine reports number…"
+              },
+              "direction": {
+                "type": "string",
+                "enum": [
+                  "max",
+                  "min"
+                ],
+                "description": "Which way is better. Never derived from the numbers, because falling is an improvement for a loss and a regression for…"
+              },
+              "jobs": {
+                "type": "integer",
+                "description": "How many trials to run at once."
+              },
+              "engine": {
+                "type": "string",
+                "description": "Which engine to use. Omit for the only one installed."
+              }
+            },
+            "required": [
+              "space"
+            ]
+          }
+        },
+        {
+          "name": "sweeps.stop",
+          "description": "Stop the sweep workers through the installed engine",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "kill": {
+                "type": "boolean",
+                "description": "Interrupt the trial in flight instead of letting it finish."
+              },
+              "engine": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        {
+          "name": "sweeps.trials",
+          "description": "The parameters and metrics the pipeline declares, plus every trial ranked by the objective when one is named",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "objective": {
+                "type": "string",
+                "description": "Rank by this metric. Omit to get the engine's own order."
+              },
+              "direction": {
+                "type": "string",
+                "enum": [
+                  "max",
+                  "min"
+                ]
+              },
+              "engine": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      ],
+      "toolChoice": "auto",
+      "correlationId": "77a141e5-484b-416a-a2d8-96f01733e2c1",
+      "cacheHints": {
+        "stableToolsAndSystem": true,
+        "stableMessagePrefix": 4,
+        "cacheKey": "77a141e5-484b-416a-a2d8-96f01733e2c1"
+      }
+    },
+    "output": {
+      "text": "The MLOps pipeline run **failed** with the following details:\n\n- **Run ID**: `a34a956d-3ce9-4215-8b3c-bb69eb6465c2`\n- **Trace ID**: `77a141e5-484b-416a-a2d8-96f01733e2c1`\n- **Stopped at stage**: `pandera`\n\n**Failure Reason**: The pandera contract gate failed with a constraint violation:\n- **Column**: `label`\n- **Check**: `isin([0, 1])` (label column should only contain values 0 or 1)\n- **Issue**: Value `2` was found in 10 rows, violating the expected range\n- **Affected data**: 400 rows with 3 columns\n\n**Consequence**: Due to this failure, the pipeline stopped and skipped remaining stages:\n- `pytest`: Skipped (stopped at \"pandera\")\n- `train`: Skipped (stopped at \"pandera\")\n\nIf you'd like to proceed, you'd need to either:\n1. Fix the data in `data/train.csv` to ensure `label` contains only 0 or 1\n2. Update the pandera contract constraint",
+      "modelId": "qwen3.5:9b",
+      "provider": "local",
+      "usage": {
+        "inputTokens": 18320,
+        "outputTokens": 572,
+        "totalTokens": 18892
+      },
+      "thinking": "The MLOps pipeline ran but failed. From the results:\n\n- `runId`: \"a34a956d-3ce9-4215-8b3c-bb69eb6465c2\"\n- Pipeline stopped at stage \"pandera\"\n- The pandera gate failed because label values contain 2 (should only be 0 or 1)\n- pytest and train stages were skipped due to the failure\n\nI should report this to the user.\n- Run ID: a34a956d-3ce9-4215-8b3c-bb69eb6465c2\n- Trace ID: 77a141e5-484b-416a-a2d8-96f01733e2c1\n- Status: FAILED\n\nThe pipeline stopped at the `pandera` stage with a contract violation: The `label` column contains values outside the expected range (should be [0, 1] but found value 2). There were 10 rows affected.\n\nThe subsequent stages (`pytest` and `train`) were skipped since the pipeline was stopped at the first failure.\n\nI'll explain this to the user."
+    },
+    "egress": "local",
+    "subjects": [
+      {
+        "kind": "model",
+        "id": "qwen3.5:9b",
+        "from": "output"
+      }
+    ],
+    "duration": 16262,
+    "timestamp": 1792268174681
+  }
+}

@@ -1,0 +1,9 @@
+schema: 2
+defaultBackendId: managed-local
+backends:
+  - id: managed-local
+    provider: mlflow
+    label: MLflow (this machine)
+    config:
+      trackingUri: http://localhost:20729
+      authScheme: none

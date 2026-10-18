@@ -1,0 +1,55 @@
+# What this project serves.
+#
+# This list is the closed door. A capability that is not named here cannot be
+# reached at all — the gateway refuses it before policy is consulted, so an MCP
+# client sees only what is listed and nothing else exists as far as it knows.
+#
+# Deny-by-default lives here rather than in policy.yaml for a reason: rule
+# precedence is fixed (deny beats require beats allow, never file order), so a
+# catch-all deny rule would beat every allow exception written under it. An
+# allowlist can say "closed, except these". A rule set cannot.
+#
+# A trailing * matches a prefix and is expanded against what is installed, so
+# `ivyx capability list --served` always prints the exact ids in force.
+version: 1
+
+expose:
+  - capability.catalog
+  - mlops.pipeline.describe
+  - mlops.metric.history
+  - mlops.stage.configure
+
+  - capability.catalog
+
+# ── Opening MLOps to an agent ──────────────────────────────────────────────
+#
+# Uncomment what this project actually wants. Grouped by what THIS host can
+# answer, which is not the same as what the ids mean: ivyx governs and records,
+# it does not run anything.
+#
+# Read the pipeline. All three answer here.
+#  - mlops.pipeline.describe     # the stages, and which provider answers for each
+#  - mlops.metric.history        # what the gates measured across past runs
+#  - mlops.params.importance     # which parameter moved the objective
+#
+# Write, and both need a person — see policy.yaml.
+#  - mlops.stage.configure       # edits .punica/mlops.yaml; completes here
+#  - mlops.model.promote         # moves an alias; needs a reachable registry
+#
+# Keep capability.catalog above if you serve mlops.stage.configure. That call
+# checks every field against the declaration of the capability the stage
+# dispatches to, through the gateway — and this list applies to a hub's inner
+# calls too, so removing the catalogue turns the write into "the capability
+# catalog could not be read. Nothing was written." Measured, not guessed.
+#
+# These run a process, which this host does not do. Serving them is not wrong —
+# an agent gets one sentence saying where to run it instead of a silence — but
+# the call will not succeed here. `ivyx capability list --served` marks them
+# `exec`; that mark is the boundary, and it is worth reading before you serve.
+#  - mlops.pipeline.run
+#  - mlops.trigger.fire
+#  - mlops.gate.evaluate
+
+# Withheld even when expose would match. Useful for opening a family and
+# keeping one member back.
+deny: []

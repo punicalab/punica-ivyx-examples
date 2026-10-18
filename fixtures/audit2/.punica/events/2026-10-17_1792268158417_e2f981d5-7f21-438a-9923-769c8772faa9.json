@@ -1,0 +1,20 @@
+{
+  "name": "mlops.gate.failed",
+  "envelope": {
+    "id": "e2f981d5-7f21-438a-9923-769c8772faa9",
+    "timestampMs": 1792268158417,
+    "source": "extension-mlops",
+    "kind": "audit"
+  },
+  "payload": {
+    "runId": "a34a956d-3ce9-4215-8b3c-bb69eb6465c2",
+    "traceId": "77a141e5-484b-416a-a2d8-96f01733e2c1",
+    "gateId": "pandera",
+    "capability": "mlops.pandera.validate",
+    "reason": "label failed isin([0, 1]) (2) on 10 rows",
+    "metric": "contractViolations",
+    "value": 10,
+    "bound": 0,
+    "boundKind": "max"
+  }
+}

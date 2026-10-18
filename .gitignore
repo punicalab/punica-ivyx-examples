@@ -1,0 +1,24 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# What IVYX Studio and the tools keep per machine
+.punica/search/
+.punica/python.yaml
+.punica/duckdb.json
+.punica/events/
+!fixtures/audit2/.punica/events/
+.dvc/tmp/
+.dvc/cache/
+
+# MLflow stores are rebuilt by each example's seed script
+mlruns/
+mlartifacts/
+*.db
+
+# Outputs a pipeline run writes
+model.pkl
+metrics.json
+
+.DS_Store

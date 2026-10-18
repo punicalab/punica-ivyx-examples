@@ -1,0 +1,8 @@
+stages:
+  train:
+    desc: Trains the model src/train.py builds
+    cmd: python src/train.py --data data/titanic/train.csv --target Survived 
+      --task classification --experiment titanic-survived
+    deps:
+    - data/titanic/train.csv
+    - src/train.py

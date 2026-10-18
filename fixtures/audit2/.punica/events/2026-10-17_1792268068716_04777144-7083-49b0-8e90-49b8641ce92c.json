@@ -1,0 +1,43 @@
+{
+  "name": "capability.audited",
+  "envelope": {
+    "id": "04777144-7083-49b0-8e90-49b8641ce92c",
+    "correlationId": "d5f9e628-367e-434d-9c72-a1ce6101c303",
+    "traceId": "905aa4a0-d482-4f26-bb66-4915dc534003",
+    "spanId": "d5f9e628-367e-434d-9c72-a1ce6101c303",
+    "timestampMs": 1792268068716,
+    "source": "runtime:capabilities:gateway",
+    "kind": "audit"
+  },
+  "payload": {
+    "invocationId": "d5f9e628-367e-434d-9c72-a1ce6101c303",
+    "runId": "905aa4a0-d482-4f26-bb66-4915dc534003",
+    "spanId": "d5f9e628-367e-434d-9c72-a1ce6101c303",
+    "capability": "shell.revealView",
+    "actor": {
+      "type": "extension",
+      "extensionName": "extension-ai-assistant"
+    },
+    "origin": {
+      "kind": "command",
+      "id": "extension:extension-ai-assistant"
+    },
+    "capabilityOrigin": "core",
+    "policyDecision": {
+      "allowed": true,
+      "requiresApproval": false,
+      "reason": "",
+      "argsBinding": "93ddac9de28e62c30e4df4d3afdda6c1"
+    },
+    "input": {
+      "viewId": "ai-assistant-sidebar",
+      "focus": false
+    },
+    "output": {
+      "viewId": "ai-assistant-sidebar",
+      "revealed": true
+    },
+    "duration": 8,
+    "timestamp": 1792268068716
+  }
+}

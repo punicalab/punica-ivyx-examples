@@ -1,0 +1,42 @@
+{
+  "name": "capability.audited",
+  "envelope": {
+    "id": "b933200b-47b2-4677-9ff8-091b642a927c",
+    "correlationId": "d3026bbb-5835-4f33-a626-42b69ccf6b0d",
+    "traceId": "479a7a99-7e00-46ad-9eb7-0c38ed199623",
+    "spanId": "d3026bbb-5835-4f33-a626-42b69ccf6b0d",
+    "timestampMs": 1792268072690,
+    "source": "runtime:capabilities:gateway",
+    "kind": "audit"
+  },
+  "payload": {
+    "invocationId": "d3026bbb-5835-4f33-a626-42b69ccf6b0d",
+    "runId": "479a7a99-7e00-46ad-9eb7-0c38ed199623",
+    "spanId": "d3026bbb-5835-4f33-a626-42b69ccf6b0d",
+    "capability": "problems.setDiagnosticsForSource",
+    "actor": {
+      "type": "extension",
+      "extensionName": "extension-policy"
+    },
+    "origin": {
+      "kind": "command",
+      "id": "policy.feedProblems"
+    },
+    "capabilityOrigin": "extension",
+    "policyDecision": {
+      "allowed": true,
+      "requiresApproval": false,
+      "reason": "",
+      "argsBinding": "b24f1c286315483f5ce7568794fb1251"
+    },
+    "input": {
+      "source": "policy",
+      "items": []
+    },
+    "output": {
+      "count": 0
+    },
+    "duration": 2,
+    "timestamp": 1792268072690
+  }
+}

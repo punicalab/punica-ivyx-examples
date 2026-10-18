@@ -1,0 +1,44 @@
+{
+  "name": "policy.evaluated",
+  "envelope": {
+    "id": "68d256b5-29ab-48d8-9986-ecec1a72ba7d",
+    "correlationId": "21305793-409e-4500-b015-9c641a7cbd6e",
+    "traceId": "77a141e5-484b-416a-a2d8-96f01733e2c1",
+    "parentSpanId": "21305793-409e-4500-b015-9c641a7cbd6e",
+    "timestampMs": 1792268157569,
+    "source": "kernel:policy",
+    "kind": "info"
+  },
+  "payload": {
+    "request": {
+      "kind": "capability",
+      "id": "mlops.pipeline.run",
+      "risk": "medium",
+      "approval": "none",
+      "reason": "Run the configured stages in order; a failing stage marked stop ends the run",
+      "argsBinding": "44136fa355b3678a1146ad16f7e8649e",
+      "argsPreview": {},
+      "action": [
+        "process.exec",
+        "file.read",
+        "file.write"
+      ]
+    },
+    "decision": {
+      "allowed": true,
+      "mode": "execute",
+      "requiresApproval": false,
+      "policyRule": {
+        "template": "house-rules",
+        "ruleIndex": 0,
+        "effect": "require",
+        "reason": "A person says yes before anything in this project writes to disk.",
+        "digest": "56165e353a4244c753accda670a6bd88",
+        "matchedBy": "action"
+      }
+    },
+    "context": {
+      "workspaceId": "<machine>/ws/mlops1"
+    }
+  }
+}

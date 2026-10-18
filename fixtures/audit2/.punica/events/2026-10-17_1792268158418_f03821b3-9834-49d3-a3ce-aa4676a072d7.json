@@ -1,0 +1,105 @@
+{
+  "name": "capability.audited",
+  "envelope": {
+    "id": "f03821b3-9834-49d3-a3ce-aa4676a072d7",
+    "correlationId": "21305793-409e-4500-b015-9c641a7cbd6e",
+    "traceId": "77a141e5-484b-416a-a2d8-96f01733e2c1",
+    "spanId": "21305793-409e-4500-b015-9c641a7cbd6e",
+    "parentSpanId": "1c33318b-27f1-4540-95ca-6d97e3b7a0ee",
+    "timestampMs": 1792268158418,
+    "source": "runtime:capabilities:gateway",
+    "kind": "audit"
+  },
+  "payload": {
+    "invocationId": "21305793-409e-4500-b015-9c641a7cbd6e",
+    "runId": "77a141e5-484b-416a-a2d8-96f01733e2c1",
+    "spanId": "21305793-409e-4500-b015-9c641a7cbd6e",
+    "parentSpanId": "1c33318b-27f1-4540-95ca-6d97e3b7a0ee",
+    "capability": "mlops.pipeline.run",
+    "actor": {
+      "type": "ai",
+      "id": "ai:agent"
+    },
+    "origin": {
+      "kind": "ai",
+      "id": "kernel.agentLoop"
+    },
+    "capabilityOrigin": "extension",
+    "workspace": "<machine>/ws/mlops1",
+    "policyDecision": {
+      "allowed": true,
+      "requiresApproval": false,
+      "reason": "agent-mode policy: write/medium",
+      "argsBinding": "44136fa355b3678a1146ad16f7e8649e",
+      "policyRule": {
+        "template": "house-rules",
+        "ruleIndex": 0,
+        "effect": "require",
+        "reason": "A person says yes before anything in this project writes to disk.",
+        "digest": "56165e353a4244c753accda670a6bd88",
+        "matchedBy": "action"
+      }
+    },
+    "input": {},
+    "output": {
+      "runId": "a34a956d-3ce9-4215-8b3c-bb69eb6465c2",
+      "traceId": "77a141e5-484b-416a-a2d8-96f01733e2c1",
+      "ok": false,
+      "stoppedAt": "pandera",
+      "stages": [
+        {
+          "id": "pandera",
+          "kind": "gate",
+          "status": "failed",
+          "reason": "label failed isin([0, 1]) (2) on 10 rows",
+          "elapsedMs": 797,
+          "output": {
+            "pass": false,
+            "contract": "contracts/train_contract.py",
+            "data": "data/train.csv",
+            "rowCount": 400,
+            "columnCount": 3,
+            "failureCount": 10,
+            "failures": [
+              {
+                "column": "label",
+                "check": "isin([0, 1])",
+                "count": 10,
+                "examples": [
+                  2
+                ]
+              }
+            ],
+            "reason": "label failed isin([0, 1]) (2) on 10 rows",
+            "metric": "contractViolations",
+            "value": 10,
+            "bound": 0,
+            "boundKind": "max",
+            "elapsedMs": 783
+          },
+          "metric": "contractViolations",
+          "value": 10,
+          "bound": 0,
+          "boundKind": "max"
+        },
+        {
+          "id": "pytest",
+          "kind": "gate",
+          "status": "skipped",
+          "reason": "the run stopped at \"pandera\"",
+          "elapsedMs": 0
+        },
+        {
+          "id": "train",
+          "kind": "pipeline",
+          "status": "skipped",
+          "reason": "the run stopped at \"pandera\"",
+          "elapsedMs": 0
+        }
+      ],
+      "elapsedMs": 838
+    },
+    "duration": 850,
+    "timestamp": 1792268158418
+  }
+}

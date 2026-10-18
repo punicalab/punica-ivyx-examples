@@ -1,0 +1,12 @@
+{
+  "name": "punica.ready",
+  "envelope": {
+    "id": "ac169da1-84e6-4826-9b32-8005c8eb84d1",
+    "timestampMs": 1792268067809,
+    "source": "punica:core",
+    "kind": "lifecycle"
+  },
+  "payload": {
+    "version": "1.0.0"
+  }
+}

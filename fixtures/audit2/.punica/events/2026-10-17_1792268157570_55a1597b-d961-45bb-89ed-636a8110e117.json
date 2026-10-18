@@ -1,0 +1,14 @@
+{
+  "name": "approval.revoked",
+  "envelope": {
+    "id": "55a1597b-d961-45bb-89ed-636a8110e117",
+    "timestampMs": 1792268157570,
+    "source": "kernel:policy",
+    "kind": "audit"
+  },
+  "payload": {
+    "kind": "capability",
+    "id": "mlops.pipeline.run",
+    "scope": "once"
+  }
+}

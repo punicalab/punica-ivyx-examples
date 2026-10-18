@@ -1,0 +1,16 @@
+{
+  "name": "capability.approvalRequired",
+  "envelope": {
+    "id": "83b34498-3248-454a-bb6f-0d1b83e6367b",
+    "correlationId": "07ff7e78-278b-4500-8ac0-a278972e13ca",
+    "traceId": "fixture-1792268092769",
+    "timestampMs": 1792268092776,
+    "source": "runtime:capabilities:gateway",
+    "kind": "info"
+  },
+  "payload": {
+    "invocationId": "07ff7e78-278b-4500-8ac0-a278972e13ca",
+    "capability": "mlops.pipeline.run",
+    "reason": ""
+  }
+}
