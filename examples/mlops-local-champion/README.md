@@ -40,6 +40,19 @@ Run the pipeline twice with nothing changed and DVC skips the training, so
 the check scores the same predictions and the deploy reports that the model
 is already the champion instead of opening a new version.
 
+## From a terminal
+
+The same run needs no window. In one terminal:
+
+```sh
+ivyx flow run mlops --here
+```
+
+In a second terminal, `ivyx approve --watch` shows the Ship card when the
+check has passed; `a` writes the version and `d` stops the run with nothing
+written. The model is trained with `.venv`, so the folder needs that
+environment and nothing selected in Studio.
+
 Needs `extension-mlops` 1.32.0 or newer, `extension-mlops-dvc` and
 `extension-experiments` 2.29.0 or newer (the training script's model
-folder). `pipeline-run-triage` comes from the Ivy Marketplace's SKILLS tab.
+folder). The terminal run needs `extension-mlops` 1.33.0 and `ivyx` 0.26.0. `pipeline-run-triage` comes from the Ivy Marketplace's SKILLS tab.
