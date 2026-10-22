@@ -1,0 +1,19 @@
+# What may happen in this project.
+#
+# One rule: nothing a capability does may send data off this machine. The
+# documents under docs/ stand in for bank statements, invoices and contracts,
+# so every step of the line in .punica/mlops.yaml reads and writes files here,
+# and Label Studio runs in Docker on 127.0.0.1. No step declares net.request,
+# so this rule refuses none of them.
+#
+# The deploy asks a person every time without a rule here, because it
+# declares risk: high and approval: step.
+version: 1
+
+templates:
+  - name: local-only
+    rules:
+      - kind: capability
+        egress: remote
+        effect: deny
+        reason: No data leaves this machine.

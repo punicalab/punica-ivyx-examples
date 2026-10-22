@@ -1,0 +1,6 @@
+HESAP ÖZETİ
+Müşteri: Ece Demir   TC Kimlik No: 11877075602
+IBAN: TR38 0006 4059 9825 3997 8497 83
+19.04.2023  EFT Gökhan Özdemir  TR16 0006 7010 7886 7622 4634 47  64.370,27 TL  Açıklama: kira
+25.03.2026  Havale Uludağ Lojistik San. ve Tic. A.Ş.  TR85 0001 5072 5887 0787 8477 63  65.700,13 TL  Açıklama: fatura no 43406
+17.07.2026  Kart harcaması 4439 3337 6516 4775  46.988,50 TL

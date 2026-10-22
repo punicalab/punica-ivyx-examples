@@ -1,0 +1,62 @@
+# Synthetic documents for a personal-data marker (extension-mlops-nlp).
+# Each template is a line in a document's shape; each {SLOT} is filled from
+# its kind, and a slot with a label becomes a span. Every value is made up:
+# identifiers pass their checksums, names are random pairs of common names.
+# Run it with the Synthesize step; the same seed makes the same file.
+seed: 7
+count: 400
+
+slots:
+  PAYER_ME: { kind: person-me }
+  PAYEE_ME: { kind: person-me }
+  FIRM_ME: { kind: org-me }
+  ADDRESS_ME: { kind: address-me }
+  ACCOUNT_ME: { kind: account-me }
+  IBAN_ME: { kind: iban-me }
+  JMBG: { kind: jmbg }
+  PIB: { kind: pib }
+  PHONE_ME: { kind: phone-me }
+  PERSON_TR: { kind: person-tr }
+  FIRM_TR: { kind: org-tr }
+  ADDRESS_TR: { kind: address-tr }
+  IBAN_TR: { kind: iban-tr }
+  TCKN: { kind: tckn }
+  VKN: { kind: vkn }
+  PHONE_TR: { kind: phone-tr }
+  EMAIL: { kind: email }
+  CARD: { kind: card }
+  AMOUNT: { kind: amount }
+  DATE: { kind: date }
+  NUMBER: { kind: number }
+
+templates:
+  - group: statement-line-me
+    lang: me
+    text: "{PAYER_ME} {ACCOUNT_ME} {DATE} {AMOUNT} Uplata po fakturi br. {NUMBER}"
+  - group: statement-transfer-me
+    lang: me
+    text: "Primalac plaćanja: {FIRM_ME}, {ADDRESS_ME}, račun {ACCOUNT_ME}, iznos {AMOUNT} EUR, svrha: zakup za {DATE}"
+  - group: statement-foreign-me
+    lang: me
+    text: "Ino priliv od {PAYEE_ME}, IBAN {IBAN_ME}, {AMOUNT} EUR, datum knjiženja {DATE}"
+  - group: invoice-header-me
+    lang: me
+    text: "{FIRM_ME}\n{ADDRESS_ME}\nPIB: {PIB}   Žiro račun: {ACCOUNT_ME}\nFAKTURA br. {NUMBER}  Datum: {DATE}"
+  - group: invoice-buyer-me
+    lang: me
+    text: "Kupac: {FIRM_ME}, PIB {PIB}, kontakt {PAYER_ME}, tel. {PHONE_ME}, {EMAIL}"
+  - group: person-record-me
+    lang: me
+    text: "Zaposleni {PAYER_ME}, JMBG {JMBG}, adresa {ADDRESS_ME}, isplata zarade na račun {ACCOUNT_ME}"
+  - group: statement-line-tr
+    lang: tr
+    text: "{DATE} EFT {PERSON_TR} {IBAN_TR} {AMOUNT} TL Açıklama: fatura no {NUMBER}"
+  - group: transfer-tr
+    lang: tr
+    text: "Alıcı: {FIRM_TR}, {ADDRESS_TR}, IBAN: {IBAN_TR}, tutar {AMOUNT} TL, gönderen {PERSON_TR}"
+  - group: invoice-header-tr
+    lang: tr
+    text: "{FIRM_TR}\n{ADDRESS_TR}\nVKN: {VKN}  Tel: {PHONE_TR}\nFATURA NO {NUMBER}  Tarih: {DATE}"
+  - group: customer-tr
+    lang: tr
+    text: "Müşteri {PERSON_TR}, TC Kimlik No {TCKN}, e-posta {EMAIL}, kart {CARD} ile {AMOUNT} TL ödedi"

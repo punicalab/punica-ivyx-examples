@@ -1,0 +1,107 @@
+# MLOps pipeline. Stages run in the order below; a failing stage
+# whose onFailure is "stop" ends the run.
+version: 1
+
+stages:
+  # docs/ into one JSONL line per document.
+  - id: import
+    kind: step
+    capability: mlops.nlp.import
+    input: { from: docs, out: data/pii/raw.jsonl }
+    onFailure: stop
+
+  # IBANs, accounts, JMBG, PIB, TCKN, VKN, cards, e-mail and phone numbers,
+  # each marked only when its checksum or shape holds.
+  - id: prelabel
+    kind: step
+    capability: mlops.nlp.prelabel
+    input: { data: data/pii/raw.jsonl }
+    onFailure: stop
+
+  # A person corrects the suggestions and marks the names, firms and
+  # addresses in Label Studio on 127.0.0.1:8095.
+  - id: push
+    kind: step
+    capability: labels.labelstudio.push
+    input: { data: data/pii/raw.jsonl, project: pii-example, labels: [PERSON, ORG, ADDRESS] }
+    onFailure: stop
+  - id: pull
+    kind: step
+    capability: labels.labelstudio.pull
+    input: { project: pii-example, out: data/pii/gold.jsonl }
+    onFailure: stop
+
+  # 400 made-up documents for training only, none holding a value the
+  # labelled documents hold.
+  - id: synthesize
+    kind: step
+    capability: mlops.nlp.synthesize
+    input: { spec: .punica/synth/pii.yaml, out: data/pii/synth.jsonl, golden: data/pii/gold.jsonl }
+    onFailure: stop
+
+  # Whole documents into parts; the test part holds only labelled ones.
+  - id: split
+    kind: step
+    capability: mlops.nlp.split
+    input:
+      data: data/pii/gold.jsonl
+      trainOnly: data/pii/synth.jsonl
+      out: data/pii/split
+      ratios: { train: 0.5, val: 0.17, test: 0.33 }
+    onFailure: stop
+
+  # A real project keeps the default of 200 documents confirmed by a person;
+  # this example has twelve.
+  - id: dataset-check
+    kind: step
+    capability: mlops.nlp.datasetCheck
+    input: { data: data/pii/split, minReviewed: 12 }
+    onFailure: stop
+
+  - id: train
+    kind: step
+    capability: mlops.nlp.train
+    input:
+      script: src/train_ner.py
+      data: data/pii/split
+      out: model
+    onFailure: stop
+
+  # Recall per label with the checksum rules beside the model: 0.98 for
+  # names, firms and addresses, 0.995 for identifiers.
+  - id: span-recall
+    kind: step
+    capability: mlops.nlp.evaluate
+    input:
+      gold: data/pii/split/test.jsonl
+      predicted: model/predictions.test.jsonl
+    onFailure: stop
+
+  # int8 ONNX, refused when it tags any token differently from the model.
+  - id: export
+    kind: step
+    capability: mlops.nlp.export
+    input:
+      model: model
+      test: data/pii/split/test.jsonl
+    onFailure: stop
+
+  # What ships is gated again, on its own predictions and against the
+  # champion the deploy below wrote last time.
+  - id: span-recall-onnx
+    kind: step
+    capability: mlops.nlp.evaluate
+    input:
+      gold: data/pii/split/test.jsonl
+      predicted: model/onnx/predictions.test.jsonl
+      champion: auto
+    onFailure: stop
+
+  - id: deploy
+    kind: step
+    capability: mlops.nlp.deploy
+    input:
+      package: model/onnx
+      name: pii-ner
+      gate: ${span-recall-onnx}
+    onFailure: stop

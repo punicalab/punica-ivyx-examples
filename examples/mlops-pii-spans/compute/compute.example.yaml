@@ -1,0 +1,23 @@
+# Machines a pipeline step can train on. Copy this file to
+# .punica/compute.yaml and change the hosts, or add the same machines from the
+# Compute panel's form. It holds no secret: an ssh target signs in with your
+# own ssh (your agent and ~/.ssh/config).
+targets:
+  # A GPU machine with Docker and the NVIDIA container toolkit, where
+  # `docker build -t ivyx-ner compute/` has been run once.
+  - id: gpu-box
+    engine: ssh
+    host: gpu-box            # an alias from ~/.ssh/config, or user@host
+    workdir: ivyx-jobs       # under the remote home
+    image: ivyx-ner
+    gpu: true
+    maxHours: 4
+
+  # The same machine with no Docker: a Python environment on it that has
+  # torch and transformers installed.
+  - id: gpu-box-venv
+    engine: ssh
+    host: gpu-box
+    workdir: ivyx-jobs       # under the remote home
+    python: /opt/venvs/ner/bin/python   # a full path; ~ is not expanded here
+    maxHours: 4

@@ -1,0 +1,49 @@
+# Punica editor — workspace internal state.
+# Auto-generated. Everything under .punica/ is ignored by default;
+# only the authored artifacts and user config below are tracked.
+/*
+
+!.gitignore
+
+# Authored artifacts (user's project content)
+!/ivy-nodes/
+!/ivy-agents/
+!/ivy-mcps/
+!/ivy-inputs/
+
+# Generated, and required by something outside this machine. The CI generator
+# writes the gate drivers here and the workflow it produces calls them by path,
+# so a runner that checks out the repository must find them.
+!/ci/
+
+# Governance, and the whole reason it is a file. A policy that lives in the
+# commit is one that shows up in a diff and gets argued about in review — the
+# claim the argument-level policy engine and the policy export are both built
+# on. It was ignored here, so in a fresh workspace it was reviewable by nobody.
+# serve.yaml is its pair: what this project exposes to a remote caller.
+!/policy.yaml
+!/serve.yaml
+
+# Authored process definitions. The same case as mlops.yaml below — a person
+# writes them, presses Save, and a teammate cloning the project needs them or
+# gets no process at all.
+!/llmops.yaml
+!/evals.yaml
+
+# User configuration
+!/settings.json
+!/tasks.json
+!/launch.json
+!/database.yaml
+!/experiments.yaml
+!/mlops.yaml
+# The synthesis spec the Synthesize step reads.
+!/synth/
+!/python.yaml
+!/vectors.yaml
+!/mcp.yaml
+!/mcp/
+
+# Added by a later version of the editor.
+!/evals/
+!/instruction-classes/

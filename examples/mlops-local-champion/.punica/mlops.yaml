@@ -1,0 +1,45 @@
+# MLOps pipeline. Stages run in the order below; a failing stage
+# whose onFailure is "stop" ends the run.
+version: 1
+
+pipeline:
+  # Which engine runs the DAG: here the one train stage in dvc.yaml.
+  provider: dvc
+
+stages:
+  - id: train
+    kind: pipeline
+    onFailure: stop
+
+  # Scores out/model/predictions.csv itself, so no tracking server is in the
+  # path. The floor is F1 0.5 over the whole test part; each region must stay
+  # within 5 points of the deployed champion's F1 on that region.
+  - id: check-predictions
+    kind: step
+    title: Check the Predictions
+    capability: mlops.evaluate.predictions
+    input:
+      predictions: out/model/predictions.csv
+      task: classification
+      thresholds:
+        f1:
+          min: 0.5
+      champion: auto
+      tolerance: 0.02
+      slices:
+        columns: [region]
+        minRows: 20
+        tolerance: 0.05
+    onFailure: stop
+
+  # The one governed write: asks a person, refuses a gate that did not pass,
+  # and copies out/model into models/churn/v<N>/ with a champion.json beside it.
+  - id: ship
+    kind: step
+    title: Deploy the Model
+    capability: mlops.deploy.champion
+    input:
+      package: out/model
+      name: churn
+      gate: ${check-predictions}
+    onFailure: stop

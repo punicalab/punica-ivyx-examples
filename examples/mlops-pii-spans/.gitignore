@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+# What a run writes: the documents as JSONL, the parts, the trained model
+# and its export, and the champion the deploy writes.
+data/
+model/
+models/

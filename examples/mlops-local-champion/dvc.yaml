@@ -1,0 +1,9 @@
+stages:
+  train:
+    cmd: .venv/bin/python src/train.py
+    deps:
+    - data/churn.csv
+    - src/train.py
+    outs:
+    - out/model:
+        cache: false

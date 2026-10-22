@@ -45,13 +45,15 @@ copies a project in with its per-machine state left behind, and
 | `examples/data-first-look` | a data scientist opening a new file | `dataset-first-look`, `train-test-leakage-check` | extension-duckdb, extension-profiler |
 | `examples/mlops-pipeline` | an ML engineer with a pipeline and a data contract | `pipeline-run-triage`, `data-contract-authoring`, `notebook-to-pipeline-stage` | extension-mlops, -mlops-dvc, -mlops-pandera, -test-pytest, -ipynb-viewer; a Python env from `requirements.txt` |
 | `examples/mlops-experiments` | a data scientist with runs in MLflow and a model to promote | `experiment-comparison`, `model-promotion-review` | extension-experiments, -model-registry, -mlops, -evidence; a Python env, then `scripts/seed_mlflow.py` |
+| `examples/mlops-local-champion` | an ML engineer whose policy keeps data on the machine | `pipeline-run-triage` (and the pipeline itself: a gate, a deploy, a champion that stops a weaker model) | extension-mlops 1.32+, -mlops-dvc, -experiments 2.29+; a Python env from `requirements.txt` |
+| `examples/mlops-pii-spans` | a team training a model that finds personal data in documents | the pipeline itself: label, train, gate, int8 export, deploy | extension-mlops 1.32+, -mlops-nlp 0.5+, -secret-manager; Docker for Label Studio; a Python env with torch |
 | `examples/llmops-support` | an LLM developer with a support assistant over policy documents | `rag-knowledge-base-setup`, `eval-suite-authoring`, `guardrails-pack-check` | extension-knowledge, -vectors, -evals, -evals-text, -guardrails, -llms-instruction-class-service; an AI core |
 | `examples/student-notebooks` | a student with a notebook and a homework | `concept-practice`, `notebook-error-hint`, `assignment-starter` | extension-ipynb-viewer, -duckdb, a Python kernel |
 
 ## What is in here
 
 ```
-examples/     five projects to open and try, one per audience, each with a README
+examples/     seven projects to open and try, one per audience, each with a README
 fixtures/     the fourteen projects the catalogue skills were measured on, as measured
               (fixtures/README.md maps each to its measurement section and says how to run one again)
 tools/        scrub.sh — copy a project in without its machine state; check.sh — refuse paths and secrets

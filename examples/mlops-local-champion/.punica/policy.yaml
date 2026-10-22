@@ -1,0 +1,27 @@
+# What may happen in this project.
+#
+# One rule, the one a team with personal data writes first: nothing a
+# capability does may send data off this machine. A capability that declares
+# `net.request` is refused before it runs, which is why the MLflow gate
+# (mlops.model.evaluate) cannot judge a model here.
+#
+# The pipeline in .punica/mlops.yaml still has a gate and a champion:
+# mlops.evaluate.predictions scores the predictions file the training script
+# leaves, and mlops.deploy.champion writes the model into models/churn/ with a
+# champion.json beside it. Neither declares the network.
+#
+# The deploy asks a person every time without a rule here, because it
+# declares risk: high and approval: step.
+#
+# Check a rule before trusting it:
+#   ivyx policy lint
+#   ivyx policy explain mlops.model.evaluate
+version: 1
+
+templates:
+  - name: local-only
+    rules:
+      - kind: capability
+        egress: remote
+        effect: deny
+        reason: No data leaves this machine.

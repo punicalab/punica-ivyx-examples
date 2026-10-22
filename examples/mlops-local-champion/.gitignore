@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+# What a run writes: the model folder the gate scores, the champion the
+# deploy writes, and the run MLflow keeps in a local folder.
+out/
+models/
+mlruns/

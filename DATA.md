@@ -17,6 +17,17 @@
   `2` near the origin that the data contract rejects.
 - **`data/sales.csv`**: six synthetic rows (three cities, two months, one
   missing value).
+- **`data/churn.csv` in the local-champion example**: 600 synthetic
+  customers (`customer_id`, `region`, `age`, `tenure_months`, `plan`,
+  `monthly_fee`, `support_calls`, `churned`), drawn with a fixed seed so that
+  support calls, short tenure and the basic plan raise the chance of
+  churning; 30.5% churn.
+- **`docs/` in the PII spans example**: twelve invented documents, filled by
+  `extension-mlops-nlp`'s own generators with a fixed seed. Every IBAN,
+  account, JMBG, PIB, TCKN, VKN and card number passes its checksum and
+  belongs to nobody; names, firms and addresses are random pairs of common
+  ones. `labels/gold.example.jsonl` marks every span of them, written
+  where the generator placed each value.
 - **Kestrel Outdoor** (`docs/`): an invented shop, its policies and its
   products, written for the examples. Any resemblance to a real shop is
   accidental.
